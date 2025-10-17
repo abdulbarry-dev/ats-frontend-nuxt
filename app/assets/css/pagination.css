@@ -1,0 +1,70 @@
+/* Custom Vue Awesome Paginate Styles */
+
+.pagination-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  column-gap: 0.5rem;
+}
+
+.paginate-buttons {
+  min-width: 2.5rem;
+  height: 2.5rem;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid #d1d5db;
+  background-color: white;
+  color: #374151;
+  font-weight: 500;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.paginate-buttons:hover:not(.active-page):not([disabled]) {
+  background-color: #f3f4f6;
+  border-color: #10b981;
+  color: #10b981;
+}
+
+.paginate-buttons.active-page {
+  background-color: #10b981;
+  border-color: #10b981;
+  color: white;
+  font-weight: 600;
+}
+
+.back-button,
+.next-button {
+  min-width: 2.5rem;
+}
+
+.back-button[disabled],
+.next-button[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.back-button svg,
+.next-button svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .paginate-buttons {
+    min-width: 2rem;
+    height: 2rem;
+    font-size: 0.8rem;
+  }
+  
+  .pagination-container {
+    gap: 0.25rem;
+  }
+}
