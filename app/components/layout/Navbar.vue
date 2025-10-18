@@ -15,12 +15,12 @@
           </NuxtLink>
 
           <!-- Desktop Navigation -->
-          <div class="hidden lg:flex items-center gap-2">
+          <div class="hidden lg:flex items-center gap-1">
             <NuxtLink 
               v-for="item in navItems" 
               :key="item.path"
               :to="item.path" 
-              class="nav-link group relative inline-flex items-center gap-2 px-4 py-2.5 text-gray-700 hover:text-emerald-600 font-medium transition-all duration-300 rounded-lg hover:bg-emerald-50/60"
+              class="nav-link group relative inline-flex items-center gap-1.5 px-3 py-2 text-gray-700 hover:text-emerald-600 font-medium text-sm transition-all duration-300 rounded-lg hover:bg-emerald-50/60"
             >
               <Icon :name="item.icon" class="w-4 h-4 opacity-70 group-hover:opacity-100 transition-opacity flex-shrink-0" />
               <span>{{ item.label }}</span>
@@ -28,18 +28,85 @@
             </NuxtLink>
           </div>
 
-          <!-- Desktop Auth Buttons -->
-          <div class="hidden lg:flex items-center gap-3">
+          <!-- Desktop Auth Buttons & Language -->
+          <div class="hidden lg:flex items-center gap-2">
+            <!-- Theme Toggle -->
+            <button
+              @click="toggleTheme"
+              class="p-2 text-gray-700 hover:text-emerald-600 transition-all duration-300 rounded-lg hover:bg-emerald-50/60"
+              aria-label="Toggle theme"
+              title="Toggle theme"
+            >
+              <!-- Sun Icon (Light Mode) -->
+              <svg v-if="currentTheme === 'dark'" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="4" stroke-width="2"/>
+                <path stroke-linecap="round" stroke-width="2" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32l1.41-1.41"/>
+              </svg>
+              <!-- Moon Icon (Dark Mode) -->
+              <svg v-else class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+              </svg>
+            </button>
+
+            <!-- Language Selector -->
+            <div class="relative" ref="langDropdownRef">
+              <button
+                @click="langDropdownOpen = !langDropdownOpen"
+                class="flex items-center gap-1.5 px-2.5 py-2 text-gray-700 hover:text-emerald-600 font-medium transition-all duration-300 rounded-lg hover:bg-emerald-50/60 text-sm"
+                aria-label="Select language"
+              >
+                <Icon name="mdi:translate" class="w-4 h-4" />
+                <span class="text-xs font-semibold">{{ selectedLanguage.code.toUpperCase() }}</span>
+                <Icon name="mdi:chevron-down" class="w-3.5 h-3.5 transition-transform duration-300" :class="{ 'rotate-180': langDropdownOpen }" />
+              </button>
+
+              <!-- Language Dropdown -->
+              <Transition
+                enter-active-class="transition duration-200 ease-out"
+                enter-from-class="transform scale-95 opacity-0"
+                enter-to-class="transform scale-100 opacity-100"
+                leave-active-class="transition duration-150 ease-in"
+                leave-from-class="transform scale-100 opacity-100"
+                leave-to-class="transform scale-95 opacity-0"
+              >
+                <div
+                  v-if="langDropdownOpen"
+                  class="absolute right-0 top-full mt-2 w-52 bg-white rounded-xl shadow-xl border border-gray-100 overflow-hidden z-50"
+                >
+                  <div class="py-1.5">
+                    <button
+                      v-for="lang in languages"
+                      :key="lang.code"
+                      @click="selectLanguage(lang)"
+                      class="w-full flex items-center gap-2.5 px-3.5 py-2.5 hover:bg-emerald-50 transition-colors duration-200"
+                      :class="{ 'bg-emerald-50 text-emerald-600': selectedLanguage.code === lang.code }"
+                    >
+                      <span class="text-xl">{{ lang.flag }}</span>
+                      <div class="flex-1 text-left">
+                        <p class="font-medium text-xs">{{ lang.name }}</p>
+                        <p class="text-xs text-gray-500">{{ lang.nativeName }}</p>
+                      </div>
+                      <Icon
+                        v-if="selectedLanguage.code === lang.code"
+                        name="mdi:check-circle"
+                        class="w-4 h-4 text-emerald-600"
+                      />
+                    </button>
+                  </div>
+                </div>
+              </Transition>
+            </div>
+
             <NuxtLink 
               to="/auth/login" 
-              class="px-5 py-2.5 text-gray-700 hover:text-emerald-600 font-semibold transition-all duration-300 rounded-lg hover:bg-emerald-50 flex items-center gap-2"
+              class="px-4 py-2 text-gray-700 hover:text-emerald-600 font-semibold transition-all duration-300 rounded-lg hover:bg-emerald-50 flex items-center gap-1.5 text-sm"
             >
               <Icon name="mdi:login" class="w-4 h-4" />
               Sign In
             </NuxtLink>
             <NuxtLink 
               to="/auth/register" 
-              class="px-6 py-2.5 bg-gradient-to-r from-emerald-600 to-emerald-700 text-white rounded-lg font-semibold hover:from-emerald-700 hover:to-emerald-800 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 flex items-center gap-2"
+              class="px-4 py-2 bg-gradient-to-r from-emerald-600 to-emerald-700 text-white rounded-lg font-semibold hover:from-emerald-700 hover:to-emerald-800 transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5 flex items-center gap-1.5 text-sm"
             >
               <Icon name="mdi:rocket-launch" class="w-4 h-4" />
               Get Started
@@ -238,6 +305,31 @@
             </NuxtLink>
           </div>
 
+          <!-- Theme Toggle (Mobile) -->
+          <div class="mt-4">
+            <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider px-3 mb-2">Appearance</p>
+            <button
+              @click="toggleTheme"
+              class="w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-gray-700 hover:bg-gray-50"
+            >
+              <div class="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center">
+                <!-- Sun Icon (Light Mode) -->
+                <svg v-if="currentTheme === 'dark'" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="4" stroke-width="2"/>
+                  <path stroke-linecap="round" stroke-width="2" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32l1.41-1.41"/>
+                </svg>
+                <!-- Moon Icon (Dark Mode) -->
+                <svg v-else class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                </svg>
+              </div>
+              <div class="flex-1 text-left">
+                <p class="font-semibold text-sm">{{ currentTheme === 'light' ? 'Light Mode' : 'Dark Mode' }}</p>
+                <p class="text-xs text-gray-500">Switch to {{ currentTheme === 'light' ? 'dark' : 'light' }} theme</p>
+              </div>
+            </button>
+          </div>
+
           <!-- Footer Links -->
           <div class="mt-6 pt-6 border-t border-gray-100">
             <div class="grid grid-cols-2 gap-2 text-sm">
@@ -257,6 +349,34 @@
                 <Icon name="mdi:file-document-outline" class="w-4 h-4 inline-block mr-1" />
                 Terms
               </NuxtLink>
+            </div>
+          </div>
+
+          <!-- Language Selector (Mobile) -->
+          <div class="mt-4">
+            <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider px-3 mb-2">Language</p>
+            <div class="space-y-1">
+              <button
+                v-for="lang in languages"
+                :key="lang.code"
+                @click="selectLanguage(lang)"
+                class="w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300"
+                :class="{ 
+                  'bg-emerald-50 text-emerald-600': selectedLanguage.code === lang.code,
+                  'text-gray-700 hover:bg-gray-50': selectedLanguage.code !== lang.code
+                }"
+              >
+                <span class="text-2xl">{{ lang.flag }}</span>
+                <div class="flex-1 text-left">
+                  <p class="font-semibold text-sm">{{ lang.name }}</p>
+                  <p class="text-xs opacity-70">{{ lang.nativeName }}</p>
+                </div>
+                <Icon
+                  v-if="selectedLanguage.code === lang.code"
+                  name="mdi:check-circle"
+                  class="w-5 h-5 text-emerald-600"
+                />
+              </button>
             </div>
           </div>
 
@@ -281,6 +401,51 @@
 <script setup lang="ts">
 const mobileMenuOpen = ref(false)
 const showSearch = ref(false)
+const langDropdownOpen = ref(false)
+const langDropdownRef = ref<HTMLElement | null>(null)
+
+// Theme management
+const currentTheme = ref<'light' | 'dark'>('light')
+
+const toggleTheme = () => {
+  currentTheme.value = currentTheme.value === 'light' ? 'dark' : 'light'
+  // Save to localStorage
+  localStorage.setItem('theme', currentTheme.value)
+  // Apply theme (you can implement actual dark mode CSS)
+  document.documentElement.classList.toggle('dark', currentTheme.value === 'dark')
+  console.log('Theme changed to:', currentTheme.value)
+}
+
+// Language options
+interface Language {
+  code: string
+  name: string
+  nativeName: string
+  flag: string
+}
+
+const languages: Language[] = [
+  { code: 'en', name: 'English', nativeName: 'English', flag: '🇺🇸' },
+  { code: 'es', name: 'Spanish', nativeName: 'Español', flag: '🇪🇸' },
+  { code: 'fr', name: 'French', nativeName: 'Français', flag: '🇫🇷' },
+  { code: 'de', name: 'German', nativeName: 'Deutsch', flag: '🇩🇪' },
+  { code: 'ar', name: 'Arabic', nativeName: 'العربية', flag: '🇸🇦' },
+  { code: 'zh', name: 'Chinese', nativeName: '中文', flag: '🇨🇳' },
+]
+
+const selectedLanguage = ref<Language>(languages[0]!)
+
+const selectLanguage = (lang: Language) => {
+  selectedLanguage.value = lang
+  langDropdownOpen.value = false
+  // TODO: Implement actual language switching logic
+  console.log('Language selected:', lang.code)
+}
+
+// Close language dropdown when clicking outside
+onClickOutside(langDropdownRef, () => {
+  langDropdownOpen.value = false
+})
 
 // Expose header height as a CSS variable so page content can avoid being
 // hidden under the fixed navbar. We set it on document.documentElement
@@ -295,6 +460,14 @@ function updateHeaderHeight() {
 }
 
 onMounted(() => {
+  // Load saved theme
+  const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null
+  if (savedTheme) {
+    currentTheme.value = savedTheme
+    document.documentElement.classList.toggle('dark', savedTheme === 'dark')
+  }
+  
+  // Setup header height tracking
   updateHeaderHeight()
   window.addEventListener('resize', updateHeaderHeight, { passive: true })
 })

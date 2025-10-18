@@ -123,14 +123,7 @@
             <NuxtLink to="/accessibility" class="text-gray-500 hover:text-emerald-400 transition-colors">
               Accessibility
             </NuxtLink>
-            <div class="flex items-center gap-2 text-gray-500">
-              <Icon name="mdi:earth" class="w-4 h-4" />
-              <select class="bg-transparent border-none outline-none cursor-pointer hover:text-emerald-400 transition-colors">
-                <option>English</option>
-                <option>Español</option>
-                <option>Français</option>
-              </select>
-            </div>
+            <span class="text-gray-500">Made with ❤️ by FindPoint Team</span>
           </div>
         </div>
       </div>
