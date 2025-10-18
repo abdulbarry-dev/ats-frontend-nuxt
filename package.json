@@ -9,6 +9,12 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
   },
+  "pnpm": {
+    "overrides": {
+      "glob@<8": ">=10.0.0",
+      "inflight": "npm:@jsdevtools/inflight@^2.0.1"
+    }
+  },
   "dependencies": {
     "@formkit/nuxt": "^1.6.9",
     "@nuxt/content": "3.7.1",
@@ -16,7 +22,6 @@
     "@nuxt/icon": "2.0.0",
     "@nuxt/image": "1.11.0",
     "@nuxtjs/device": "3.2.4",
-    "@nuxtjs/seo": "3.2.2",
     "@nuxtjs/tailwindcss": "6.14.0",
     "@pinia/nuxt": "^0.11.2",
     "@vueuse/nuxt": "13.9.0",
@@ -32,6 +37,7 @@
     "@iconify-json/lucide": "^1.2.69",
     "@iconify-json/mdi": "^1.2.3",
     "@iconify-json/ri": "^1.2.6",
-    "@iconify-json/tabler": "^1.2.23"
+    "@iconify-json/tabler": "^1.2.23",
+    "@nuxtjs/seo": "3.2.2"
   }
 }

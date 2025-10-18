@@ -11,7 +11,8 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     '@formkit/nuxt',
     '@pinia/nuxt',
-    '@nuxtjs/device'
+    '@nuxtjs/device',
+    '@nuxtjs/seo'
   ],
    formkit: {
     // Experimental support for auto loading (see note):
