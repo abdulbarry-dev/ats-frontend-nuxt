@@ -1,7 +1,7 @@
 <template>
   <header ref="headerRef" class="fixed top-0 left-0 right-0 z-50">
     <!-- Main Navigation -->
-    <nav class="bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100">
+    <nav class="bg-white/95 dark:bg-slate-900/95 backdrop-blur-md shadow-sm border-b border-gray-100 dark:border-slate-700 transition-colors duration-300">
       <div class="container mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-16 sm:h-18">
           <!-- Logo -->
@@ -9,7 +9,7 @@
             <div class="w-9 h-9 sm:w-10 sm:h-10 bg-gradient-to-br from-emerald-600 to-emerald-700 rounded-xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-md">
               <Icon name="mdi:briefcase-search" class="w-5 h-5 sm:w-6 sm:h-6 text-white" />
             </div>
-            <span class="text-xl sm:text-2xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
+            <span class="text-xl sm:text-2xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-200 bg-clip-text text-transparent">
               FindPoint
             </span>
           </NuxtLink>
@@ -20,7 +20,7 @@
               v-for="item in navItems" 
               :key="item.path"
               :to="item.path" 
-              class="nav-link group relative inline-flex items-center gap-1.5 px-3 py-2 text-gray-700 hover:text-emerald-600 font-medium text-sm transition-all duration-300 rounded-lg hover:bg-emerald-50/60"
+              class="nav-link group relative inline-flex items-center gap-1.5 px-3 py-2 text-gray-700 dark:text-gray-200 hover:text-emerald-600 dark:hover:text-emerald-400 font-medium text-sm transition-all duration-300 rounded-lg hover:bg-emerald-50/60 dark:hover:bg-emerald-900/30"
             >
               <Icon :name="item.icon" class="w-4 h-4 opacity-70 group-hover:opacity-100 transition-opacity flex-shrink-0" />
               <span>{{ item.label }}</span>
@@ -32,18 +32,21 @@
           <div class="hidden lg:flex items-center gap-2">
             <!-- Theme Toggle -->
             <button
-              @click="toggleTheme"
-              class="p-2 text-gray-700 hover:text-emerald-600 transition-all duration-300 rounded-lg hover:bg-emerald-50/60"
+              @click="(e) => toggleTheme(e)"
+              class="p-2 text-gray-700 dark:text-gray-200 hover:text-emerald-600 dark:hover:text-emerald-400 transition-all duration-300 rounded-lg hover:bg-emerald-50/60 dark:hover:bg-emerald-900/30 relative overflow-hidden group"
               aria-label="Toggle theme"
               title="Toggle theme"
             >
-              <!-- Sun Icon (Light Mode) -->
-              <svg v-if="currentTheme === 'dark'" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <!-- Animated background on hover -->
+              <span class="absolute inset-0 bg-gradient-to-r from-emerald-400 to-emerald-600 opacity-0 group-hover:opacity-10 dark:group-hover:opacity-20 transition-opacity duration-300"></span>
+              
+              <!-- Sun Icon (shown in dark mode) -->
+              <svg v-if="currentTheme === 'dark'" class="w-5 h-5 relative z-10 transition-transform duration-300 group-hover:rotate-45 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <circle cx="12" cy="12" r="4" stroke-width="2"/>
                 <path stroke-linecap="round" stroke-width="2" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32l1.41-1.41"/>
               </svg>
-              <!-- Moon Icon (Dark Mode) -->
-              <svg v-else class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <!-- Moon Icon (shown in light mode) -->
+              <svg v-else class="w-5 h-5 relative z-10 transition-transform duration-300 group-hover:-rotate-12 group-hover:scale-110" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
               </svg>
             </button>
@@ -52,7 +55,7 @@
             <div class="relative" ref="langDropdownRef">
               <button
                 @click="langDropdownOpen = !langDropdownOpen"
-                class="flex items-center gap-1.5 px-2.5 py-2 text-gray-700 hover:text-emerald-600 font-medium transition-all duration-300 rounded-lg hover:bg-emerald-50/60 text-sm"
+                class="flex items-center gap-1.5 px-2.5 py-2 text-gray-700 dark:text-gray-200 hover:text-emerald-600 dark:hover:text-emerald-400 font-medium transition-all duration-300 rounded-lg hover:bg-emerald-50/60 dark:hover:bg-emerald-900/30 text-sm"
                 aria-label="Select language"
               >
                 <Icon name="mdi:translate" class="w-4 h-4" />
@@ -71,20 +74,20 @@
               >
                 <div
                   v-if="langDropdownOpen"
-                  class="absolute right-0 top-full mt-2 w-52 bg-white rounded-xl shadow-xl border border-gray-100 overflow-hidden z-50"
+                  class="absolute right-0 top-full mt-2 w-52 bg-white dark:bg-slate-800 rounded-xl shadow-xl border border-gray-100 dark:border-slate-700 overflow-hidden z-50 transition-colors duration-300"
                 >
                   <div class="py-1.5">
                     <button
                       v-for="lang in languages"
                       :key="lang.code"
                       @click="selectLanguage(lang)"
-                      class="w-full flex items-center gap-2.5 px-3.5 py-2.5 hover:bg-emerald-50 transition-colors duration-200"
-                      :class="{ 'bg-emerald-50 text-emerald-600': selectedLanguage.code === lang.code }"
+                      class="w-full flex items-center gap-2.5 px-3.5 py-2.5 hover:bg-emerald-50 dark:hover:bg-emerald-900/30 transition-colors duration-200"
+                      :class="{ 'bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400': selectedLanguage.code === lang.code }"
                     >
                       <span class="text-xl">{{ lang.flag }}</span>
                       <div class="flex-1 text-left">
-                        <p class="font-medium text-xs">{{ lang.name }}</p>
-                        <p class="text-xs text-gray-500">{{ lang.nativeName }}</p>
+                        <p class="font-medium text-xs dark:text-gray-200">{{ lang.name }}</p>
+                        <p class="text-xs text-gray-500 dark:text-gray-400">{{ lang.nativeName }}</p>
                       </div>
                       <Icon
                         v-if="selectedLanguage.code === lang.code"
@@ -99,7 +102,7 @@
 
             <NuxtLink 
               to="/auth/login" 
-              class="px-4 py-2 text-gray-700 hover:text-emerald-600 font-semibold transition-all duration-300 rounded-lg hover:bg-emerald-50 flex items-center gap-1.5 text-sm"
+              class="px-4 py-2 text-gray-700 dark:text-gray-200 hover:text-emerald-600 dark:hover:text-emerald-400 font-semibold transition-all duration-300 rounded-lg hover:bg-emerald-50 dark:hover:bg-emerald-900/30 flex items-center gap-1.5 text-sm"
             >
               <Icon name="mdi:login" class="w-4 h-4" />
               Sign In
@@ -118,7 +121,7 @@
             <!-- Quick Search Button (Mobile) -->
             <button 
               @click="showSearch = !showSearch"
-              class="p-2 sm:p-2.5 rounded-xl hover:bg-gray-100 transition-all duration-300 text-gray-700"
+              class="p-2 sm:p-2.5 rounded-xl hover:bg-gray-100 dark:hover:bg-slate-800 transition-all duration-300 text-gray-700 dark:text-gray-200"
               aria-label="Search"
             >
               <Icon name="mdi:magnify" class="w-5 h-5 sm:w-6 sm:h-6" />
@@ -127,17 +130,17 @@
             <!-- Mobile Menu Button -->
             <button 
               @click="mobileMenuOpen = !mobileMenuOpen"
-              class="p-2 sm:p-2.5 rounded-xl hover:bg-emerald-50 transition-all duration-300 relative"
+              class="p-2 sm:p-2.5 rounded-xl hover:bg-emerald-50 dark:hover:bg-emerald-900/30 transition-all duration-300 relative"
               aria-label="Toggle menu"
             >
               <Icon 
                 name="mdi:menu" 
-                class="w-6 h-6 sm:w-7 sm:h-7 text-gray-700 transition-all duration-300"
+                class="w-6 h-6 sm:w-7 sm:h-7 text-gray-700 dark:text-gray-200 transition-all duration-300"
                 :class="{ 'rotate-90 opacity-0': mobileMenuOpen }"
               />
               <Icon 
                 name="mdi:close" 
-                class="w-6 h-6 sm:w-7 sm:h-7 text-emerald-600 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-all duration-300"
+                class="w-6 h-6 sm:w-7 sm:h-7 text-emerald-600 dark:text-emerald-400 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-all duration-300"
                 :class="{ 'rotate-90 opacity-0': !mobileMenuOpen }"
               />
             </button>
@@ -153,13 +156,13 @@
           leave-from-class="transform translate-y-0 opacity-100"
           leave-to-class="transform -translate-y-2 opacity-0"
         >
-          <div v-if="showSearch" class="lg:hidden py-3 border-t border-gray-100">
+          <div v-if="showSearch" class="lg:hidden py-3 border-t border-gray-100 dark:border-slate-700">
             <div class="relative">
-              <Icon name="mdi:magnify" class="w-5 h-5 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" />
+              <Icon name="mdi:magnify" class="w-5 h-5 text-gray-400 dark:text-gray-500 absolute left-3 top-1/2 -translate-y-1/2" />
               <input 
                 type="text" 
                 placeholder="Search jobs, companies..."
-                class="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all"
+                class="w-full pl-10 pr-4 py-3 border border-gray-200 dark:border-slate-600 dark:bg-slate-800 dark:text-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:focus:ring-emerald-400 focus:border-transparent transition-all"
               >
             </div>
           </div>
@@ -194,7 +197,7 @@
     >
       <div 
         v-if="mobileMenuOpen" 
-        class="fixed top-0 right-0 bottom-0 w-[85%] max-w-sm bg-white shadow-2xl lg:hidden overflow-y-auto mobile-menu-scroll"
+        class="fixed top-0 right-0 bottom-0 w-[85%] max-w-sm bg-white dark:bg-slate-900 shadow-2xl lg:hidden overflow-y-auto mobile-menu-scroll transition-colors duration-300"
       >
         <!-- Mobile Menu Header -->
         <div class="bg-gradient-to-br from-emerald-600 to-emerald-700 p-6 text-white">
@@ -245,17 +248,17 @@
               v-for="item in navItems" 
               :key="item.path"
               :to="item.path" 
-              class="mobile-nav-link group flex items-center gap-3 px-4 py-3.5 text-gray-700 hover:bg-emerald-50 hover:text-emerald-600 rounded-xl font-medium transition-all duration-300"
+              class="mobile-nav-link group flex items-center gap-3 px-4 py-3.5 text-gray-700 dark:text-gray-200 hover:bg-emerald-50 dark:hover:bg-emerald-900/30 hover:text-emerald-600 dark:hover:text-emerald-400 rounded-xl font-medium transition-all duration-300"
               @click="mobileMenuOpen = false"
             >
-              <div class="w-10 h-10 bg-gray-100 group-hover:bg-emerald-100 rounded-lg flex items-center justify-center transition-colors">
+              <div class="w-10 h-10 bg-gray-100 dark:bg-slate-800 group-hover:bg-emerald-100 dark:group-hover:bg-emerald-900/50 rounded-lg flex items-center justify-center transition-colors">
                 <Icon :name="item.icon" class="w-5 h-5" />
               </div>
               <div class="flex-1">
                 <p class="font-semibold">{{ item.label }}</p>
-                <p class="text-xs text-gray-500 group-hover:text-emerald-600">{{ item.description }}</p>
+                <p class="text-xs text-gray-500 dark:text-gray-400 group-hover:text-emerald-600 dark:group-hover:text-emerald-400">{{ item.description }}</p>
               </div>
-              <Icon name="mdi:chevron-right" class="w-5 h-5 text-gray-400 group-hover:text-emerald-600 group-hover:translate-x-1 transition-all" />
+              <Icon name="mdi:chevron-right" class="w-5 h-5 text-gray-400 dark:text-gray-500 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 group-hover:translate-x-1 transition-all" />
             </NuxtLink>
           </div>
 
@@ -307,25 +310,25 @@
 
           <!-- Theme Toggle (Mobile) -->
           <div class="mt-4">
-            <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider px-3 mb-2">Appearance</p>
+            <p class="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider px-3 mb-2">Appearance</p>
             <button
-              @click="toggleTheme"
-              class="w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-gray-700 hover:bg-gray-50"
+              @click="(e) => toggleTheme(e)"
+              class="w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-slate-800 group"
             >
-              <div class="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center">
-                <!-- Sun Icon (Light Mode) -->
-                <svg v-if="currentTheme === 'dark'" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div class="w-10 h-10 bg-gray-100 dark:bg-slate-800 group-hover:bg-emerald-100 dark:group-hover:bg-emerald-900/50 rounded-lg flex items-center justify-center transition-colors">
+                <!-- Sun Icon (shown in dark mode) -->
+                <svg v-if="currentTheme === 'dark'" class="w-5 h-5 transition-transform duration-300 group-hover:rotate-45" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <circle cx="12" cy="12" r="4" stroke-width="2"/>
                   <path stroke-linecap="round" stroke-width="2" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32l1.41-1.41"/>
                 </svg>
-                <!-- Moon Icon (Dark Mode) -->
-                <svg v-else class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <!-- Moon Icon (shown in light mode) -->
+                <svg v-else class="w-5 h-5 transition-transform duration-300 group-hover:-rotate-12" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
                 </svg>
               </div>
               <div class="flex-1 text-left">
                 <p class="font-semibold text-sm">{{ currentTheme === 'light' ? 'Light Mode' : 'Dark Mode' }}</p>
-                <p class="text-xs text-gray-500">Switch to {{ currentTheme === 'light' ? 'dark' : 'light' }} theme</p>
+                <p class="text-xs text-gray-500 dark:text-gray-400">Switch to {{ currentTheme === 'light' ? 'dark' : 'light' }} theme</p>
               </div>
             </button>
           </div>
@@ -362,8 +365,8 @@
                 @click="selectLanguage(lang)"
                 class="w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300"
                 :class="{ 
-                  'bg-emerald-50 text-emerald-600': selectedLanguage.code === lang.code,
-                  'text-gray-700 hover:bg-gray-50': selectedLanguage.code !== lang.code
+                  'bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400': selectedLanguage.code === lang.code,
+                  'text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-slate-800': selectedLanguage.code !== lang.code
                 }"
               >
                 <span class="text-2xl">{{ lang.flag }}</span>
@@ -382,13 +385,13 @@
 
           <!-- Social Links -->
           <div class="mt-6 flex justify-center gap-3">
-            <a href="#" class="w-10 h-10 bg-gray-100 hover:bg-blue-50 text-gray-600 hover:text-blue-600 rounded-lg flex items-center justify-center transition-all duration-300">
+            <a href="#" class="w-10 h-10 bg-gray-100 dark:bg-slate-800 hover:bg-blue-50 dark:hover:bg-blue-900/30 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 rounded-lg flex items-center justify-center transition-all duration-300">
               <Icon name="mdi:linkedin" class="w-5 h-5" />
             </a>
-            <a href="#" class="w-10 h-10 bg-gray-100 hover:bg-sky-50 text-gray-600 hover:text-sky-600 rounded-lg flex items-center justify-center transition-all duration-300">
+            <a href="#" class="w-10 h-10 bg-gray-100 dark:bg-slate-800 hover:bg-sky-50 dark:hover:bg-sky-900/30 text-gray-600 dark:text-gray-400 hover:text-sky-600 dark:hover:text-sky-400 rounded-lg flex items-center justify-center transition-all duration-300">
               <Icon name="mdi:twitter" class="w-5 h-5" />
             </a>
-            <a href="#" class="w-10 h-10 bg-gray-100 hover:bg-purple-50 text-gray-600 hover:text-purple-600 rounded-lg flex items-center justify-center transition-all duration-300">
+            <a href="#" class="w-10 h-10 bg-gray-100 dark:bg-slate-800 hover:bg-purple-50 dark:hover:bg-purple-900/30 text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 rounded-lg flex items-center justify-center transition-all duration-300">
               <Icon name="mdi:instagram" class="w-5 h-5" />
             </a>
           </div>
@@ -404,17 +407,8 @@ const showSearch = ref(false)
 const langDropdownOpen = ref(false)
 const langDropdownRef = ref<HTMLElement | null>(null)
 
-// Theme management
-const currentTheme = ref<'light' | 'dark'>('light')
-
-const toggleTheme = () => {
-  currentTheme.value = currentTheme.value === 'light' ? 'dark' : 'light'
-  // Save to localStorage
-  localStorage.setItem('theme', currentTheme.value)
-  // Apply theme (you can implement actual dark mode CSS)
-  document.documentElement.classList.toggle('dark', currentTheme.value === 'dark')
-  console.log('Theme changed to:', currentTheme.value)
-}
+// Theme management using composable
+const { currentTheme, toggleTheme, isAnimating } = useTheme()
 
 // Language options
 interface Language {
@@ -460,13 +454,6 @@ function updateHeaderHeight() {
 }
 
 onMounted(() => {
-  // Load saved theme
-  const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null
-  if (savedTheme) {
-    currentTheme.value = savedTheme
-    document.documentElement.classList.toggle('dark', savedTheme === 'dark')
-  }
-  
   // Setup header height tracking
   updateHeaderHeight()
   window.addEventListener('resize', updateHeaderHeight, { passive: true })
@@ -538,6 +525,11 @@ nav {
   background-color: rgba(16, 185, 129, 0.08);
 }
 
+.dark .router-link-active.nav-link {
+  color: #34d399;
+  background-color: rgba(52, 211, 153, 0.15);
+}
+
 .router-link-active.nav-link > span:last-of-type {
   width: 66.666667%; /* 2/3 width */
 }
@@ -548,13 +540,28 @@ nav {
   color: #10b981;
 }
 
+.dark .router-link-active.mobile-nav-link {
+  background-color: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+}
+
 .router-link-active.mobile-nav-link .bg-gray-100 {
   background-color: #d1fae5;
 }
 
-/* Smooth transitions */
+.dark .router-link-active.mobile-nav-link .bg-gray-100 {
+  background-color: rgba(16, 185, 129, 0.25);
+}
+
+/* Smooth transitions for all interactive elements */
 * {
   -webkit-tap-highlight-color: transparent;
+}
+
+button, a, input {
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
 }
 
 /* Custom scrollbar for mobile menu */
@@ -570,6 +577,10 @@ nav {
 
 .mobile-menu-scroll::-webkit-scrollbar-track {
   background: #f1f1f1;
+}
+
+.dark .mobile-menu-scroll::-webkit-scrollbar-track {
+  background: #1e293b;
 }
 
 .mobile-menu-scroll::-webkit-scrollbar-thumb {
