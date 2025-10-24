@@ -1,7 +1,7 @@
-import { defineFormKitConfig } from '@formkit/vue'
+import { defineFormKitConfig } from "@formkit/vue";
 
 export default defineFormKitConfig({
   // rules: {},
   // locales: {},
-  // etc. 
-})
+  // etc.
+});

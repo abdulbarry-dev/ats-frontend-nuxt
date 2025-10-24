@@ -9,4 +9,4 @@ export default defineNuxtRouteMiddleware((to, from) => {
   // if (!isAuthenticated || user.role !== 'recruiter') {
   //   return navigateTo('/')
   // }
-})
+});

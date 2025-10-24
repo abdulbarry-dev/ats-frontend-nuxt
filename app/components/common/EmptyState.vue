@@ -1,10 +1,10 @@
 <script setup lang="ts">
 /**
  * EmptyState - Display when no data is available
- * 
+ *
  * Shows a friendly message with icon, title, description, and optional action.
  * Used across the application for empty lists, searches, etc.
- * 
+ *
  * @example
  * <EmptyState
  *   icon="mdi:briefcase-outline"
@@ -17,81 +17,81 @@
 
 interface Props {
   /** Iconify icon name */
-  icon: string
+  icon: string;
   /** Main title */
-  title: string
+  title: string;
   /** Description text */
-  description: string
+  description: string;
   /** Action button text */
-  actionText?: string
+  actionText?: string;
   /** Action button link */
-  actionLink?: string
+  actionLink?: string;
   /** Icon color theme */
-  iconColor?: 'emerald' | 'blue' | 'purple' | 'gray'
+  iconColor?: "emerald" | "blue" | "purple" | "gray";
   /** Size variant */
-  size?: 'sm' | 'md' | 'lg'
+  size?: "sm" | "md" | "lg";
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  iconColor: 'gray',
-  size: 'md'
-})
+  iconColor: "gray",
+  size: "md",
+});
 
 const emit = defineEmits<{
-  action: []
-}>()
+  action: [];
+}>();
 
 const iconColorClasses = computed(() => {
   const colors = {
-    emerald: 'bg-emerald-100 text-emerald-600',
-    blue: 'bg-blue-100 text-blue-600',
-    purple: 'bg-purple-100 text-purple-600',
-    gray: 'bg-gray-100 text-gray-600'
-  }
-  return colors[props.iconColor]
-})
+    emerald: "bg-emerald-100 text-emerald-600",
+    blue: "bg-blue-100 text-blue-600",
+    purple: "bg-purple-100 text-purple-600",
+    gray: "bg-gray-100 text-gray-600",
+  };
+  return colors[props.iconColor];
+});
 
 const sizeClasses = computed(() => {
   const sizes = {
     sm: {
-      icon: 'w-12 h-12',
-      iconSize: 'w-6 h-6',
-      title: 'text-lg',
-      description: 'text-sm',
-      padding: 'p-6'
+      icon: "w-12 h-12",
+      iconSize: "w-6 h-6",
+      title: "text-lg",
+      description: "text-sm",
+      padding: "p-6",
     },
     md: {
-      icon: 'w-16 h-16',
-      iconSize: 'w-8 h-8',
-      title: 'text-xl',
-      description: 'text-base',
-      padding: 'p-8'
+      icon: "w-16 h-16",
+      iconSize: "w-8 h-8",
+      title: "text-xl",
+      description: "text-base",
+      padding: "p-8",
     },
     lg: {
-      icon: 'w-20 h-20',
-      iconSize: 'w-10 h-10',
-      title: 'text-2xl',
-      description: 'text-lg',
-      padding: 'p-12'
-    }
-  }
-  return sizes[props.size]
-})
+      icon: "w-20 h-20",
+      iconSize: "w-10 h-10",
+      title: "text-2xl",
+      description: "text-lg",
+      padding: "p-12",
+    },
+  };
+  return sizes[props.size];
+});
 
 const handleAction = () => {
   if (!props.actionLink) {
-    emit('action')
+    emit("action");
   }
-}
+};
 </script>
 
 <template>
-  <div 
-    class="flex flex-col items-center justify-center text-center" 
+  <div
+    class="flex flex-col items-center justify-center text-center"
     :class="sizeClasses.padding"
   >
     <!-- Icon -->
-    <div 
+    <div
       class="rounded-full flex items-center justify-center mb-4"
       :class="[iconColorClasses, sizeClasses.icon]"
     >
@@ -109,7 +109,7 @@ const handleAction = () => {
     </p>
 
     <!-- Action Button -->
-    <NuxtLink 
+    <NuxtLink
       v-if="actionLink"
       :to="actionLink"
       class="px-6 py-2.5 bg-emerald-600 text-white rounded-lg font-medium hover:bg-emerald-700 transition-colors inline-flex items-center gap-2"

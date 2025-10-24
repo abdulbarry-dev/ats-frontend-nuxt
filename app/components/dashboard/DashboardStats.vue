@@ -1,60 +1,60 @@
 <script setup lang="ts">
 /**
  * DashboardStats - Grid of stat cards for dashboard
- * 
+ *
  * Renders a responsive grid of StatCard components.
  * Role-aware styling and behavior.
- * 
+ *
  * @example
  * <DashboardStats :stats="stats" role="candidate" />
  */
 
 interface DashboardStat {
-  title: string
-  value: string | number
-  icon: string
-  color?: 'emerald' | 'blue' | 'purple' | 'orange' | 'red' | 'indigo' | 'pink'
+  title: string;
+  value: string | number;
+  icon: string;
+  color?: "emerald" | "blue" | "purple" | "orange" | "red" | "indigo" | "pink";
   trend?: {
-    value: number
-    direction: 'up' | 'down'
-  }
-  subtitle?: string
-  link?: string
-  badge?: string
+    value: number;
+    direction: "up" | "down";
+  };
+  subtitle?: string;
+  link?: string;
+  badge?: string;
 }
 
 interface Props {
   /** Array of stat data */
-  stats: DashboardStat[]
+  stats: DashboardStat[];
   /** User role for styling */
-  role?: 'candidate' | 'recruiter' | 'admin'
+  role?: "candidate" | "recruiter" | "admin";
   /** Grid columns (responsive) */
-  columns?: 2 | 3 | 4
+  columns?: 2 | 3 | 4;
   /** Loading state */
-  loading?: boolean
+  loading?: boolean;
 }
 
 const props = withDefaults(defineProps<Props>(), {
   columns: 4,
-  loading: false
-})
+  loading: false,
+});
 
 const gridClasses = computed(() => {
   const cols = {
-    2: 'grid-cols-1 sm:grid-cols-2',
-    3: 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3',
-    4: 'grid-cols-2 lg:grid-cols-4'
-  }
-  return cols[props.columns]
-})
+    2: "grid-cols-1 sm:grid-cols-2",
+    3: "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3",
+    4: "grid-cols-2 lg:grid-cols-4",
+  };
+  return cols[props.columns];
+});
 </script>
 
 <template>
   <div class="mb-8">
     <!-- Loading State -->
     <div v-if="loading" class="grid gap-4 sm:gap-6" :class="gridClasses">
-      <div 
-        v-for="i in columns" 
+      <div
+        v-for="i in columns"
         :key="i"
         class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 animate-pulse"
       >

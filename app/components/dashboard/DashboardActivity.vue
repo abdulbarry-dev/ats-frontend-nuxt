@@ -1,76 +1,80 @@
 <script setup lang="ts">
 /**
  * DashboardActivity - Activity feed component
- * 
+ *
  * Displays recent activities with icons, timestamps, and actions.
  * Role-aware content and styling.
- * 
+ *
  * @example
- * <DashboardActivity 
- *   :activities="activities" 
+ * <DashboardActivity
+ *   :activities="activities"
  *   role="candidate"
  *   title="Recent Activity"
  * />
  */
 
 interface Activity {
-  id: string
-  type: string
-  icon: string
-  iconBg: string
-  iconColor: string
-  title: string
-  description?: string
-  time: string
-  link?: string
-  actionText?: string
+  id: string;
+  type: string;
+  icon: string;
+  iconBg: string;
+  iconColor: string;
+  title: string;
+  description?: string;
+  time: string;
+  link?: string;
+  actionText?: string;
 }
 
 interface Props {
   /** Activity items */
-  activities: Activity[]
+  activities: Activity[];
   /** Section title */
-  title?: string
+  title?: string;
   /** Section description */
-  description?: string
+  description?: string;
   /** User role */
-  role?: 'candidate' | 'recruiter'  | 'admin'
+  role?: "candidate" | "recruiter" | "admin";
   /** Maximum items to show */
-  maxItems?: number
+  maxItems?: number;
   /** Show "view all" link */
-  showViewAll?: boolean
+  showViewAll?: boolean;
   /** View all link destination */
-  viewAllLink?: string
+  viewAllLink?: string;
   /** Loading state */
-  loading?: boolean
+  loading?: boolean;
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  title: 'Recent Activity',
-  description: 'Latest updates and notifications',
+  title: "Recent Activity",
+  description: "Latest updates and notifications",
   maxItems: 5,
   showViewAll: true,
-  loading: false
-})
+  loading: false,
+});
 
 const displayedActivities = computed(() => {
-  return props.activities.slice(0, props.maxItems)
-})
+  return props.activities.slice(0, props.maxItems);
+});
 
 const hasMore = computed(() => {
-  return props.activities.length > props.maxItems
-})
+  return props.activities.length > props.maxItems;
+});
 </script>
 
 <template>
-  <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 animate-fade-in-up">
+  <div
+    class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 animate-fade-in-up"
+  >
     <!-- Header -->
     <div class="flex items-center justify-between mb-6">
       <div>
         <h2 class="text-xl font-bold text-gray-900 mb-1">{{ title }}</h2>
-        <p v-if="description" class="text-sm text-gray-500">{{ description }}</p>
+        <p v-if="description" class="text-sm text-gray-500">
+          {{ description }}
+        </p>
       </div>
-      <NuxtLink 
+      <NuxtLink
         v-if="showViewAll && viewAllLink"
         :to="viewAllLink"
         class="text-sm text-emerald-600 hover:text-emerald-700 font-medium flex items-center gap-1"
@@ -93,17 +97,21 @@ const hasMore = computed(() => {
 
     <!-- Activity List -->
     <div v-else-if="displayedActivities.length > 0" class="space-y-4">
-      <div 
-        v-for="activity in displayedActivities" 
+      <div
+        v-for="activity in displayedActivities"
         :key="activity.id"
         class="flex gap-4 group"
       >
         <!-- Icon -->
-        <div 
+        <div
           class="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
           :class="activity.iconBg"
         >
-          <Icon :name="activity.icon" class="w-5 h-5" :class="activity.iconColor" />
+          <Icon
+            :name="activity.icon"
+            class="w-5 h-5"
+            :class="activity.iconColor"
+          />
         </div>
 
         <!-- Content -->
@@ -114,10 +122,14 @@ const hasMore = computed(() => {
               :is="activity.link ? 'NuxtLink' : 'p'"
               :to="activity.link"
               class="text-sm font-medium text-gray-900"
-              :class="{ 'hover:text-emerald-600 transition-colors': activity.link }"
+              :class="{
+                'hover:text-emerald-600 transition-colors': activity.link,
+              }"
               v-html="activity.title"
             />
-            <span class="text-xs text-gray-500 whitespace-nowrap">{{ activity.time }}</span>
+            <span class="text-xs text-gray-500 whitespace-nowrap">{{
+              activity.time
+            }}</span>
           </div>
 
           <!-- Description -->

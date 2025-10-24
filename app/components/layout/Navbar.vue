@@ -1,56 +1,55 @@
 <template>
   <header ref="headerRef" class="fixed top-0 left-0 right-0 z-50">
     <!-- Main Navigation -->
-    <nav class="bg-white/95 dark:bg-slate-900/95 backdrop-blur-md shadow-sm border-b border-gray-100 dark:border-slate-700 transition-colors duration-300">
+    <nav
+      class="bg-white/95 dark:bg-slate-900/95 backdrop-blur-md shadow-sm border-b border-gray-100 dark:border-slate-700 transition-colors duration-300"
+    >
       <div class="container mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-16 sm:h-18">
           <!-- Logo -->
-          <NuxtLink to="/" class="flex items-center gap-2.5 group relative z-10">
-            <div class="w-9 h-9 sm:w-10 sm:h-10 bg-gradient-to-br from-emerald-600 to-emerald-700 rounded-xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-md">
-              <Icon name="mdi:briefcase-search" class="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+          <NuxtLink
+            to="/"
+            class="flex items-center gap-2.5 group relative z-10 ml-[-0.5rem] sm:ml-[-1rem]"
+          >
+            <div
+              class="w-9 h-9 sm:w-10 sm:h-10 bg-gradient-to-br from-emerald-600 to-emerald-700 rounded-xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-md"
+            >
+              <Icon
+                name="mdi:briefcase-search"
+                class="w-5 h-5 sm:w-6 sm:h-6 text-white"
+              />
             </div>
-            <span class="text-xl sm:text-2xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-200 bg-clip-text text-transparent">
+            <span
+              class="text-xl sm:text-2xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-200 bg-clip-text text-transparent"
+            >
               FindPoint
             </span>
           </NuxtLink>
 
           <!-- Desktop Navigation -->
-          <div class="hidden lg:flex items-center gap-1">
-            <NuxtLink 
-              v-for="item in navItems" 
+          <div
+            class="hidden lg:flex flex-nowrap items-center gap-2 min-w-0 max-w-full overflow-visible"
+          >
+            <NuxtLink
+              v-for="item in navItems"
               :key="item.path"
-              :to="item.path" 
-              class="nav-link group relative inline-flex items-center gap-1.5 px-3 py-2 text-gray-700 dark:text-gray-200 hover:text-emerald-600 dark:hover:text-emerald-400 font-medium text-sm transition-all duration-300 rounded-lg hover:bg-emerald-50/60 dark:hover:bg-emerald-900/30"
+              :to="item.path"
+              class="nav-link group relative inline-flex items-center gap-2 px-3 py-2 h-10 text-gray-700 dark:text-gray-200 hover:text-emerald-600 dark:hover:text-emerald-400 font-medium text-xs sm:text-[0.92rem] transition-all duration-300 rounded-md whitespace-nowrap hover:bg-emerald-100/60 dark:hover:bg-emerald-900/40 min-w-0"
+              style="flex: 0 0 auto; min-width: 0; align-items: center"
             >
-              <Icon :name="item.icon" class="w-4 h-4 opacity-70 group-hover:opacity-100 transition-opacity flex-shrink-0" />
-              <span>{{ item.label }}</span>
-              <span class="absolute left-1/2 -bottom-1 h-0.5 w-0 bg-emerald-600 transition-all duration-300 group-hover:w-2/3 -translate-x-1/2 rounded-full"></span>
+              <Icon
+                :name="item.icon"
+                class="w-4 h-4 opacity-70 group-hover:opacity-100 transition-opacity flex-shrink-0"
+              />
+              <span class="block">{{ item.label }}</span>
+              <span
+                class="absolute left-1/2 -bottom-1 h-0.5 w-0 bg-emerald-600 transition-all duration-300 group-hover:w-2/3 -translate-x-1/2 rounded-full"
+              ></span>
             </NuxtLink>
           </div>
 
           <!-- Desktop Auth Buttons & Language -->
           <div class="hidden lg:flex items-center gap-2">
-            <!-- Theme Toggle -->
-            <button
-              @click="(e) => toggleTheme(e)"
-              class="p-2 text-gray-700 dark:text-gray-200 hover:text-emerald-600 dark:hover:text-emerald-400 transition-all duration-300 rounded-lg hover:bg-emerald-50/60 dark:hover:bg-emerald-900/30 relative overflow-hidden group"
-              aria-label="Toggle theme"
-              title="Toggle theme"
-            >
-              <!-- Animated background on hover -->
-              <span class="absolute inset-0 bg-gradient-to-r from-emerald-400 to-emerald-600 opacity-0 group-hover:opacity-10 dark:group-hover:opacity-20 transition-opacity duration-300"></span>
-              
-              <!-- Sun Icon (shown in dark mode) -->
-              <svg v-if="currentTheme === 'dark'" class="w-5 h-5 relative z-10 transition-transform duration-300 group-hover:rotate-45 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <circle cx="12" cy="12" r="4" stroke-width="2"/>
-                <path stroke-linecap="round" stroke-width="2" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32l1.41-1.41"/>
-              </svg>
-              <!-- Moon Icon (shown in light mode) -->
-              <svg v-else class="w-5 h-5 relative z-10 transition-transform duration-300 group-hover:-rotate-12 group-hover:scale-110" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-              </svg>
-            </button>
-
             <!-- Language Selector -->
             <div class="relative" ref="langDropdownRef">
               <button
@@ -59,8 +58,14 @@
                 aria-label="Select language"
               >
                 <Icon name="mdi:translate" class="w-4 h-4" />
-                <span class="text-xs font-semibold">{{ selectedLanguage.code.toUpperCase() }}</span>
-                <Icon name="mdi:chevron-down" class="w-3.5 h-3.5 transition-transform duration-300" :class="{ 'rotate-180': langDropdownOpen }" />
+                <span class="text-xs font-semibold">{{
+                  selectedLanguage.code.toUpperCase()
+                }}</span>
+                <Icon
+                  name="mdi:chevron-down"
+                  class="w-3.5 h-3.5 transition-transform duration-300"
+                  :class="{ 'rotate-180': langDropdownOpen }"
+                />
               </button>
 
               <!-- Language Dropdown -->
@@ -82,12 +87,19 @@
                       :key="lang.code"
                       @click="selectLanguage(lang)"
                       class="w-full flex items-center gap-2.5 px-3.5 py-2.5 hover:bg-emerald-50 dark:hover:bg-emerald-900/30 transition-colors duration-200"
-                      :class="{ 'bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400': selectedLanguage.code === lang.code }"
+                      :class="{
+                        'bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400':
+                          selectedLanguage.code === lang.code,
+                      }"
                     >
                       <span class="text-xl">{{ lang.flag }}</span>
                       <div class="flex-1 text-left">
-                        <p class="font-medium text-xs dark:text-gray-200">{{ lang.name }}</p>
-                        <p class="text-xs text-gray-500 dark:text-gray-400">{{ lang.nativeName }}</p>
+                        <p class="font-medium text-xs dark:text-gray-200">
+                          {{ lang.name }}
+                        </p>
+                        <p class="text-xs text-gray-500 dark:text-gray-400">
+                          {{ lang.nativeName }}
+                        </p>
                       </div>
                       <Icon
                         v-if="selectedLanguage.code === lang.code"
@@ -100,26 +112,21 @@
               </Transition>
             </div>
 
-            <NuxtLink 
-              to="/auth/login" 
+            <NuxtLink
+              to="/auth/login"
               class="px-4 py-2 text-gray-700 dark:text-gray-200 hover:text-emerald-600 dark:hover:text-emerald-400 font-semibold transition-all duration-300 rounded-lg hover:bg-emerald-50 dark:hover:bg-emerald-900/30 flex items-center gap-1.5 text-sm"
             >
               <Icon name="mdi:login" class="w-4 h-4" />
               Sign In
             </NuxtLink>
-            <NuxtLink 
-              to="/auth/register" 
-              class="px-4 py-2 bg-gradient-to-r from-emerald-600 to-emerald-700 text-white rounded-lg font-semibold hover:from-emerald-700 hover:to-emerald-800 transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5 flex items-center gap-1.5 text-sm"
-            >
-              <Icon name="mdi:rocket-launch" class="w-4 h-4" />
-              Get Started
-            </NuxtLink>
           </div>
 
           <!-- Mobile Actions -->
-          <div class="flex lg:hidden items-center gap-2 sm:gap-3">
+          <div
+            class="flex lg:hidden items-center gap-1 sm:gap-2 min-w-0 max-w-full overflow-x-auto scrollbar-thin scrollbar-thumb-emerald-200"
+          >
             <!-- Quick Search Button (Mobile) -->
-            <button 
+            <button
               @click="showSearch = !showSearch"
               class="p-2 sm:p-2.5 rounded-xl hover:bg-gray-100 dark:hover:bg-slate-800 transition-all duration-300 text-gray-700 dark:text-gray-200"
               aria-label="Search"
@@ -128,20 +135,24 @@
             </button>
 
             <!-- Mobile Menu Button -->
-            <button 
+            <button
               @click="mobileMenuOpen = !mobileMenuOpen"
               class="p-2 sm:p-2.5 rounded-xl hover:bg-emerald-50 dark:hover:bg-emerald-900/30 transition-all duration-300 relative"
               aria-label="Toggle menu"
             >
-              <Icon 
-                name="mdi:menu" 
+              <Icon
+                name="mdi:menu"
                 class="w-6 h-6 sm:w-7 sm:h-7 text-gray-700 dark:text-gray-200 transition-all duration-300"
-                :class="{ 'rotate-90 opacity-0': mobileMenuOpen }"
+                :class="{
+                  'rotate-90 opacity-0': mobileMenuOpen,
+                }"
               />
-              <Icon 
-                name="mdi:close" 
+              <Icon
+                name="mdi:close"
                 class="w-6 h-6 sm:w-7 sm:h-7 text-emerald-600 dark:text-emerald-400 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-all duration-300"
-                :class="{ 'rotate-90 opacity-0': !mobileMenuOpen }"
+                :class="{
+                  'rotate-90 opacity-0': !mobileMenuOpen,
+                }"
               />
             </button>
           </div>
@@ -156,14 +167,20 @@
           leave-from-class="transform translate-y-0 opacity-100"
           leave-to-class="transform -translate-y-2 opacity-0"
         >
-          <div v-if="showSearch" class="lg:hidden py-3 border-t border-gray-100 dark:border-slate-700">
+          <div
+            v-if="showSearch"
+            class="lg:hidden py-3 border-t border-gray-100 dark:border-slate-700"
+          >
             <div class="relative">
-              <Icon name="mdi:magnify" class="w-5 h-5 text-gray-400 dark:text-gray-500 absolute left-3 top-1/2 -translate-y-1/2" />
-              <input 
-                type="text" 
+              <Icon
+                name="mdi:magnify"
+                class="w-5 h-5 text-gray-400 dark:text-gray-500 absolute left-3 top-1/2 -translate-y-1/2"
+              />
+              <input
+                type="text"
                 placeholder="Search jobs, companies..."
                 class="w-full pl-10 pr-4 py-3 border border-gray-200 dark:border-slate-600 dark:bg-slate-800 dark:text-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:focus:ring-emerald-400 focus:border-transparent transition-all"
-              >
+              />
             </div>
           </div>
         </Transition>
@@ -179,8 +196,8 @@
       leave-from-class="opacity-100"
       leave-to-class="opacity-0"
     >
-      <div 
-        v-if="mobileMenuOpen" 
+      <div
+        v-if="mobileMenuOpen"
         class="fixed inset-0 bg-black/20 backdrop-blur-sm lg:hidden"
         @click="mobileMenuOpen = false"
       ></div>
@@ -195,15 +212,19 @@
       leave-from-class="transform translate-x-0"
       leave-to-class="transform translate-x-full"
     >
-      <div 
-        v-if="mobileMenuOpen" 
+      <div
+        v-if="mobileMenuOpen"
         class="fixed top-0 right-0 bottom-0 w-[85%] max-w-sm bg-white dark:bg-slate-900 shadow-2xl lg:hidden overflow-y-auto mobile-menu-scroll transition-colors duration-300"
       >
         <!-- Mobile Menu Header -->
-        <div class="bg-gradient-to-br from-emerald-600 to-emerald-700 p-6 text-white">
+        <div
+          class="bg-gradient-to-br from-emerald-600 to-emerald-700 p-6 text-white"
+        >
           <div class="flex items-center justify-between mb-6">
             <div class="flex items-center gap-3">
-              <div class="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center">
+              <div
+                class="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center"
+              >
                 <Icon name="mdi:briefcase-search" class="w-7 h-7 text-white" />
               </div>
               <div>
@@ -211,7 +232,7 @@
                 <p class="text-xs text-emerald-100">Your Career, Simplified</p>
               </div>
             </div>
-            <button 
+            <button
               @click="mobileMenuOpen = false"
               class="p-2 rounded-lg hover:bg-white/20 transition-colors"
             >
@@ -221,17 +242,23 @@
 
           <!-- Quick Stats (Mobile) -->
           <div class="grid grid-cols-3 gap-3">
-            <div class="bg-white/10 backdrop-blur-sm rounded-lg p-3 text-center">
+            <div
+              class="bg-white/10 backdrop-blur-sm rounded-lg p-3 text-center"
+            >
               <Icon name="mdi:briefcase" class="w-5 h-5 mx-auto mb-1" />
               <p class="text-xl font-bold">1.2K</p>
               <p class="text-xs text-emerald-100">Jobs</p>
             </div>
-            <div class="bg-white/10 backdrop-blur-sm rounded-lg p-3 text-center">
+            <div
+              class="bg-white/10 backdrop-blur-sm rounded-lg p-3 text-center"
+            >
               <Icon name="mdi:office-building" class="w-5 h-5 mx-auto mb-1" />
               <p class="text-xl font-bold">450</p>
               <p class="text-xs text-emerald-100">Companies</p>
             </div>
-            <div class="bg-white/10 backdrop-blur-sm rounded-lg p-3 text-center">
+            <div
+              class="bg-white/10 backdrop-blur-sm rounded-lg p-3 text-center"
+            >
               <Icon name="mdi:account-group" class="w-5 h-5 mx-auto mb-1" />
               <p class="text-xl font-bold">8.5K</p>
               <p class="text-xs text-emerald-100">Users</p>
@@ -243,63 +270,107 @@
         <div class="p-4">
           <!-- Main Navigation Links -->
           <div class="space-y-1 mb-6">
-            <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider px-3 mb-2">Navigation</p>
-            <NuxtLink 
-              v-for="item in navItems" 
+            <p
+              class="text-xs font-semibold text-gray-400 uppercase tracking-wider px-3 mb-2"
+            >
+              Navigation
+            </p>
+            <NuxtLink
+              v-for="item in navItems"
               :key="item.path"
-              :to="item.path" 
+              :to="item.path"
               class="mobile-nav-link group flex items-center gap-3 px-4 py-3.5 text-gray-700 dark:text-gray-200 hover:bg-emerald-50 dark:hover:bg-emerald-900/30 hover:text-emerald-600 dark:hover:text-emerald-400 rounded-xl font-medium transition-all duration-300"
               @click="mobileMenuOpen = false"
             >
-              <div class="w-10 h-10 bg-gray-100 dark:bg-slate-800 group-hover:bg-emerald-100 dark:group-hover:bg-emerald-900/50 rounded-lg flex items-center justify-center transition-colors">
+              <div
+                class="w-10 h-10 bg-gray-100 dark:bg-slate-800 group-hover:bg-emerald-100 dark:group-hover:bg-emerald-900/50 rounded-lg flex items-center justify-center transition-colors"
+              >
                 <Icon :name="item.icon" class="w-5 h-5" />
               </div>
               <div class="flex-1">
                 <p class="font-semibold">{{ item.label }}</p>
-                <p class="text-xs text-gray-500 dark:text-gray-400 group-hover:text-emerald-600 dark:group-hover:text-emerald-400">{{ item.description }}</p>
+                <p
+                  class="text-xs text-gray-500 dark:text-gray-400 group-hover:text-emerald-600 dark:group-hover:text-emerald-400"
+                >
+                  {{ item.description }}
+                </p>
               </div>
-              <Icon name="mdi:chevron-right" class="w-5 h-5 text-gray-400 dark:text-gray-500 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 group-hover:translate-x-1 transition-all" />
+              <Icon
+                name="mdi:chevron-right"
+                class="w-5 h-5 text-gray-400 dark:text-gray-500 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 group-hover:translate-x-1 transition-all"
+              />
             </NuxtLink>
           </div>
 
           <!-- Quick Actions -->
           <div class="space-y-1 mb-6">
-            <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider px-3 mb-2">Quick Actions</p>
-            <NuxtLink to="/candidates/saved" @click="mobileMenuOpen = false" class="w-full flex items-center gap-3 px-4 py-3.5 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-xl font-medium transition-all duration-300 group">
-              <div class="w-10 h-10 bg-blue-100 group-hover:bg-blue-200 rounded-lg flex items-center justify-center transition-colors">
+            <p
+              class="text-xs font-semibold text-gray-400 uppercase tracking-wider px-3 mb-2"
+            >
+              Quick Actions
+            </p>
+            <NuxtLink
+              to="/candidates/saved"
+              @click="mobileMenuOpen = false"
+              class="w-full flex items-center gap-3 px-4 py-3.5 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-xl font-medium transition-all duration-300 group"
+            >
+              <div
+                class="w-10 h-10 bg-blue-100 group-hover:bg-blue-200 rounded-lg flex items-center justify-center transition-colors"
+              >
                 <Icon name="mdi:bookmark-outline" class="w-5 h-5" />
               </div>
               <span>Saved Jobs</span>
-              <span class="ml-auto text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded-full font-semibold">8</span>
+              <span
+                class="ml-auto text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded-full font-semibold"
+                >8</span
+              >
             </NuxtLink>
-            <NuxtLink to="/candidates/applications" @click="mobileMenuOpen = false" class="w-full flex items-center gap-3 px-4 py-3.5 text-gray-700 hover:bg-purple-50 hover:text-purple-600 rounded-xl font-medium transition-all duration-300 group">
-              <div class="w-10 h-10 bg-purple-100 group-hover:bg-purple-200 rounded-lg flex items-center justify-center transition-colors">
+            <NuxtLink
+              to="/candidates/applications"
+              @click="mobileMenuOpen = false"
+              class="w-full flex items-center gap-3 px-4 py-3.5 text-gray-700 hover:bg-purple-50 hover:text-purple-600 rounded-xl font-medium transition-all duration-300 group"
+            >
+              <div
+                class="w-10 h-10 bg-purple-100 group-hover:bg-purple-200 rounded-lg flex items-center justify-center transition-colors"
+              >
                 <Icon name="mdi:file-document-outline" class="w-5 h-5" />
               </div>
               <span>My Applications</span>
-              <span class="ml-auto text-xs bg-purple-100 text-purple-700 px-2 py-1 rounded-full font-semibold">3</span>
+              <span
+                class="ml-auto text-xs bg-purple-100 text-purple-700 px-2 py-1 rounded-full font-semibold"
+                >3</span
+              >
             </NuxtLink>
-            <NuxtLink  to="/notification" @click="mobileMenuOpen = false" class="w-full flex items-center gap-3 px-4 py-3.5 text-gray-700 hover:bg-purple-50 hover:text-purple-600 rounded-xl font-medium transition-all duration-300 group">
-              <div class="w-10 h-10 bg-orange-100 group-hover:bg-orange-200 rounded-lg flex items-center justify-center transition-colors">
+            <NuxtLink
+              to="/notification"
+              @click="mobileMenuOpen = false"
+              class="w-full flex items-center gap-3 px-4 py-3.5 text-gray-700 hover:bg-purple-50 hover:text-purple-600 rounded-xl font-medium transition-all duration-300 group"
+            >
+              <div
+                class="w-10 h-10 bg-orange-100 group-hover:bg-orange-200 rounded-lg flex items-center justify-center transition-colors"
+              >
                 <Icon name="mdi:bell-outline" class="w-5 h-5" />
               </div>
               <span>Notifications</span>
-              <span class="ml-auto text-xs bg-orange-100 text-orange-700 px-2 py-1 rounded-full font-semibold">12</span>
+              <span
+                class="ml-auto text-xs bg-orange-100 text-orange-700 px-2 py-1 rounded-full font-semibold"
+                >12</span
+              >
             </NuxtLink>
           </div>
 
           <!-- Auth Section -->
           <div class="pt-4 border-t border-gray-100 space-y-3">
-            <NuxtLink 
-              to="/auth/login" 
+            <NuxtLink
+              to="/auth/login"
               class="mobile-auth-btn w-full flex items-center justify-center gap-2 px-6 py-3.5 border-2 border-emerald-600 text-emerald-600 rounded-xl font-semibold hover:bg-emerald-50 transition-all duration-300"
               @click="mobileMenuOpen = false"
             >
               <Icon name="mdi:login" class="w-5 h-5" />
               Sign In
             </NuxtLink>
-            <NuxtLink 
-              to="/auth/register" 
+            <NuxtLink
+              to="/auth/register"
               class="mobile-auth-btn w-full flex items-center justify-center gap-2 px-6 py-3.5 bg-gradient-to-r from-emerald-600 to-emerald-700 text-white rounded-xl font-semibold hover:from-emerald-700 hover:to-emerald-800 transition-all duration-300 shadow-lg"
               @click="mobileMenuOpen = false"
             >
@@ -308,48 +379,51 @@
             </NuxtLink>
           </div>
 
-          <!-- Theme Toggle (Mobile) -->
-          <div class="mt-4">
-            <p class="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider px-3 mb-2">Appearance</p>
-            <button
-              @click="(e) => toggleTheme(e)"
-              class="w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-slate-800 group"
-            >
-              <div class="w-10 h-10 bg-gray-100 dark:bg-slate-800 group-hover:bg-emerald-100 dark:group-hover:bg-emerald-900/50 rounded-lg flex items-center justify-center transition-colors">
-                <!-- Sun Icon (shown in dark mode) -->
-                <svg v-if="currentTheme === 'dark'" class="w-5 h-5 transition-transform duration-300 group-hover:rotate-45" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <circle cx="12" cy="12" r="4" stroke-width="2"/>
-                  <path stroke-linecap="round" stroke-width="2" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32l1.41-1.41"/>
-                </svg>
-                <!-- Moon Icon (shown in light mode) -->
-                <svg v-else class="w-5 h-5 transition-transform duration-300 group-hover:-rotate-12" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-                </svg>
-              </div>
-              <div class="flex-1 text-left">
-                <p class="font-semibold text-sm">{{ currentTheme === 'light' ? 'Light Mode' : 'Dark Mode' }}</p>
-                <p class="text-xs text-gray-500 dark:text-gray-400">Switch to {{ currentTheme === 'light' ? 'dark' : 'light' }} theme</p>
-              </div>
-            </button>
-          </div>
-
           <!-- Footer Links -->
           <div class="mt-6 pt-6 border-t border-gray-100">
             <div class="grid grid-cols-2 gap-2 text-sm">
-              <NuxtLink to="/help" @click="mobileMenuOpen = false" class="text-gray-600 hover:text-emerald-600 text-left py-2 px-3 rounded-lg hover:bg-gray-50 transition-colors">
-                <Icon name="mdi:help-circle-outline" class="w-4 h-4 inline-block mr-1" />
+              <NuxtLink
+                to="/help"
+                @click="mobileMenuOpen = false"
+                class="text-gray-600 hover:text-emerald-600 text-left py-2 px-3 rounded-lg hover:bg-gray-50 transition-colors"
+              >
+                <Icon
+                  name="mdi:help-circle-outline"
+                  class="w-4 h-4 inline-block mr-1"
+                />
                 Help Center
               </NuxtLink>
-              <NuxtLink to="/settings" @click="mobileMenuOpen = false" class="text-gray-600 hover:text-emerald-600 text-left py-2 px-3 rounded-lg hover:bg-gray-50 transition-colors">
-                <Icon name="mdi:cog-outline" class="w-4 h-4 inline-block mr-1" />
+              <NuxtLink
+                to="/settings"
+                @click="mobileMenuOpen = false"
+                class="text-gray-600 hover:text-emerald-600 text-left py-2 px-3 rounded-lg hover:bg-gray-50 transition-colors"
+              >
+                <Icon
+                  name="mdi:cog-outline"
+                  class="w-4 h-4 inline-block mr-1"
+                />
                 Settings
               </NuxtLink>
-              <NuxtLink to="/privacy" @click="mobileMenuOpen = false" class="text-gray-600 hover:text-emerald-600 text-left py-2 px-3 rounded-lg hover:bg-gray-50 transition-colors">
-                <Icon name="mdi:shield-check-outline" class="w-4 h-4 inline-block mr-1" />
+              <NuxtLink
+                to="/privacy"
+                @click="mobileMenuOpen = false"
+                class="text-gray-600 hover:text-emerald-600 text-left py-2 px-3 rounded-lg hover:bg-gray-50 transition-colors"
+              >
+                <Icon
+                  name="mdi:shield-check-outline"
+                  class="w-4 h-4 inline-block mr-1"
+                />
                 Privacy
               </NuxtLink>
-              <NuxtLink to="/terms" @click="mobileMenuOpen = false" class="text-gray-600 hover:text-emerald-600 text-left py-2 px-3 rounded-lg hover:bg-gray-50 transition-colors">
-                <Icon name="mdi:file-document-outline" class="w-4 h-4 inline-block mr-1" />
+              <NuxtLink
+                to="/terms"
+                @click="mobileMenuOpen = false"
+                class="text-gray-600 hover:text-emerald-600 text-left py-2 px-3 rounded-lg hover:bg-gray-50 transition-colors"
+              >
+                <Icon
+                  name="mdi:file-document-outline"
+                  class="w-4 h-4 inline-block mr-1"
+                />
                 Terms
               </NuxtLink>
             </div>
@@ -357,22 +431,32 @@
 
           <!-- Language Selector (Mobile) -->
           <div class="mt-4">
-            <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider px-3 mb-2">Language</p>
+            <p
+              class="text-xs font-semibold text-gray-400 uppercase tracking-wider px-3 mb-2"
+            >
+              Language
+            </p>
             <div class="space-y-1">
               <button
                 v-for="lang in languages"
                 :key="lang.code"
                 @click="selectLanguage(lang)"
                 class="w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300"
-                :class="{ 
-                  'bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400': selectedLanguage.code === lang.code,
-                  'text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-slate-800': selectedLanguage.code !== lang.code
+                :class="{
+                  'bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400':
+                    selectedLanguage.code === lang.code,
+                  'text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-slate-800':
+                    selectedLanguage.code !== lang.code,
                 }"
               >
                 <span class="text-2xl">{{ lang.flag }}</span>
                 <div class="flex-1 text-left">
-                  <p class="font-semibold text-sm">{{ lang.name }}</p>
-                  <p class="text-xs opacity-70">{{ lang.nativeName }}</p>
+                  <p class="font-semibold text-sm">
+                    {{ lang.name }}
+                  </p>
+                  <p class="text-xs opacity-70">
+                    {{ lang.nativeName }}
+                  </p>
                 </div>
                 <Icon
                   v-if="selectedLanguage.code === lang.code"
@@ -385,13 +469,22 @@
 
           <!-- Social Links -->
           <div class="mt-6 flex justify-center gap-3">
-            <a href="#" class="w-10 h-10 bg-gray-100 dark:bg-slate-800 hover:bg-blue-50 dark:hover:bg-blue-900/30 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 rounded-lg flex items-center justify-center transition-all duration-300">
+            <a
+              href="#"
+              class="w-10 h-10 bg-gray-100 dark:bg-slate-800 hover:bg-blue-50 dark:hover:bg-blue-900/30 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 rounded-lg flex items-center justify-center transition-all duration-300"
+            >
               <Icon name="mdi:linkedin" class="w-5 h-5" />
             </a>
-            <a href="#" class="w-10 h-10 bg-gray-100 dark:bg-slate-800 hover:bg-sky-50 dark:hover:bg-sky-900/30 text-gray-600 dark:text-gray-400 hover:text-sky-600 dark:hover:text-sky-400 rounded-lg flex items-center justify-center transition-all duration-300">
+            <a
+              href="#"
+              class="w-10 h-10 bg-gray-100 dark:bg-slate-800 hover:bg-sky-50 dark:hover:bg-sky-900/30 text-gray-600 dark:text-gray-400 hover:text-sky-600 dark:hover:text-sky-400 rounded-lg flex items-center justify-center transition-all duration-300"
+            >
               <Icon name="mdi:twitter" class="w-5 h-5" />
             </a>
-            <a href="#" class="w-10 h-10 bg-gray-100 dark:bg-slate-800 hover:bg-purple-50 dark:hover:bg-purple-900/30 text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 rounded-lg flex items-center justify-center transition-all duration-300">
+            <a
+              href="#"
+              class="w-10 h-10 bg-gray-100 dark:bg-slate-800 hover:bg-purple-50 dark:hover:bg-purple-900/30 text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 rounded-lg flex items-center justify-center transition-all duration-300"
+            >
               <Icon name="mdi:instagram" class="w-5 h-5" />
             </a>
           </div>
@@ -402,114 +495,124 @@
 </template>
 
 <script setup lang="ts">
-const mobileMenuOpen = ref(false)
-const showSearch = ref(false)
-const langDropdownOpen = ref(false)
-const langDropdownRef = ref<HTMLElement | null>(null)
-
-// Theme management using composable
-const { currentTheme, toggleTheme, isAnimating } = useTheme()
+import { ref, onMounted, onUnmounted } from "vue";
+const mobileMenuOpen = ref(false);
+const showSearch = ref(false);
+const langDropdownOpen = ref(false);
+const langDropdownRef = ref<HTMLElement | null>(null);
 
 // Language options
 interface Language {
-  code: string
-  name: string
-  nativeName: string
-  flag: string
+  code: string;
+  name: string;
+  nativeName: string;
+  flag: string;
 }
 
 const languages: Language[] = [
-  { code: 'en', name: 'English', nativeName: 'English', flag: '🇺🇸' },
-  { code: 'es', name: 'Spanish', nativeName: 'Español', flag: '🇪🇸' },
-  { code: 'fr', name: 'French', nativeName: 'Français', flag: '🇫🇷' },
-  { code: 'de', name: 'German', nativeName: 'Deutsch', flag: '🇩🇪' },
-  { code: 'ar', name: 'Arabic', nativeName: 'العربية', flag: '🇸🇦' },
-  { code: 'zh', name: 'Chinese', nativeName: '中文', flag: '🇨🇳' },
-]
+  { code: "en", name: "English", nativeName: "English", flag: "🇺🇸" },
+  { code: "es", name: "Spanish", nativeName: "Español", flag: "🇪🇸" },
+  { code: "fr", name: "French", nativeName: "Français", flag: "🇫🇷" },
+  { code: "de", name: "German", nativeName: "Deutsch", flag: "🇩🇪" },
+  { code: "ar", name: "Arabic", nativeName: "العربية", flag: "🇸🇦" },
+  { code: "zh", name: "Chinese", nativeName: "中文", flag: "🇨🇳" },
+];
 
-const selectedLanguage = ref<Language>(languages[0]!)
+const selectedLanguage = ref<Language>(languages[0]!);
 
 const selectLanguage = (lang: Language) => {
-  selectedLanguage.value = lang
-  langDropdownOpen.value = false
+  selectedLanguage.value = lang;
+  langDropdownOpen.value = false;
   // TODO: Implement actual language switching logic
-  console.log('Language selected:', lang.code)
-}
+  console.log("Language selected:", lang.code);
+};
 
 // Close language dropdown when clicking outside
 onClickOutside(langDropdownRef, () => {
-  langDropdownOpen.value = false
-})
+  langDropdownOpen.value = false;
+});
 
 // Expose header height as a CSS variable so page content can avoid being
 // hidden under the fixed navbar. We set it on document.documentElement
 // so layouts and pages can read it (used by app.vue).
-const headerRef = ref<HTMLElement | null>(null)
+const headerRef = ref<HTMLElement | null>(null);
 
 function updateHeaderHeight() {
-  const el = headerRef.value
-  if (!el) return
-  const height = Math.ceil(el.getBoundingClientRect().height)
-  document.documentElement.style.setProperty('--site-header-height', `${height}px`)
+  const el = headerRef.value;
+  if (!el) return;
+  const height = Math.ceil(el.getBoundingClientRect().height);
+  document.documentElement.style.setProperty(
+    "--site-header-height",
+    `${height}px`,
+  );
 }
 
 onMounted(() => {
   // Setup header height tracking
-  updateHeaderHeight()
-  window.addEventListener('resize', updateHeaderHeight, { passive: true })
-})
+  updateHeaderHeight();
+  window.addEventListener("resize", updateHeaderHeight, { passive: true });
+});
 
 onUnmounted(() => {
-  window.removeEventListener('resize', updateHeaderHeight)
-})
+  window.removeEventListener("resize", updateHeaderHeight);
+});
 
 const navItems = [
-  { 
-    path: '/jobs', 
-    label: 'Find Jobs', 
-    icon: 'mdi:briefcase-search',
-    description: 'Browse opportunities'
+  {
+    path: "/jobs",
+    label: "Jobs",
+    icon: "mdi:briefcase-search",
+    description: "Browse opportunities",
   },
-  { 
-    path: '/companies', 
-    label: 'Companies', 
-    icon: 'mdi:office-building',
-    description: 'Top employers'
+  {
+    path: "/companies",
+    label: "Companies",
+    icon: "mdi:office-building",
+    description: "Top employers",
   },
-  { 
-    path: '/about', 
-    label: 'About Us', 
-    icon: 'mdi:information-outline',
-    description: 'Our story'
+  {
+    path: "/explore",
+    label: "Explore",
+    icon: "mdi:compass",
+    description: "Discover & connect",
   },
-  { 
-    path: '/contact', 
-    label: 'Contact', 
-    icon: 'mdi:email-outline',
-    description: 'Get in touch'
-  }
-]
+  {
+    path: "/about",
+    label: "About",
+    icon: "mdi:information-outline",
+    description: "Our story",
+  },
+  {
+    path: "/contact",
+    label: "Contact",
+    icon: "mdi:email-outline",
+    description: "Get in touch",
+  },
+];
 
 // Close mobile menu when route changes
-const route = useRoute()
-watch(() => route.path, () => {
-  mobileMenuOpen.value = false
-  showSearch.value = false
-})
+const route = useRoute();
+watch(
+  () => route.path,
+  () => {
+    mobileMenuOpen.value = false;
+    showSearch.value = false;
+  },
+);
 
 // Prevent body scroll when mobile menu is open
 watch(mobileMenuOpen, (isOpen: boolean) => {
   if (isOpen) {
-    document.body.style.overflow = 'hidden'
+    document.body.style.overflow = "hidden";
   } else {
-    document.body.style.overflow = ''
+    document.body.style.overflow = "";
   }
-})
+});
 
 // Cleanup on unmount
 onUnmounted(() => {
-  document.body.style.overflow = ''
-})
+  document.body.style.overflow = "";
+});
 </script>
 
 <style scoped>
@@ -520,14 +623,15 @@ nav {
 }
 
 /* Active nav link indicator */
+
 .router-link-active.nav-link {
   color: #10b981;
-  background-color: rgba(16, 185, 129, 0.08);
+  background-color: #e0f7ef;
 }
 
 .dark .router-link-active.nav-link {
   color: #34d399;
-  background-color: rgba(52, 211, 153, 0.15);
+  background-color: #134e4a;
 }
 
 .router-link-active.nav-link > span:last-of-type {
@@ -558,8 +662,12 @@ nav {
   -webkit-tap-highlight-color: transparent;
 }
 
-button, a, input {
-  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
+button,
+a,
+input {
+  transition-property:
+    background-color, border-color, color, fill, stroke, opacity, box-shadow,
+    transform;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 300ms;
 }
@@ -598,10 +706,18 @@ button, a, input {
   opacity: 0;
 }
 
-.mobile-nav-link:nth-child(1) { animation-delay: 0.05s; }
-.mobile-nav-link:nth-child(2) { animation-delay: 0.1s; }
-.mobile-nav-link:nth-child(3) { animation-delay: 0.15s; }
-.mobile-nav-link:nth-child(4) { animation-delay: 0.2s; }
+.mobile-nav-link:nth-child(1) {
+  animation-delay: 0.05s;
+}
+.mobile-nav-link:nth-child(2) {
+  animation-delay: 0.1s;
+}
+.mobile-nav-link:nth-child(3) {
+  animation-delay: 0.15s;
+}
+.mobile-nav-link:nth-child(4) {
+  animation-delay: 0.2s;
+}
 
 @keyframes slideInRight {
   from {
@@ -616,7 +732,8 @@ button, a, input {
 
 /* Better touch targets for mobile */
 @media (max-width: 768px) {
-  button, a {
+  button,
+  a {
     min-height: 44px;
     min-width: 44px;
   }

@@ -4,25 +4,37 @@
       <!-- Header -->
       <div class="mb-8 fade-in-up">
         <div class="flex items-center text-sm text-gray-600 mb-4">
-          <NuxtLink to="/jobs/manage" class="hover:text-emerald-600 transition-colors flex items-center">
+          <NuxtLink
+            to="/jobs/manage"
+            class="hover:text-emerald-600 transition-colors flex items-center"
+          >
             <Icon name="mdi:arrow-left" class="w-4 h-4 mr-1" />
             Back to My Jobs
           </NuxtLink>
         </div>
         <h1 class="text-4xl font-bold text-gray-900 mb-3">Post a New Job</h1>
-        <p class="text-lg text-gray-600">Fill in the details below to create your job posting</p>
+        <p class="text-lg text-gray-600">
+          Fill in the details below to create your job posting
+        </p>
       </div>
 
       <div class="grid lg:grid-cols-3 gap-8">
         <!-- Main Form -->
         <div class="lg:col-span-2 space-y-6">
           <!-- Basic Information -->
-          <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-8 fade-in-up" style="animation-delay: 100ms;">
+          <div
+            class="bg-white rounded-xl shadow-sm border border-gray-200 p-8 fade-in-up"
+            style="animation-delay: 100ms"
+          >
             <div class="flex items-center mb-6">
-              <div class="w-10 h-10 bg-emerald-100 rounded-lg flex items-center justify-center mr-3">
+              <div
+                class="w-10 h-10 bg-emerald-100 rounded-lg flex items-center justify-center mr-3"
+              >
                 <Icon name="mdi:briefcase" class="w-6 h-6 text-emerald-600" />
               </div>
-              <h2 class="text-2xl font-bold text-gray-900">Basic Information</h2>
+              <h2 class="text-2xl font-bold text-gray-900">
+                Basic Information
+              </h2>
             </div>
 
             <div class="space-y-5">
@@ -30,12 +42,15 @@
                 <label class="input-label">
                   Job Title <span class="text-red-500">*</span>
                 </label>
-                <input 
-                  type="text" 
+                <input
+                  type="text"
                   placeholder="e.g. Senior Software Engineer"
                   class="custom-input"
-                >
-                <p class="input-help">A clear, descriptive job title helps attract the right candidates</p>
+                />
+                <p class="input-help">
+                  A clear, descriptive job title helps attract the right
+                  candidates
+                </p>
               </div>
 
               <div class="grid md:grid-cols-2 gap-5">
@@ -98,62 +113,81 @@
           </div>
 
           <!-- Location & Salary -->
-          <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 sm:p-8 fade-in-up" style="animation-delay: 200ms;">
+          <div
+            class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 sm:p-8 fade-in-up"
+            style="animation-delay: 200ms"
+          >
             <div class="flex items-center mb-6">
-              <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-3 flex-shrink-0">
+              <div
+                class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-3 flex-shrink-0"
+              >
                 <Icon name="mdi:map-marker" class="w-6 h-6 text-blue-600" />
               </div>
-              <h2 class="text-xl sm:text-2xl font-bold text-gray-900">Location & Compensation</h2>
+              <h2 class="text-xl sm:text-2xl font-bold text-gray-900">
+                Location & Compensation
+              </h2>
             </div>
 
             <div class="space-y-5">
               <div class="input-group">
                 <label class="input-label flex items-center gap-1">
-                  <Icon name="mdi:map-marker-outline" class="w-4 h-4 text-emerald-600" />
+                  <Icon
+                    name="mdi:map-marker-outline"
+                    class="w-4 h-4 text-emerald-600"
+                  />
                   Location <span class="text-red-500">*</span>
                 </label>
-                <input 
-                  type="text" 
+                <input
+                  type="text"
                   placeholder="e.g. San Francisco, CA or Remote"
                   class="custom-input"
-                >
+                />
               </div>
 
               <div class="grid sm:grid-cols-2 gap-4 sm:gap-5">
                 <div class="input-group">
                   <label class="input-label flex items-center gap-1">
-                    <Icon name="mdi:currency-usd" class="w-4 h-4 text-emerald-600" />
+                    <Icon
+                      name="mdi:currency-usd"
+                      class="w-4 h-4 text-emerald-600"
+                    />
                     Minimum Salary
                   </label>
                   <div class="relative">
                     <span class="salary-prefix">$</span>
-                    <input 
-                      type="text" 
+                    <input
+                      type="text"
                       placeholder="50,000"
                       class="custom-input salary-input"
-                    >
+                    />
                   </div>
                 </div>
 
                 <div class="input-group">
                   <label class="input-label flex items-center gap-1">
-                    <Icon name="mdi:currency-usd" class="w-4 h-4 text-emerald-600" />
+                    <Icon
+                      name="mdi:currency-usd"
+                      class="w-4 h-4 text-emerald-600"
+                    />
                     Maximum Salary
                   </label>
                   <div class="relative">
                     <span class="salary-prefix">$</span>
-                    <input 
-                      type="text" 
+                    <input
+                      type="text"
                       placeholder="80,000"
                       class="custom-input salary-input"
-                    >
+                    />
                   </div>
                 </div>
               </div>
 
               <div class="input-group">
                 <label class="input-label flex items-center gap-1">
-                  <Icon name="mdi:clock-outline" class="w-4 h-4 text-emerald-600" />
+                  <Icon
+                    name="mdi:clock-outline"
+                    class="w-4 h-4 text-emerald-600"
+                  />
                   Salary Period
                 </label>
                 <select class="custom-input">
@@ -166,9 +200,14 @@
           </div>
 
           <!-- Job Description -->
-          <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-8 fade-in-up" style="animation-delay: 300ms;">
+          <div
+            class="bg-white rounded-xl shadow-sm border border-gray-200 p-8 fade-in-up"
+            style="animation-delay: 300ms"
+          >
             <div class="flex items-center mb-6">
-              <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center mr-3">
+              <div
+                class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center mr-3"
+              >
                 <Icon name="mdi:text-box" class="w-6 h-6 text-purple-600" />
               </div>
               <h2 class="text-2xl font-bold text-gray-900">Job Details</h2>
@@ -179,8 +218,8 @@
                 <label class="input-label">
                   Job Description <span class="text-red-500">*</span>
                 </label>
-                <textarea 
-                  rows="8" 
+                <textarea
+                  rows="8"
                   placeholder="Describe the role, responsibilities, and what makes this position exciting..."
                   class="custom-textarea"
                 ></textarea>
@@ -189,8 +228,8 @@
 
               <div class="input-group">
                 <label class="input-label">Requirements</label>
-                <textarea 
-                  rows="6" 
+                <textarea
+                  rows="6"
                   placeholder="• Bachelor's degree in Computer Science or related field&#10;• 5+ years of experience in software development&#10;• Proficiency in JavaScript, React, and Node.js"
                   class="custom-textarea"
                 ></textarea>
@@ -198,8 +237,8 @@
 
               <div class="input-group">
                 <label class="input-label">Nice to Have</label>
-                <textarea 
-                  rows="4" 
+                <textarea
+                  rows="4"
                   placeholder="• Experience with TypeScript&#10;• Knowledge of cloud platforms (AWS, Azure)&#10;• Open source contributions"
                   class="custom-textarea"
                 ></textarea>
@@ -207,8 +246,8 @@
 
               <div class="input-group">
                 <label class="input-label">Benefits & Perks</label>
-                <textarea 
-                  rows="4" 
+                <textarea
+                  rows="4"
                   placeholder="• Health, dental, and vision insurance&#10;• 401(k) with company match&#10;• Flexible work hours&#10;• Remote work options"
                   class="custom-textarea"
                 ></textarea>
@@ -217,61 +256,66 @@
           </div>
 
           <!-- Application Settings -->
-          <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-8 fade-in-up" style="animation-delay: 400ms;">
+          <div
+            class="bg-white rounded-xl shadow-sm border border-gray-200 p-8 fade-in-up"
+            style="animation-delay: 400ms"
+          >
             <div class="flex items-center mb-6">
-              <div class="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center mr-3">
+              <div
+                class="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center mr-3"
+              >
                 <Icon name="mdi:cog" class="w-6 h-6 text-orange-600" />
               </div>
-              <h2 class="text-2xl font-bold text-gray-900">Application Settings</h2>
+              <h2 class="text-2xl font-bold text-gray-900">
+                Application Settings
+              </h2>
             </div>
 
             <div class="space-y-5">
               <div class="input-group">
                 <label class="input-label">Application Deadline</label>
-                <input 
-                  type="date" 
-                  class="custom-input"
-                >
+                <input type="date" class="custom-input" />
               </div>
 
               <div class="input-group">
                 <label class="input-label">Number of Positions</label>
-                <input 
-                  type="number" 
-                  value="1"
-                  min="1"
-                  class="custom-input"
-                >
+                <input type="number" value="1" min="1" class="custom-input" />
               </div>
 
               <div class="space-y-3 pt-2">
                 <label class="custom-checkbox">
-                  <input type="checkbox" class="checkbox-input">
-                  <span class="checkbox-label">Notify me when someone applies</span>
+                  <input type="checkbox" class="checkbox-input" />
+                  <span class="checkbox-label"
+                    >Notify me when someone applies</span
+                  >
                 </label>
-                
+
                 <label class="custom-checkbox">
-                  <input type="checkbox" class="checkbox-input" checked>
-                  <span class="checkbox-label">Show salary range to candidates</span>
+                  <input type="checkbox" class="checkbox-input" checked />
+                  <span class="checkbox-label"
+                    >Show salary range to candidates</span
+                  >
                 </label>
-                
+
                 <label class="custom-checkbox">
-                  <input type="checkbox" class="checkbox-input" checked>
-                  <span class="checkbox-label">Feature this job on the homepage</span>
+                  <input type="checkbox" class="checkbox-input" checked />
+                  <span class="checkbox-label"
+                    >Feature this job on the homepage</span
+                  >
                 </label>
               </div>
             </div>
           </div>
 
           <!-- Action Buttons -->
-          <div class="flex gap-4 fade-in-up" style="animation-delay: 500ms;">
-            <button 
+          <div class="flex gap-4 fade-in-up" style="animation-delay: 500ms">
+            <button
               type="button"
               class="flex-1 px-6 py-4 bg-gray-100 text-gray-700 rounded-lg font-semibold hover:bg-gray-200 transition-colors"
             >
               Save as Draft
             </button>
-            <button 
+            <button
               type="submit"
               class="flex-1 px-6 py-4 bg-gradient-to-r from-emerald-600 to-emerald-700 text-white rounded-lg font-semibold hover:from-emerald-700 hover:to-emerald-800 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
             >
@@ -284,39 +328,62 @@
         <div class="lg:col-span-1">
           <div class="sticky top-8 space-y-6">
             <!-- Tips Card -->
-            <div class="bg-gradient-to-br from-emerald-50 to-emerald-100 rounded-xl p-6 border border-emerald-200 fade-in-up" style="animation-delay: 200ms;">
+            <div
+              class="bg-gradient-to-br from-emerald-50 to-emerald-100 rounded-xl p-6 border border-emerald-200 fade-in-up"
+              style="animation-delay: 200ms"
+            >
               <div class="flex items-center mb-4">
-                <Icon name="mdi:lightbulb-on" class="w-6 h-6 text-emerald-600 mr-2" />
+                <Icon
+                  name="mdi:lightbulb-on"
+                  class="w-6 h-6 text-emerald-600 mr-2"
+                />
                 <h3 class="font-bold text-gray-900">Tips for Success</h3>
               </div>
               <ul class="space-y-3 text-sm text-gray-700">
                 <li class="flex items-start">
-                  <Icon name="mdi:check-circle" class="w-5 h-5 text-emerald-600 mr-2 flex-shrink-0 mt-0.5" />
+                  <Icon
+                    name="mdi:check-circle"
+                    class="w-5 h-5 text-emerald-600 mr-2 flex-shrink-0 mt-0.5"
+                  />
                   <span>Write a clear, specific job title</span>
                 </li>
                 <li class="flex items-start">
-                  <Icon name="mdi:check-circle" class="w-5 h-5 text-emerald-600 mr-2 flex-shrink-0 mt-0.5" />
+                  <Icon
+                    name="mdi:check-circle"
+                    class="w-5 h-5 text-emerald-600 mr-2 flex-shrink-0 mt-0.5"
+                  />
                   <span>Include salary range for transparency</span>
                 </li>
                 <li class="flex items-start">
-                  <Icon name="mdi:check-circle" class="w-5 h-5 text-emerald-600 mr-2 flex-shrink-0 mt-0.5" />
+                  <Icon
+                    name="mdi:check-circle"
+                    class="w-5 h-5 text-emerald-600 mr-2 flex-shrink-0 mt-0.5"
+                  />
                   <span>List must-have vs nice-to-have skills</span>
                 </li>
                 <li class="flex items-start">
-                  <Icon name="mdi:check-circle" class="w-5 h-5 text-emerald-600 mr-2 flex-shrink-0 mt-0.5" />
+                  <Icon
+                    name="mdi:check-circle"
+                    class="w-5 h-5 text-emerald-600 mr-2 flex-shrink-0 mt-0.5"
+                  />
                   <span>Highlight company culture and benefits</span>
                 </li>
               </ul>
             </div>
 
             <!-- Preview Card -->
-            <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm fade-in-up" style="animation-delay: 300ms;">
+            <div
+              class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm fade-in-up"
+              style="animation-delay: 300ms"
+            >
               <div class="flex items-center mb-4">
                 <Icon name="mdi:eye" class="w-6 h-6 text-gray-600 mr-2" />
                 <h3 class="font-bold text-gray-900">Preview</h3>
               </div>
-              <p class="text-sm text-gray-600 mb-4">See how your job posting will appear to candidates</p>
-              <button 
+              <p class="text-sm text-gray-600 mb-4">
+                See how your job posting will appear to candidates
+              </p>
+              <button
                 type="button"
                 class="w-full px-4 py-2 border-2 border-gray-300 text-gray-700 rounded-lg font-medium hover:border-emerald-500 hover:text-emerald-600 transition-colors"
               >
@@ -325,13 +392,24 @@
             </div>
 
             <!-- Help Card -->
-            <div class="bg-blue-50 rounded-xl p-6 border border-blue-200 fade-in-up" style="animation-delay: 400ms;">
+            <div
+              class="bg-blue-50 rounded-xl p-6 border border-blue-200 fade-in-up"
+              style="animation-delay: 400ms"
+            >
               <div class="flex items-center mb-3">
-                <Icon name="mdi:help-circle" class="w-6 h-6 text-blue-600 mr-2" />
+                <Icon
+                  name="mdi:help-circle"
+                  class="w-6 h-6 text-blue-600 mr-2"
+                />
                 <h3 class="font-bold text-gray-900">Need Help?</h3>
               </div>
-              <p class="text-sm text-gray-600 mb-4">Check our guide for creating effective job postings</p>
-              <a href="#" class="text-sm text-blue-600 hover:text-blue-700 font-medium flex items-center">
+              <p class="text-sm text-gray-600 mb-4">
+                Check our guide for creating effective job postings
+              </p>
+              <a
+                href="#"
+                class="text-sm text-blue-600 hover:text-blue-700 font-medium flex items-center"
+              >
                 View Posting Guide
                 <Icon name="mdi:arrow-right" class="w-4 h-4 ml-1" />
               </a>
@@ -345,28 +423,29 @@
 
 <script setup lang="ts">
 useSeoMeta({
-  title: 'Post a Job - FindPoint',
-  description: 'Create and publish a job posting to find the perfect candidates for your team.'
-})
+  title: "Post a Job - FindPoint",
+  description:
+    "Create and publish a job posting to find the perfect candidates for your team.",
+});
 
 onMounted(() => {
   const observerOptions = {
     threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-  }
+    rootMargin: "0px 0px -50px 0px",
+  };
 
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
+    entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        entry.target.classList.add('is-visible')
+        entry.target.classList.add("is-visible");
       }
-    })
-  }, observerOptions)
+    });
+  }, observerOptions);
 
-  document.querySelectorAll('.fade-in-up').forEach(el => {
-    observer.observe(el)
-  })
-})
+  document.querySelectorAll(".fade-in-up").forEach((el) => {
+    observer.observe(el);
+  });
+});
 </script>
 
 <style scoped>
