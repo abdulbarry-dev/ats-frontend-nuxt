@@ -221,7 +221,7 @@
             <div
               v-for="(recruiter, index) in filteredRecruiters"
               :key="recruiter.id"
-              class="bg-white dark:bg-slate-800 rounded-xl shadow-sm dark:shadow-slate-900/50 border border-gray-200 dark:border-slate-700 p-6 hover:shadow-md dark:hover:shadow-slate-900/80 transition-all duration-300 fade-in-up"
+              class="bg-white dark:bg-slate-800 rounded-xl shadow-sm dark:shadow-slate-900/50 border border-gray-200 dark:border-slate-700 p-6 hover:shadow-md dark:hover:shadow-slate-900/80 transition-all duration-300 fade-in-up flex flex-col min-h-[360px]"
               :style="`animation-delay: ${300 + index * 50}ms;`"
             >
               <!-- Recruiter Header -->
@@ -256,7 +256,7 @@
 
               <!-- Bio -->
               <p
-                class="text-sm text-gray-700 dark:text-gray-300 mb-4 line-clamp-3 transition-colors duration-300"
+                class="text-sm text-gray-700 dark:text-gray-300 mb-4 line-clamp-2 transition-colors duration-300"
               >
                 {{ recruiter.bio }}
               </p>
@@ -322,7 +322,6 @@
 
               <!-- Open Positions -->
               <div
-                v-if="recruiter.openPositions > 0"
                 class="mb-4 p-3 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800/30 rounded-lg transition-colors duration-300"
               >
                 <div
@@ -341,15 +340,15 @@
               <!-- Actions -->
               <div class="flex gap-2">
                 <button
-                  class="flex-1 px-4 py-2 bg-emerald-600 dark:bg-emerald-500 text-white rounded-lg font-medium hover:bg-emerald-700 dark:hover:bg-emerald-600 transition-all duration-300 flex items-center justify-center gap-2"
+                  @click="viewProfile(recruiter)"
+                  class="flex-1 px-4 py-2 bg-emerald-600 dark:bg-emerald-500 text-white rounded-lg font-medium hover:bg-emerald-700 dark:hover:bg-emerald-600 transition-all duration-300 text-sm"
                 >
-                  <Icon name="mdi:message" class="w-4 h-4" />
-                  <span>Contact</span>
+                  View Profile
                 </button>
                 <button
                   class="px-4 py-2 bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-gray-300 rounded-lg font-medium hover:bg-gray-200 dark:hover:bg-slate-600 transition-all duration-300"
                 >
-                  <Icon name="mdi:account-details" class="w-5 h-5" />
+                  <Icon name="mdi:message" class="w-5 h-5" />
                 </button>
               </div>
             </div>
@@ -409,6 +408,9 @@ useSeoMeta({
   title: "Explore Recruiters - FindPoint",
   description: "Connect with hiring professionals and recruiters on FindPoint",
 });
+
+// Use shared profile store
+const { setProfile } = useProfileStore();
 
 // Filters
 const filters = ref({
@@ -607,6 +609,75 @@ const clearFilters = () => {
 
 const loadMore = () => {
   console.log("Load more recruiters");
+};
+
+const viewProfile = (recruiter: any) => {
+  // Transform recruiter data to profile format
+  const profileData = {
+    id: recruiter.id.toString(),
+    role: 'recruiter' as const,
+    name: recruiter.name,
+    title: recruiter.title,
+    email: `${recruiter.name.toLowerCase().replace(' ', '.')}@findpoint.com`, // Mock email
+    phone: '+1-555-0123', // Mock phone
+    location: recruiter.location,
+    yearsExperience: recruiter.experience,
+    bio: recruiter.bio,
+    company: recruiter.company,
+    companyDescription: `${recruiter.company} is a leading recruiting firm specializing in connecting top talent with innovative companies. With over 10 years in the industry, we have successfully placed hundreds of candidates in diverse roles across various sectors.`,
+    companyWebsite: 'https://www.' + recruiter.company.toLowerCase().replace(/\s+/g, '') + '.com',
+    industries: recruiter.specializations, // Use specializations as industries
+    specializations: recruiter.specializations.map((spec: string) => ({
+      title: spec,
+      description: `Experienced in recruiting for ${spec} roles, with extensive network and industry knowledge.`
+    })),
+    skills: ['Talent Sourcing', 'Candidate Screening', 'Interviewing', 'Negotiation', 'HR Systems'],
+    languages: [
+      { name: 'English', proficiency: 'Native' },
+      { name: 'Spanish', proficiency: 'Conversational' }
+    ],
+    socialLinks: {
+      linkedin: `https://linkedin.com/in/${recruiter.name.toLowerCase().replace(' ', '')}`,
+      github: undefined,
+      portfolio: undefined,
+      twitter: `https://twitter.com/${recruiter.name.toLowerCase().replace(' ', '')}`
+    },
+    experience_details: [
+      {
+        position: recruiter.title,
+        company: recruiter.company,
+        period: `${recruiter.experience} years`,
+        description: recruiter.bio,
+        achievements: [`${recruiter.placements} successful placements`, `Specialized in ${recruiter.specializations.join(', ')}`, `Led ${recruiter.openPositions} active searches`]
+      }
+    ],
+    education: [
+      {
+        degree: 'Bachelor of Business Administration',
+        school: 'State University',
+        year: '2010 - 2014',
+        description: 'Graduated with honors, focused on management and marketing.'
+      }
+    ],
+    certifications: [
+      {
+        name: 'Certified Professional Recruiter',
+        issuer: 'Recruiting Organization',
+        year: '2020'
+      }
+    ],
+    stats: {
+      positionsFilled: recruiter.placements,
+      activeSearches: recruiter.openPositions,
+      successRate: Math.floor((recruiter.placements / (recruiter.placements + 5)) * 100) // Mock success rate calculation
+    }
+  };
+
+  // Store profile data using shared store
+  setProfile(recruiter.id.toString(), profileData);
+
+  // Navigate to profile page
+  navigateTo(`/profile/${recruiter.id}`);
 };
 </script>
 

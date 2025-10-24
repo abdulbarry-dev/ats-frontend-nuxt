@@ -259,11 +259,11 @@
           </div>
 
           <!-- Candidates Grid -->
-          <div class="grid md:grid-cols-2 gap-4">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div
               v-for="(candidate, index) in filteredCandidates"
               :key="candidate.id"
-              class="bg-white dark:bg-slate-800 rounded-xl shadow-sm dark:shadow-slate-900/50 border border-gray-200 dark:border-slate-700 p-6 hover:shadow-md dark:hover:shadow-slate-900/80 transition-all duration-300 fade-in-up"
+              class="bg-white dark:bg-slate-800 rounded-xl shadow-sm dark:shadow-slate-900/50 border border-gray-200 dark:border-slate-700 p-6 hover:shadow-md dark:hover:shadow-slate-900/80 transition-all duration-300 fade-in-up flex flex-col"
               :style="`animation-delay: ${300 + index * 50}ms;`"
             >
               <!-- Candidate Header -->
@@ -276,9 +276,9 @@
                     class="w-8 h-8 text-emerald-600 dark:text-emerald-400 transition-colors duration-300"
                   />
                 </div>
-                <div class="flex-1 min-w-0">
+                <div class="flex-1">
                   <h3
-                    class="text-lg font-bold text-gray-900 dark:text-white mb-1 truncate transition-colors duration-300"
+                    class="text-lg font-bold text-gray-900 dark:text-white mb-1 transition-colors duration-300"
                   >
                     {{ candidate.name }}
                   </h3>
@@ -295,7 +295,7 @@
                   </div>
                 </div>
                 <button
-                  class="p-2 text-gray-400 dark:text-gray-500 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-purple-50 dark:hover:bg-emerald-900/30 rounded-lg transition-all duration-300"
+                  class="p-2 text-gray-400 dark:text-gray-500 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-purple-50 dark:hover:bg-emerald-900/30 rounded-lg transition-all duration-300 flex-shrink-0"
                 >
                   <Icon name="mdi:bookmark-outline" class="w-5 h-5" />
                 </button>
@@ -303,7 +303,7 @@
 
               <!-- Summary -->
               <p
-                class="text-sm text-gray-700 dark:text-gray-300 mb-4 line-clamp-2 transition-colors duration-300"
+                class="text-sm text-gray-700 dark:text-gray-300 mb-4 transition-colors duration-300 leading-relaxed"
               >
                 {{ candidate.summary }}
               </p>
@@ -311,24 +311,24 @@
               <!-- Stats -->
               <div class="grid grid-cols-3 gap-2 mb-4">
                 <div
-                  class="bg-gray-50 dark:bg-slate-700/50 rounded-lg p-2 text-center transition-colors duration-300"
+                  class="bg-gray-50 dark:bg-slate-700/50 rounded-lg p-3 text-center transition-colors duration-300"
                 >
                   <p
-                    class="text-xs text-gray-600 dark:text-gray-400 mb-1 transition-colors duration-300"
+                    class="text-xs text-gray-600 dark:text-gray-400 mb-1 transition-colors duration-300 font-medium"
                   >
                     Experience
                   </p>
                   <p
                     class="text-sm font-semibold text-gray-900 dark:text-white transition-colors duration-300"
                   >
-                    {{ candidate.experience }}y
+                    {{ candidate.experience }} year{{ candidate.experience === 1 ? '' : 's' }}
                   </p>
                 </div>
                 <div
-                  class="bg-gray-50 dark:bg-slate-700/50 rounded-lg p-2 text-center transition-colors duration-300"
+                  class="bg-gray-50 dark:bg-slate-700/50 rounded-lg p-3 text-center transition-colors duration-300"
                 >
                   <p
-                    class="text-xs text-gray-600 dark:text-gray-400 mb-1 transition-colors duration-300"
+                    class="text-xs text-gray-600 dark:text-gray-400 mb-1 transition-colors duration-300 font-medium"
                   >
                     Projects
                   </p>
@@ -339,10 +339,10 @@
                   </p>
                 </div>
                 <div
-                  class="bg-gray-50 dark:bg-slate-700/50 rounded-lg p-2 text-center transition-colors duration-300"
+                  class="bg-gray-50 dark:bg-slate-700/50 rounded-lg p-3 text-center transition-colors duration-300"
                 >
                   <p
-                    class="text-xs text-gray-600 dark:text-gray-400 mb-1 transition-colors duration-300"
+                    class="text-xs text-gray-600 dark:text-gray-400 mb-1 transition-colors duration-300 font-medium"
                   >
                     Level
                   </p>
@@ -357,30 +357,24 @@
               <!-- Skills -->
               <div class="mb-4">
                 <p
-                  class="text-xs font-medium text-gray-600 dark:text-gray-400 mb-2 transition-colors duration-300"
+                  class="text-xs font-medium text-gray-600 dark:text-gray-400 mb-3 transition-colors duration-300"
                 >
-                  Top Skills:
+                  Skills:
                 </p>
                 <div class="flex flex-wrap gap-2">
                   <span
-                    v-for="skill in candidate.skills.slice(0, 4)"
+                    v-for="skill in candidate.skills"
                     :key="skill"
-                    class="px-2 py-1 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 rounded-full text-xs font-medium transition-colors duration-300"
+                    class="px-3 py-1 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 rounded-full text-sm font-medium transition-colors duration-300"
                   >
                     {{ skill }}
-                  </span>
-                  <span
-                    v-if="candidate.skills.length > 4"
-                    class="px-2 py-1 bg-gray-100 dark:bg-slate-700 text-gray-600 dark:text-gray-400 rounded-full text-xs font-medium transition-colors duration-300"
-                  >
-                    +{{ candidate.skills.length - 4 }}
                   </span>
                 </div>
               </div>
 
               <!-- Availability Badge -->
               <div
-                class="mb-4 inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium transition-colors duration-300"
+                class="mb-4 inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-medium transition-colors duration-300 w-fit"
                 :class="
                   candidate.available
                     ? 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400'
@@ -389,14 +383,14 @@
               >
                 <Icon
                   :name="candidate.available ? 'mdi:check-circle' : 'mdi:clock'"
-                  class="w-3 h-3"
+                  class="w-4 h-4"
                 />
                 <span>{{ candidate.availability }}</span>
               </div>
 
               <!-- Preferences -->
               <div
-                class="flex flex-wrap gap-2 mb-4 text-xs text-gray-600 dark:text-gray-400 transition-colors duration-300"
+                class="flex flex-wrap gap-2 mb-4 text-sm text-gray-600 dark:text-gray-400 transition-colors duration-300"
               >
                 <div
                   v-if="candidate.remotePreference"
@@ -404,9 +398,9 @@
                 >
                   <Icon
                     name="mdi:home-outline"
-                    class="w-3 h-3 text-emerald-600 dark:text-emerald-400 transition-colors duration-300"
+                    class="w-4 h-4 text-emerald-600 dark:text-emerald-400 transition-colors duration-300"
                   />
-                  <span>Remote</span>
+                  <span>Remote Work</span>
                 </div>
                 <div
                   v-if="candidate.openToRelocation"
@@ -414,21 +408,22 @@
                 >
                   <Icon
                     name="mdi:airplane"
-                    class="w-3 h-3 text-emerald-600 dark:text-emerald-400 transition-colors duration-300"
+                    class="w-4 h-4 text-emerald-600 dark:text-emerald-400 transition-colors duration-300"
                   />
-                  <span>Relocate</span>
+                  <span>Open to Relocate</span>
                 </div>
               </div>
 
               <!-- Actions -->
-              <div class="flex gap-2">
+              <div class="flex gap-3 mt-auto">
                 <button
-                  class="flex-1 px-4 py-2 bg-emerald-600 dark:bg-emerald-500 text-white rounded-lg font-medium hover:bg-purple-700 dark:hover:bg-emerald-600 transition-all duration-300 text-sm"
+                  @click="viewProfile(candidate)"
+                  class="flex-1 px-4 py-3 bg-emerald-600 dark:bg-emerald-500 text-white rounded-lg font-medium hover:bg-emerald-700 dark:hover:bg-emerald-600 transition-all duration-300 text-sm shadow-sm hover:shadow-md"
                 >
                   View Profile
                 </button>
                 <button
-                  class="px-4 py-2 bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-gray-300 rounded-lg font-medium hover:bg-gray-200 dark:hover:bg-slate-600 transition-all duration-300"
+                  class="px-4 py-3 bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-gray-300 rounded-lg font-medium hover:bg-gray-200 dark:hover:bg-slate-600 transition-all duration-300 shadow-sm hover:shadow-md"
                 >
                   <Icon name="mdi:message" class="w-5 h-5" />
                 </button>
@@ -725,6 +720,82 @@ const clearFilters = () => {
 
 const loadMore = () => {
   console.log("Load more candidates");
+};
+
+// Use shared profile store
+const { setProfile } = useProfileStore();
+
+const viewProfile = (candidate: any) => {
+  // Transform candidate data to profile format
+  const profileData = {
+    id: candidate.id.toString(),
+    role: 'candidate' as const,
+    name: candidate.name,
+    title: candidate.title,
+    email: `${candidate.name.toLowerCase().replace(' ', '.')}@findpoint.com`, // Mock email
+    phone: '+1-555-0123', // Mock phone
+    location: candidate.location,
+    experience: candidate.experience,
+    bio: candidate.summary,
+    company: 'TechCorp Inc.', // Mock company for candidates
+    skills: candidate.skills,
+    languages: [
+      { name: 'English', proficiency: 'Native' },
+      { name: 'Spanish', proficiency: 'Conversational' }
+    ],
+    socialLinks: {
+      linkedin: `https://linkedin.com/in/${candidate.name.toLowerCase().replace(' ', '')}`,
+      github: `https://github.com/${candidate.name.toLowerCase().replace(' ', '')}`,
+      portfolio: candidate.title.toLowerCase().includes('designer') ? 'https://portfolio.example.com' : undefined
+    },
+    experience_details: [
+      {
+        position: candidate.title,
+        company: 'TechCorp Inc.',
+        period: `2020 - Present (${candidate.experience} years)`,
+        description: `Led development of multiple projects including cutting-edge technologies. Collaborated with cross-functional teams to deliver high-quality solutions.`,
+        achievements: ['Increased performance by 40%', 'Led team of 5 developers', 'Implemented CI/CD pipeline']
+      },
+      {
+        position: 'Previous Position',
+        company: 'StartupXYZ',
+        period: '2018 - 2020 (2 years)',
+        description: 'Developed scalable web applications using modern frameworks. Worked closely with product managers and designers to deliver user-centric solutions.',
+        achievements: ['Reduced load times by 50%', 'Implemented responsive design', 'Built reusable component library']
+      }
+    ],
+    education: [
+      {
+        degree: 'Bachelor of Computer Science',
+        school: 'State University',
+        year: '2014 - 2018',
+        description: 'Graduated with honors, focused on software engineering and algorithms.'
+      }
+    ],
+    certifications: [
+      {
+        name: 'AWS Certified Solutions Architect',
+        issuer: 'Amazon Web Services',
+        year: '2023'
+      },
+      {
+        name: 'Certified Scrum Master',
+        issuer: 'Scrum Alliance',
+        year: '2022'
+      }
+    ],
+    stats: {
+      views: Math.floor(Math.random() * 500) + 50,
+      applications: candidate.projects,
+      interviews: Math.floor(candidate.projects * 0.3)
+    }
+  };
+
+  // Store profile data using shared store
+  setProfile(candidate.id.toString(), profileData);
+
+  // Navigate to profile page
+  navigateTo(`/profile/${candidate.id}`);
 };
 </script>
 
