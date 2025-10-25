@@ -1,11 +1,19 @@
 <template>
-  <div class="site-root">
+  <div :class="{ 'site-root': !isAuthPage }">
     <NuxtRouteAnnouncer />
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>
   </div>
 </template>
+
+<script setup lang="ts">
+import { useRoute } from 'vue-router';
+
+const route = useRoute();
+const authPages = ['/auth/login', '/auth/signup', '/auth/reset-password', '/auth/forget-password'];
+const isAuthPage = authPages.includes(route.path);
+</script>
 
 <style scoped>
 /* Ensure all page content sits below the fixed header. The Navbar sets
