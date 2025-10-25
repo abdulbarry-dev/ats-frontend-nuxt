@@ -64,9 +64,7 @@ export default defineNuxtConfig({
     viewer: true,
   },
 
-  formkit: {
-    autoImport: true,
-  },
+ 
 
   icon: {
     clientBundle: {
