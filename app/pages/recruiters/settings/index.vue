@@ -53,33 +53,33 @@
           </div>
         </NuxtLink>
 
-        <!-- Profile Settings -->
+        <!-- Theme Settings (moved up for importance) -->
         <NuxtLink
-          to="/recruiters/settings/profile"
+          to="/recruiters/settings/theme"
           class="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-gray-100 dark:border-slate-700 p-6 hover:shadow-lg transition-all duration-300 group"
         >
           <div class="flex items-start gap-4">
             <div
-              class="w-14 h-14 bg-gradient-to-br from-blue-100 to-blue-200 dark:from-blue-900/30 dark:to-blue-800/30 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300"
+              class="w-14 h-14 bg-gradient-to-br from-emerald-100 to-emerald-200 dark:from-emerald-900/30 dark:to-emerald-800/30 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300"
             >
               <Icon
-                name="mdi:account-edit"
-                class="w-7 h-7 text-blue-600 dark:text-blue-400"
+                name="mdi:weather-night"
+                class="w-7 h-7 text-emerald-600 dark:text-emerald-400"
               />
             </div>
             <div class="flex-1">
               <h3
-                class="text-lg font-bold text-gray-900 dark:text-white mb-1 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors"
+                class="text-lg font-bold text-gray-900 dark:text-white mb-1 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors"
               >
-                Profile
+                Theme
               </h3>
               <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">
-                Update your recruiter profile and bio
+                Switch between light and dark mode
               </p>
               <div
-                class="flex items-center text-blue-600 dark:text-blue-400 text-sm font-semibold"
+                class="flex items-center text-emerald-600 dark:text-emerald-400 text-sm font-semibold"
               >
-                Edit profile
+                Change theme
                 <Icon
                   name="mdi:arrow-right"
                   class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform"

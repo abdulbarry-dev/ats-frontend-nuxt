@@ -1,5 +1,12 @@
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-8">
+  <div
+    :class="[
+      'min-h-screen py-8 transition-colors duration-300',
+      colorMode.value === 'dark'
+        ? 'bg-gradient-to-br from-slate-900 to-slate-800'
+        : 'bg-gradient-to-br from-gray-50 to-gray-100',
+    ]"
+  >
     <div class="container mx-auto px-4 max-w-7xl">
       <!-- Header -->
       <div class="mb-8 fade-in-up">
@@ -7,17 +14,27 @@
           class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4"
         >
           <div>
-            <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-2">
+            <h1
+              :class="[
+                'text-3xl sm:text-4xl font-bold mb-2 transition-colors',
+                colorMode.value === 'dark' ? 'text-white' : 'text-gray-900',
+              ]"
+            >
               Analytics Dashboard
             </h1>
-            <p class="text-gray-600">
+            <p :class="colorMode.value === 'dark' ? 'text-gray-400' : 'text-gray-600'">
               Track your recruitment performance and insights
             </p>
           </div>
           <div class="flex items-center gap-3">
             <!-- Date Range Filter -->
             <select
-              class="px-4 py-2.5 border border-gray-300 rounded-lg focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500 transition-all outline-none bg-white cursor-pointer text-sm"
+              :class="[
+                'px-4 py-2.5 border rounded-lg focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500 transition-all outline-none cursor-pointer text-sm',
+                colorMode.value === 'dark'
+                  ? 'bg-slate-800 border-slate-700 text-gray-200'
+                  : 'bg-white border-gray-300 text-gray-900',
+              ]"
             >
               <option>Last 7 Days</option>
               <option>Last 30 Days</option>
@@ -26,9 +43,14 @@
               <option>All Time</option>
             </select>
             <button
-              class="p-2.5 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+              :class="[
+                'p-2.5 border rounded-lg transition-colors',
+                colorMode.value === 'dark'
+                  ? 'border-slate-700 bg-slate-800 hover:bg-slate-700'
+                  : 'border-gray-300 bg-white hover:bg-gray-50',
+              ]"
             >
-              <Icon name="mdi:download" class="w-5 h-5 text-gray-600" />
+              <Icon name="mdi:download" :class="colorMode.value === 'dark' ? 'text-gray-300' : 'text-gray-600'" class="w-5 h-5" />
             </button>
           </div>
         </div>
@@ -40,98 +62,135 @@
       >
         <!-- Total Views -->
         <div
-          class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-md transition-all fade-in-up"
+          :class="[
+            'rounded-xl shadow-sm border p-6 hover:shadow-md transition-all fade-in-up',
+            colorMode.value === 'dark'
+              ? 'bg-slate-800 border-slate-700'
+              : 'bg-white border-gray-200',
+          ]"
           style="animation-delay: 100ms"
         >
           <div class="flex items-center justify-between mb-4">
             <div
-              class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center"
+              :class="[
+                'w-12 h-12 rounded-lg flex items-center justify-center',
+                colorMode.value === 'dark' ? 'bg-blue-900/30' : 'bg-blue-100',
+              ]"
             >
-              <Icon name="mdi:eye" class="w-6 h-6 text-blue-600" />
+              <Icon name="mdi:eye" :class="colorMode.value === 'dark' ? 'text-blue-400' : 'text-blue-600'" class="w-6 h-6" />
             </div>
             <span
-              class="px-2 py-1 bg-green-100 text-green-700 rounded-full text-xs font-semibold flex items-center gap-1"
+              :class="[
+                'px-2 py-1 rounded-full text-xs font-semibold flex items-center gap-1',
+                colorMode.value === 'dark' ? 'bg-green-900/30 text-green-400' : 'bg-green-100 text-green-700',
+              ]"
             >
-              <Icon name="mdi:arrow-up" class="w-3 h-3" />
+              <Icon name="mdi:arrow-up" :class="colorMode.value === 'dark' ? 'text-green-400' : 'text-green-700'" class="w-3 h-3" />
               12.5%
             </span>
           </div>
-          <h3 class="text-sm font-medium text-gray-600 mb-1">Total Views</h3>
-          <p class="text-3xl font-bold text-gray-900 mb-1">2,345</p>
-          <p class="text-xs text-gray-500">vs 2,089 last month</p>
+          <h3 :class="colorMode.value === 'dark' ? 'text-gray-400' : 'text-gray-600'" class="text-sm font-medium mb-1">Total Views</h3>
+          <p :class="colorMode.value === 'dark' ? 'text-white' : 'text-gray-900'" class="text-3xl font-bold mb-1">2,345</p>
+          <p :class="colorMode.value === 'dark' ? 'text-gray-500' : 'text-gray-500'" class="text-xs">vs 2,089 last month</p>
         </div>
-
         <!-- Applications -->
         <div
-          class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-md transition-all fade-in-up"
+          :class="[
+            'rounded-xl shadow-sm border p-6 hover:shadow-md transition-all fade-in-up',
+            colorMode.value === 'dark'
+              ? 'bg-slate-800 border-slate-700'
+              : 'bg-white border-gray-200',
+          ]"
           style="animation-delay: 150ms"
         >
           <div class="flex items-center justify-between mb-4">
             <div
-              class="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center"
+              :class="[
+                'w-12 h-12 rounded-lg flex items-center justify-center',
+                colorMode.value === 'dark' ? 'bg-emerald-900/30' : 'bg-emerald-100',
+              ]"
             >
-              <Icon name="mdi:file-document" class="w-6 h-6 text-emerald-600" />
+              <Icon name="mdi:file-document" :class="colorMode.value === 'dark' ? 'text-emerald-400' : 'text-emerald-600'" class="w-6 h-6" />
             </div>
             <span
-              class="px-2 py-1 bg-green-100 text-green-700 rounded-full text-xs font-semibold flex items-center gap-1"
+              :class="[
+                'px-2 py-1 rounded-full text-xs font-semibold flex items-center gap-1',
+                colorMode.value === 'dark' ? 'bg-green-900/30 text-green-400' : 'bg-green-100 text-green-700',
+              ]"
             >
-              <Icon name="mdi:arrow-up" class="w-3 h-3" />
+              <Icon name="mdi:arrow-up" :class="colorMode.value === 'dark' ? 'text-green-400' : 'text-green-700'" class="w-3 h-3" />
               8.3%
             </span>
           </div>
-          <h3 class="text-sm font-medium text-gray-600 mb-1">Applications</h3>
-          <p class="text-3xl font-bold text-gray-900 mb-1">293</p>
-          <p class="text-xs text-gray-500">vs 271 last month</p>
+          <h3 :class="colorMode.value === 'dark' ? 'text-gray-400' : 'text-gray-600'" class="text-sm font-medium mb-1">Applications</h3>
+          <p :class="colorMode.value === 'dark' ? 'text-white' : 'text-gray-900'" class="text-3xl font-bold mb-1">293</p>
+          <p :class="colorMode.value === 'dark' ? 'text-gray-500' : 'text-gray-500'" class="text-xs">vs 271 last month</p>
         </div>
-
         <!-- Conversion Rate -->
         <div
-          class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-md transition-all fade-in-up"
+          :class="[
+            'rounded-xl shadow-sm border p-6 hover:shadow-md transition-all fade-in-up',
+            colorMode.value === 'dark'
+              ? 'bg-slate-800 border-slate-700'
+              : 'bg-white border-gray-200',
+          ]"
           style="animation-delay: 200ms"
         >
           <div class="flex items-center justify-between mb-4">
             <div
-              class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center"
+              :class="[
+                'w-12 h-12 rounded-lg flex items-center justify-center',
+                colorMode.value === 'dark' ? 'bg-purple-900/30' : 'bg-purple-100',
+              ]"
             >
-              <Icon name="mdi:chart-line" class="w-6 h-6 text-purple-600" />
+              <Icon name="mdi:chart-line" :class="colorMode.value === 'dark' ? 'text-purple-400' : 'text-purple-600'" class="w-6 h-6" />
             </div>
             <span
-              class="px-2 py-1 bg-red-100 text-red-700 rounded-full text-xs font-semibold flex items-center gap-1"
+              :class="[
+                'px-2 py-1 rounded-full text-xs font-semibold flex items-center gap-1',
+                colorMode.value === 'dark' ? 'bg-red-900/30 text-red-400' : 'bg-red-100 text-red-700',
+              ]"
             >
-              <Icon name="mdi:arrow-down" class="w-3 h-3" />
+              <Icon name="mdi:arrow-down" :class="colorMode.value === 'dark' ? 'text-red-400' : 'text-red-700'" class="w-3 h-3" />
               2.1%
             </span>
           </div>
-          <h3 class="text-sm font-medium text-gray-600 mb-1">
-            Conversion Rate
-          </h3>
-          <p class="text-3xl font-bold text-gray-900 mb-1">12.5%</p>
-          <p class="text-xs text-gray-500">vs 12.8% last month</p>
+          <h3 :class="colorMode.value === 'dark' ? 'text-gray-400' : 'text-gray-600'" class="text-sm font-medium mb-1">Conversion Rate</h3>
+          <p :class="colorMode.value === 'dark' ? 'text-white' : 'text-gray-900'" class="text-3xl font-bold mb-1">12.5%</p>
+          <p :class="colorMode.value === 'dark' ? 'text-gray-500' : 'text-gray-500'" class="text-xs">vs 12.8% last month</p>
         </div>
-
         <!-- Avg. Time to Hire -->
         <div
-          class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-md transition-all fade-in-up"
+          :class="[
+            'rounded-xl shadow-sm border p-6 hover:shadow-md transition-all fade-in-up',
+            colorMode.value === 'dark'
+              ? 'bg-slate-800 border-slate-700'
+              : 'bg-white border-gray-200',
+          ]"
           style="animation-delay: 250ms"
         >
           <div class="flex items-center justify-between mb-4">
             <div
-              class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center"
+              :class="[
+                'w-12 h-12 rounded-lg flex items-center justify-center',
+                colorMode.value === 'dark' ? 'bg-orange-900/30' : 'bg-orange-100',
+              ]"
             >
-              <Icon name="mdi:clock-outline" class="w-6 h-6 text-orange-600" />
+              <Icon name="mdi:clock-outline" :class="colorMode.value === 'dark' ? 'text-orange-400' : 'text-orange-600'" class="w-6 h-6" />
             </div>
             <span
-              class="px-2 py-1 bg-green-100 text-green-700 rounded-full text-xs font-semibold flex items-center gap-1"
+              :class="[
+                'px-2 py-1 rounded-full text-xs font-semibold flex items-center gap-1',
+                colorMode.value === 'dark' ? 'bg-green-900/30 text-green-400' : 'bg-green-100 text-green-700',
+              ]"
             >
-              <Icon name="mdi:arrow-down" class="w-3 h-3" />
+              <Icon name="mdi:arrow-down" :class="colorMode.value === 'dark' ? 'text-green-400' : 'text-green-700'" class="w-3 h-3" />
               3 days
             </span>
           </div>
-          <h3 class="text-sm font-medium text-gray-600 mb-1">
-            Avg. Time to Hire
-          </h3>
-          <p class="text-3xl font-bold text-gray-900 mb-1">18 days</p>
-          <p class="text-xs text-gray-500">vs 21 days last month</p>
+          <h3 :class="colorMode.value === 'dark' ? 'text-gray-400' : 'text-gray-600'" class="text-sm font-medium mb-1">Avg. Time to Hire</h3>
+          <p :class="colorMode.value === 'dark' ? 'text-white' : 'text-gray-900'" class="text-3xl font-bold mb-1">18 days</p>
+          <p :class="colorMode.value === 'dark' ? 'text-gray-500' : 'text-gray-500'" class="text-xs">vs 21 days last month</p>
         </div>
       </div>
 
@@ -139,29 +198,58 @@
       <div class="grid lg:grid-cols-2 gap-6 mb-8">
         <!-- Application Trends Chart -->
         <div
-          class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 fade-in-up"
+          :class="[
+            'rounded-xl shadow-sm border p-6 fade-in-up',
+            colorMode.value === 'dark'
+              ? 'bg-slate-800 border-slate-700'
+              : 'bg-white border-gray-200',
+          ]"
           style="animation-delay: 300ms"
         >
           <div class="flex items-center justify-between mb-6">
             <div>
-              <h2 class="text-lg font-bold text-gray-900 mb-1">
+              <h2
+                :class="[
+                  'text-lg font-bold mb-1',
+                  colorMode.value === 'dark' ? 'text-white' : 'text-gray-900',
+                ]"
+              >
                 Application Trends
               </h2>
-              <p class="text-sm text-gray-500">Last 30 days</p>
+              <p
+                :class="colorMode.value === 'dark' ? 'text-gray-400' : 'text-gray-500'"
+              >
+                Last 30 days
+              </p>
             </div>
             <div class="flex items-center gap-2">
               <button
-                class="px-3 py-1.5 bg-emerald-50 text-emerald-700 rounded-lg text-sm font-medium"
+                :class="[
+                  'px-3 py-1.5 rounded-lg text-sm font-medium transition-colors',
+                  colorMode.value === 'dark'
+                    ? 'bg-emerald-900/30 text-emerald-400'
+                    : 'bg-emerald-50 text-emerald-700',
+                ]"
               >
                 Daily
               </button>
               <button
-                class="px-3 py-1.5 text-gray-600 rounded-lg text-sm font-medium hover:bg-gray-50"
+                :class="[
+                  'px-3 py-1.5 rounded-lg text-sm font-medium transition-colors',
+                  colorMode.value === 'dark'
+                    ? 'text-gray-300 hover:bg-slate-700'
+                    : 'text-gray-600 hover:bg-gray-50',
+                ]"
               >
                 Weekly
               </button>
               <button
-                class="px-3 py-1.5 text-gray-600 rounded-lg text-sm font-medium hover:bg-gray-50"
+                :class="[
+                  'px-3 py-1.5 rounded-lg text-sm font-medium transition-colors',
+                  colorMode.value === 'dark'
+                    ? 'text-gray-300 hover:bg-slate-700'
+                    : 'text-gray-600 hover:bg-gray-50',
+                ]"
               >
                 Monthly
               </button>
@@ -170,30 +258,60 @@
 
           <!-- Placeholder Chart Area -->
           <div
-            class="h-64 flex items-center justify-center bg-gradient-to-br from-emerald-50 to-blue-50 rounded-lg border-2 border-dashed border-gray-300"
+            :class="[
+              'h-64 flex items-center justify-center rounded-lg border-2 border-dashed transition-colors',
+              colorMode.value === 'dark'
+                ? 'bg-gradient-to-br from-emerald-900/20 to-blue-900/20 border-slate-600'
+                : 'bg-gradient-to-br from-emerald-50 to-blue-50 border-gray-300',
+            ]"
           >
             <div class="text-center">
               <Icon
                 name="mdi:chart-areaspline"
-                class="w-16 h-16 text-gray-400 mx-auto mb-3"
+                :class="colorMode.value === 'dark' ? 'text-gray-500' : 'text-gray-400'"
+                class="w-16 h-16 mx-auto mb-3"
               />
-              <p class="text-gray-600 font-medium">Line Chart</p>
-              <p class="text-sm text-gray-500">Application trends over time</p>
+              <p
+                :class="colorMode.value === 'dark' ? 'text-gray-300' : 'text-gray-600'"
+                class="font-medium"
+              >
+                Line Chart
+              </p>
+              <p
+                :class="colorMode.value === 'dark' ? 'text-gray-500' : 'text-gray-500'"
+                class="text-sm"
+              >
+                Application trends over time
+              </p>
             </div>
           </div>
         </div>
 
         <!-- Top Performing Jobs -->
         <div
-          class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 fade-in-up"
+          :class="[
+            'rounded-xl shadow-sm border p-6 fade-in-up',
+            colorMode.value === 'dark'
+              ? 'bg-slate-800 border-slate-700'
+              : 'bg-white border-gray-200',
+          ]"
           style="animation-delay: 350ms"
         >
           <div class="flex items-center justify-between mb-6">
             <div>
-              <h2 class="text-lg font-bold text-gray-900 mb-1">
+              <h2
+                :class="[
+                  'text-lg font-bold mb-1',
+                  colorMode.value === 'dark' ? 'text-white' : 'text-gray-900',
+                ]"
+              >
                 Top Performing Jobs
               </h2>
-              <p class="text-sm text-gray-500">By applications received</p>
+              <p
+                :class="colorMode.value === 'dark' ? 'text-gray-400' : 'text-gray-500'"
+              >
+                By applications received
+              </p>
             </div>
           </div>
 
@@ -201,7 +319,12 @@
             <div
               v-for="(job, index) in topJobs"
               :key="index"
-              class="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
+              :class="[
+                'flex items-center gap-3 p-3 rounded-lg transition-colors',
+                colorMode.value === 'dark'
+                  ? 'hover:bg-slate-700'
+                  : 'hover:bg-gray-50',
+              ]"
             >
               <div
                 class="w-10 h-10 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-lg flex items-center justify-center text-white font-bold flex-shrink-0"
@@ -209,16 +332,29 @@
                 {{ index + 1 }}
               </div>
               <div class="flex-1 min-w-0">
-                <h3 class="font-semibold text-gray-900 truncate mb-1">
+                <h3
+                  :class="[
+                    'font-semibold truncate mb-1',
+                    colorMode.value === 'dark' ? 'text-white' : 'text-gray-900',
+                  ]"
+                >
                   {{ job.title }}
                 </h3>
-                <p class="text-xs text-gray-500">{{ job.location }}</p>
+                <p
+                  :class="colorMode.value === 'dark' ? 'text-gray-500' : 'text-gray-500'"
+                >
+                  {{ job.location }}
+                </p>
               </div>
               <div class="text-right">
                 <p class="text-lg font-bold text-emerald-600">
                   {{ job.applications }}
                 </p>
-                <p class="text-xs text-gray-500">applications</p>
+                <p
+                  :class="colorMode.value === 'dark' ? 'text-gray-500' : 'text-gray-500'"
+                >
+                  applications
+                </p>
               </div>
             </div>
           </div>
@@ -229,18 +365,41 @@
       <div class="grid lg:grid-cols-3 gap-6 mb-8">
         <!-- Source Analysis -->
         <div
-          class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 fade-in-up"
+          :class="[
+            'rounded-xl shadow-sm border p-6 fade-in-up',
+            colorMode.value === 'dark'
+              ? 'bg-slate-800 border-slate-700'
+              : 'bg-white border-gray-200',
+          ]"
           style="animation-delay: 400ms"
         >
           <div class="flex items-center gap-3 mb-6">
             <div
-              class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center"
+              :class="[
+                'w-10 h-10 rounded-lg flex items-center justify-center',
+                colorMode.value === 'dark' ? 'bg-blue-900/30' : 'bg-blue-100',
+              ]"
             >
-              <Icon name="mdi:source-branch" class="w-6 h-6 text-blue-600" />
+              <Icon
+                name="mdi:source-branch"
+                :class="colorMode.value === 'dark' ? 'text-blue-400' : 'text-blue-600'"
+                class="w-6 h-6"
+              />
             </div>
             <div>
-              <h2 class="text-lg font-bold text-gray-900">Traffic Sources</h2>
-              <p class="text-xs text-gray-500">Where candidates find you</p>
+              <h2
+                :class="[
+                  'text-lg font-bold',
+                  colorMode.value === 'dark' ? 'text-white' : 'text-gray-900',
+                ]"
+              >
+                Traffic Sources
+              </h2>
+              <p
+                :class="colorMode.value === 'dark' ? 'text-gray-400' : 'text-gray-500'"
+              >
+                Where candidates find you
+              </p>
             </div>
           </div>
 
@@ -251,12 +410,23 @@
               class="space-y-2"
             >
               <div class="flex items-center justify-between text-sm">
-                <span class="font-medium text-gray-700">{{ source.name }}</span>
-                <span class="font-bold text-gray-900"
-                  >{{ source.percentage }}%</span
+                <span
+                  :class="colorMode.value === 'dark' ? 'text-gray-300' : 'text-gray-700'"
                 >
+                  {{ source.name }}
+                </span>
+                <span
+                  :class="colorMode.value === 'dark' ? 'text-white' : 'text-gray-900'"
+                >
+                  {{ source.percentage }}%
+                </span>
               </div>
-              <div class="w-full bg-gray-200 rounded-full h-2">
+              <div
+                :class="[
+                  'w-full rounded-full h-2',
+                  colorMode.value === 'dark' ? 'bg-slate-700' : 'bg-gray-200',
+                ]"
+              >
                 <div
                   class="h-2 rounded-full transition-all duration-500"
                   :class="source.color"
@@ -269,23 +439,41 @@
 
         <!-- Application Status -->
         <div
-          class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 fade-in-up"
+          :class="[
+            'rounded-xl shadow-sm border p-6 fade-in-up',
+            colorMode.value === 'dark'
+              ? 'bg-slate-800 border-slate-700'
+              : 'bg-white border-gray-200',
+          ]"
           style="animation-delay: 450ms"
         >
           <div class="flex items-center gap-3 mb-6">
             <div
-              class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center"
+              :class="[
+                'w-10 h-10 rounded-lg flex items-center justify-center',
+                colorMode.value === 'dark' ? 'bg-purple-900/30' : 'bg-purple-100',
+              ]"
             >
               <Icon
                 name="mdi:format-list-checks"
-                class="w-6 h-6 text-purple-600"
+                :class="colorMode.value === 'dark' ? 'text-purple-400' : 'text-purple-600'"
+                class="w-6 h-6"
               />
             </div>
             <div>
-              <h2 class="text-lg font-bold text-gray-900">
+              <h2
+                :class="[
+                  'text-lg font-bold',
+                  colorMode.value === 'dark' ? 'text-white' : 'text-gray-900',
+                ]"
+              >
                 Application Status
               </h2>
-              <p class="text-xs text-gray-500">Current pipeline breakdown</p>
+              <p
+                :class="colorMode.value === 'dark' ? 'text-gray-400' : 'text-gray-500'"
+              >
+                Current pipeline breakdown
+              </p>
             </div>
           </div>
 
@@ -293,38 +481,68 @@
             <div
               v-for="status in applicationStatus"
               :key="status.name"
-              class="flex items-center justify-between p-3 rounded-lg bg-gray-50"
+              :class="[
+                'flex items-center justify-between p-3 rounded-lg',
+                colorMode.value === 'dark' ? 'bg-slate-700' : 'bg-gray-50',
+              ]"
             >
               <div class="flex items-center gap-3">
                 <div
                   class="w-3 h-3 rounded-full"
                   :class="status.dotColor"
                 ></div>
-                <span class="text-sm font-medium text-gray-700">{{
-                  status.name
-                }}</span>
+                <span
+                  :class="colorMode.value === 'dark' ? 'text-gray-300' : 'text-gray-700'"
+                >
+                  {{ status.name }}
+                </span>
               </div>
-              <span class="text-lg font-bold text-gray-900">{{
-                status.count
-              }}</span>
+              <span
+                :class="colorMode.value === 'dark' ? 'text-white' : 'text-gray-900'"
+              >
+                {{ status.count }}
+              </span>
             </div>
           </div>
         </div>
 
         <!-- Recent Activity -->
         <div
-          class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 fade-in-up"
+          :class="[
+            'rounded-xl shadow-sm border p-6 fade-in-up',
+            colorMode.value === 'dark'
+              ? 'bg-slate-800 border-slate-700'
+              : 'bg-white border-gray-200',
+          ]"
           style="animation-delay: 500ms"
         >
           <div class="flex items-center gap-3 mb-6">
             <div
-              class="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center"
+              :class="[
+                'w-10 h-10 rounded-lg flex items-center justify-center',
+                colorMode.value === 'dark' ? 'bg-orange-900/30' : 'bg-orange-100',
+              ]"
             >
-              <Icon name="mdi:bell-ring" class="w-6 h-6 text-orange-600" />
+              <Icon
+                name="mdi:bell-ring"
+                :class="colorMode.value === 'dark' ? 'text-orange-400' : 'text-orange-600'"
+                class="w-6 h-6"
+              />
             </div>
             <div>
-              <h2 class="text-lg font-bold text-gray-900">Recent Activity</h2>
-              <p class="text-xs text-gray-500">Latest updates</p>
+              <h2
+                :class="[
+                  'text-lg font-bold',
+                  colorMode.value === 'dark' ? 'text-white' : 'text-gray-900',
+                ]"
+              >
+                Recent Activity
+              </h2>
+              <p
+                :class="colorMode.value === 'dark' ? 'text-gray-400' : 'text-gray-500'"
+              >
+                Latest updates
+              </p>
             </div>
           </div>
 
@@ -345,10 +563,17 @@
                 />
               </div>
               <div class="flex-1 min-w-0">
-                <p class="text-sm text-gray-900 font-medium mb-1">
+                <p
+                  :class="colorMode.value === 'dark' ? 'text-gray-300' : 'text-gray-900'"
+                  class="text-sm font-medium mb-1"
+                >
                   {{ activity.title }}
                 </p>
-                <p class="text-xs text-gray-500">{{ activity.time }}</p>
+                <p
+                  :class="colorMode.value === 'dark' ? 'text-gray-500' : 'text-gray-500'"
+                >
+                  {{ activity.time }}
+                </p>
               </div>
             </div>
           </div>
@@ -357,20 +582,37 @@
 
       <!-- Detailed Performance Table -->
       <div
-        class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 fade-in-up"
+        :class="[
+          'rounded-xl shadow-sm border p-6 fade-in-up',
+          colorMode.value === 'dark'
+            ? 'bg-slate-800 border-slate-700'
+            : 'bg-white border-gray-200',
+        ]"
         style="animation-delay: 550ms"
       >
         <div class="flex items-center justify-between mb-6">
           <div>
-            <h2 class="text-lg font-bold text-gray-900 mb-1">
+            <h2
+              :class="[
+                'text-lg font-bold mb-1',
+                colorMode.value === 'dark' ? 'text-white' : 'text-gray-900',
+              ]"
+            >
               Job Performance Details
             </h2>
-            <p class="text-sm text-gray-500">
+            <p
+              :class="colorMode.value === 'dark' ? 'text-gray-400' : 'text-gray-500'"
+            >
               Comprehensive metrics for all active jobs
             </p>
           </div>
           <button
-            class="px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors flex items-center gap-2"
+            :class="[
+              'px-4 py-2 border rounded-lg text-sm font-medium transition-colors flex items-center gap-2',
+              colorMode.value === 'dark'
+                ? 'border-slate-600 text-gray-300 hover:bg-slate-700'
+                : 'border-gray-300 text-gray-700 hover:bg-gray-50',
+            ]"
           >
             <Icon name="mdi:filter-variant" class="w-4 h-4" />
             Filter
@@ -380,51 +622,94 @@
         <div class="overflow-x-auto">
           <table class="w-full">
             <thead>
-              <tr class="border-b border-gray-200">
+              <tr
+                :class="colorMode.value === 'dark' ? 'border-slate-700' : 'border-gray-200'"
+              >
                 <th
-                  class="text-left py-3 px-4 text-sm font-semibold text-gray-900"
+                  :class="[
+                    'text-left py-3 px-4 text-sm font-semibold',
+                    colorMode.value === 'dark' ? 'text-gray-300' : 'text-gray-900',
+                  ]"
                 >
                   Job Title
                 </th>
                 <th
-                  class="text-left py-3 px-4 text-sm font-semibold text-gray-900"
+                  :class="[
+                    'text-left py-3 px-4 text-sm font-semibold',
+                    colorMode.value === 'dark' ? 'text-gray-300' : 'text-gray-900',
+                  ]"
                 >
                   Views
                 </th>
                 <th
-                  class="text-left py-3 px-4 text-sm font-semibold text-gray-900"
+                  :class="[
+                    'text-left py-3 px-4 text-sm font-semibold',
+                    colorMode.value === 'dark' ? 'text-gray-300' : 'text-gray-900',
+                  ]"
                 >
                   Applications
                 </th>
                 <th
-                  class="text-left py-3 px-4 text-sm font-semibold text-gray-900"
+                  :class="[
+                    'text-left py-3 px-4 text-sm font-semibold',
+                    colorMode.value === 'dark' ? 'text-gray-300' : 'text-gray-900',
+                  ]"
                 >
                   Conv. Rate
                 </th>
                 <th
-                  class="text-left py-3 px-4 text-sm font-semibold text-gray-900"
+                  :class="[
+                    'text-left py-3 px-4 text-sm font-semibold',
+                    colorMode.value === 'dark' ? 'text-gray-300' : 'text-gray-900',
+                  ]"
                 >
                   Shortlisted
                 </th>
                 <th
-                  class="text-left py-3 px-4 text-sm font-semibold text-gray-900"
+                  :class="[
+                    'text-left py-3 px-4 text-sm font-semibold',
+                    colorMode.value === 'dark' ? 'text-gray-300' : 'text-gray-900',
+                  ]"
                 >
                   Status
                 </th>
               </tr>
             </thead>
-            <tbody class="divide-y divide-gray-100">
+            <tbody
+              :class="colorMode.value === 'dark' ? 'divide-slate-700' : 'divide-gray-100'"
+            >
               <tr
                 v-for="(job, index) in performanceData"
                 :key="index"
-                class="hover:bg-gray-50 transition-colors"
+                :class="[
+                  'transition-colors',
+                  colorMode.value === 'dark' ? 'hover:bg-slate-700' : 'hover:bg-gray-50',
+                ]"
               >
                 <td class="py-4 px-4">
-                  <div class="font-medium text-gray-900">{{ job.title }}</div>
-                  <div class="text-xs text-gray-500">{{ job.department }}</div>
+                  <div
+                    :class="colorMode.value === 'dark' ? 'text-white' : 'text-gray-900'"
+                  >
+                    {{ job.title }}
+                  </div>
+                  <div
+                    :class="colorMode.value === 'dark' ? 'text-gray-500' : 'text-gray-500'"
+                  >
+                    {{ job.department }}
+                  </div>
                 </td>
-                <td class="py-4 px-4 text-gray-900">{{ job.views }}</td>
-                <td class="py-4 px-4 text-gray-900">{{ job.applications }}</td>
+                <td
+                  :class="colorMode.value === 'dark' ? 'text-gray-300' : 'text-gray-900'"
+                  class="py-4 px-4"
+                >
+                  {{ job.views }}
+                </td>
+                <td
+                  :class="colorMode.value === 'dark' ? 'text-gray-300' : 'text-gray-900'"
+                  class="py-4 px-4"
+                >
+                  {{ job.applications }}
+                </td>
                 <td class="py-4 px-4">
                   <span
                     class="font-semibold"
@@ -439,10 +724,20 @@
                     {{ job.convRate }}%
                   </span>
                 </td>
-                <td class="py-4 px-4 text-gray-900">{{ job.shortlisted }}</td>
+                <td
+                  :class="colorMode.value === 'dark' ? 'text-gray-300' : 'text-gray-900'"
+                  class="py-4 px-4"
+                >
+                  {{ job.shortlisted }}
+                </td>
                 <td class="py-4 px-4">
                   <span
-                    class="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-xs font-semibold"
+                    :class="[
+                      'px-3 py-1 rounded-full text-xs font-semibold',
+                      colorMode.value === 'dark'
+                        ? 'bg-emerald-900/30 text-emerald-400'
+                        : 'bg-emerald-100 text-emerald-700',
+                    ]"
                   >
                     {{ job.status }}
                   </span>
@@ -457,6 +752,7 @@
 </template>
 
 <script setup lang="ts">
+import { useColorMode } from '#imports';
 useSeoMeta({
   title: "Analytics Dashboard - FindPoint",
   description:
@@ -570,6 +866,8 @@ const performanceData = ref([
     status: "Active",
   },
 ]);
+
+const colorMode = useColorMode();
 
 onMounted(() => {
   const observerOptions = {
