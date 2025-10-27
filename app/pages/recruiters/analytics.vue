@@ -752,7 +752,8 @@
 </template>
 
 <script setup lang="ts">
-import { useColorMode } from '#imports';
+import { ref, onMounted } from 'vue';
+import { useSeoMeta } from 'nuxt/app';  
 useSeoMeta({
   title: "Analytics Dashboard - FindPoint",
   description:

@@ -360,13 +360,13 @@
                 <Icon name="mdi:clock-outline" class="w-3.5 h-3.5" />
                 {{ job.postedDate }}
               </span>
-              <NuxtLink
-                :to="`/jobs/${job.id}`"
+              <button
+                @click="navigateToJobDetail(job)"
                 class="text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 font-semibold text-sm flex items-center gap-1 transition-colors duration-300"
               >
                 View Details
                 <Icon name="mdi:arrow-right" class="w-4 h-4" />
-              </NuxtLink>
+              </button>
             </div>
           </div>
         </div>
@@ -522,11 +522,24 @@
 </template>
 
 <script setup lang="ts">
+import { ref, computed, watch, onMounted } from 'vue'
+
+import { useSeoMeta } from 'nuxt/app';
+import { useFetchJobs, useSelectedJob } from './../../composables/useFetchJobs';
+import { navigateTo } from 'nuxt/app';
+
 useSeoMeta({
   title: "Browse Jobs - FindPoint",
-  description:
-    "Discover your next career opportunity from thousands of job listings",
+  description: "Discover your next career opportunity from thousands of job listings",
 });
+
+// Import shared jobs data and navigation
+const { jobs } = useFetchJobs();
+const { setSelectedJob } = useSelectedJob();
+const navigateToJobDetail = (job: any) => {
+  setSelectedJob(job);
+  navigateTo(`/jobs/${job.id}`);
+};
 
 // Pagination state
 const currentPage = ref(1);
@@ -545,129 +558,6 @@ const filters = ref({
   salary: "",
   workLocation: "",
 });
-
-// Sample Job Data
-const jobs = ref([
-  {
-    id: 1,
-    title: "Senior Software Engineer",
-    company: "TechCorp Inc.",
-    companyInitial: "T",
-    location: "San Francisco, CA",
-    salary: "$120k - $180k",
-    type: "Full-time",
-    experience: "5+ years",
-    skills: ["React", "TypeScript", "Node.js", "Python", "AWS"],
-    postedDate: "2 days ago",
-  },
-  {
-    id: 2,
-    title: "Product Designer",
-    company: "DesignHub",
-    companyInitial: "D",
-    location: "Remote",
-    salary: "$90k - $130k",
-    type: "Full-time",
-    experience: "3+ years",
-    skills: ["Figma", "UI/UX", "Prototyping", "Design Systems"],
-    postedDate: "1 day ago",
-  },
-  {
-    id: 3,
-    title: "Data Scientist",
-    company: "DataFlow Analytics",
-    companyInitial: "D",
-    location: "New York, NY",
-    salary: "$100k - $150k",
-    type: "Full-time",
-    experience: "4+ years",
-    skills: ["Python", "Machine Learning", "SQL", "TensorFlow", "Statistics"],
-    postedDate: "3 days ago",
-  },
-  {
-    id: 4,
-    title: "Frontend Developer",
-    company: "WebSolutions",
-    companyInitial: "W",
-    location: "Austin, TX",
-    salary: "$80k - $120k",
-    type: "Contract",
-    experience: "2+ years",
-    skills: ["Vue.js", "JavaScript", "CSS", "HTML", "Webpack"],
-    postedDate: "5 days ago",
-  },
-  {
-    id: 5,
-    title: "Marketing Manager",
-    company: "BrandBoost",
-    companyInitial: "B",
-    location: "Boston, MA",
-    salary: "$70k - $100k",
-    type: "Full-time",
-    experience: "5+ years",
-    skills: ["SEO", "Content Strategy", "Analytics", "Social Media", "PPC"],
-    postedDate: "1 week ago",
-  },
-  {
-    id: 6,
-    title: "DevOps Engineer",
-    company: "CloudTech",
-    companyInitial: "C",
-    location: "Seattle, WA",
-    salary: "$110k - $160k",
-    type: "Full-time",
-    experience: "4+ years",
-    skills: ["AWS", "Docker", "Kubernetes", "CI/CD", "Terraform"],
-    postedDate: "4 days ago",
-  },
-  {
-    id: 7,
-    title: "UX Researcher",
-    company: "UserFirst Design",
-    companyInitial: "U",
-    location: "Remote",
-    salary: "$85k - $125k",
-    type: "Full-time",
-    experience: "3+ years",
-    skills: [
-      "User Research",
-      "Usability Testing",
-      "Data Analysis",
-      "Interviews",
-    ],
-    postedDate: "2 days ago",
-  },
-  {
-    id: 8,
-    title: "Backend Engineer",
-    company: "ServerSide Inc.",
-    companyInitial: "S",
-    location: "Denver, CO",
-    salary: "$95k - $140k",
-    type: "Full-time",
-    experience: "4+ years",
-    skills: ["Java", "Spring Boot", "Microservices", "PostgreSQL", "Redis"],
-    postedDate: "6 days ago",
-  },
-  {
-    id: 9,
-    title: "Product Manager",
-    company: "InnovateCo",
-    companyInitial: "I",
-    location: "Los Angeles, CA",
-    salary: "$100k - $150k",
-    type: "Full-time",
-    experience: "5+ years",
-    skills: [
-      "Agile",
-      "Product Strategy",
-      "Roadmapping",
-      "Analytics",
-      "Leadership",
-    ],
-    postedDate: "3 days ago",
-  },
-]);
 
 // Computed
 const filteredJobs = computed(() => {

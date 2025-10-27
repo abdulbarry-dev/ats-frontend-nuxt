@@ -467,6 +467,9 @@
 </template>
 
 <script setup lang="ts">
+
+import { ref, onMounted } from "vue";
+import { useSeoMeta } from "nuxt/app";
 useSeoMeta({
   title: "Recruiter Dashboard - FindPoint",
   description: "Manage your recruitment process and track hiring metrics",

@@ -5,7 +5,7 @@
       <div class="mb-8 fade-in-up">
         <div class="flex items-center text-sm text-gray-600 mb-4">
           <NuxtLink
-            to="/jobs/manage"
+            to="/recruiters/jobs/manage"
             class="hover:text-emerald-600 transition-colors flex items-center"
           >
             <Icon name="mdi:arrow-left" class="w-4 h-4 mr-1" />

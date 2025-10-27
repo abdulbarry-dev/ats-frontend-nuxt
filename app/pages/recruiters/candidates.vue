@@ -317,6 +317,10 @@
 </template>
 
 <script setup lang="ts">
+
+import { useSeoMeta } from 'nuxt/app';
+import { ref, onMounted } from 'vue';
+
 useSeoMeta({
   title: "Candidates - FindPoint",
   description: "Manage and review all your job applicants",

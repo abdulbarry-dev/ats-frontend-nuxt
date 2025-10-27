@@ -560,76 +560,29 @@
 </template>
 
 <script setup lang="ts">
+import { computed, onMounted } from 'vue'
+
+// Define props for the job to receive it as props-like
+const props = defineProps<{
+  job?: any;
+}>();
+
 const route = useRoute();
 
-// Sample job data - in real app, this would be fetched from API
-const job = ref({
-  title: "Senior Software Engineer",
-  company: "TechCorp Inc.",
-  companyInitial: "T",
-  location: "San Francisco, CA",
-  salary: "$120k - $180k",
-  type: "Full-time",
-  experience: "5+ years",
-  workLocation: "Hybrid",
-  postedDate: "2 days ago",
-  deadline: "December 31, 2025",
-  industry: "Technology",
-  companySize: "201-500 employees",
-  companyLocation: "San Francisco, CA",
-  companyWebsite: "www.techcorp.com",
-  companyDescription:
-    "Leading technology company focused on innovative solutions that transform businesses.",
-  description:
-    "We are seeking a talented Senior Software Engineer to join our dynamic team. You will be responsible for designing, developing, and maintaining scalable applications that serve millions of users worldwide.",
-  responsibilities: [
-    "Design and develop high-quality, scalable software solutions",
-    "Collaborate with cross-functional teams to define and ship new features",
-    "Write clean, maintainable, and well-documented code",
-    "Participate in code reviews and provide constructive feedback",
-    "Mentor junior developers and contribute to team growth",
-    "Troubleshoot and debug applications to optimize performance",
-    "Stay up-to-date with emerging trends and technologies",
-  ],
-  requirements: [
-    "Bachelor's degree in Computer Science or related field",
-    "5+ years of professional software development experience",
-    "Strong proficiency in React, TypeScript, and Node.js",
-    "Experience with cloud platforms (AWS, Azure, or GCP)",
-    "Solid understanding of software design patterns and best practices",
-    "Excellent problem-solving and analytical skills",
-    "Strong communication and teamwork abilities",
-  ],
-  niceToHave: [
-    "Experience with microservices architecture",
-    "Knowledge of containerization (Docker, Kubernetes)",
-    "Contributions to open-source projects",
-    "Experience with CI/CD pipelines",
-    "Familiarity with Agile/Scrum methodologies",
-  ],
-  benefits: [
-    "Health, dental, and vision insurance",
-    "401(k) with company match",
-    "Flexible work hours",
-    "Remote work options",
-    "Professional development budget",
-    "Gym membership",
-    "Catered meals",
-    "Stock options",
-  ],
-  skills: [
-    "React",
-    "TypeScript",
-    "Node.js",
-    "Python",
-    "AWS",
-    "Docker",
-    "PostgreSQL",
-    "GraphQL",
-    "Redis",
-    "Git",
-  ],
-});
+// Get job from global selected job state as "props"
+const { getSelectedJob } = useSelectedJob();
+const { getJobById } = useFetchJobs();
+
+const jobId = parseInt(route.params.id as string);
+const job = computed(() => getSelectedJob() || getJobById(jobId));
+
+// Handle job not found
+if (!job.value) {
+  throw createError({
+    statusCode: 404,
+    statusMessage: 'Job not found'
+  });
+}
 
 useSeoMeta({
   title: `${job.value.title} at ${job.value.company} - FindPoint`,

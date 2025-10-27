@@ -1,482 +1,338 @@
 <template>
-  <div
-    class="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50 dark:from-slate-900 dark:via-slate-900 dark:to-slate-800 transition-colors duration-300"
-  >
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <!-- Header -->
-      <div class="mb-8">
-        <h1
-          class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-2"
-        >
-          My Applications
-        </h1>
-        <p class="text-gray-600 dark:text-gray-400">
-          Track and manage all your job applications
-        </p>
+  <div class="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <!-- Page Header -->
+    <header class="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <div class="flex items-center justify-between">
+          <div>
+            <h1 class="text-3xl font-bold text-gray-900 dark:text-white">
+              Job Applications
+            </h1>
+            <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+              Track your application progress and manage your job search
+            </p>
+          </div>
+          <div class="flex items-center space-x-3">
+            <NuxtLink
+              to="/jobs"
+              class="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-md transition-colors"
+            >
+              <Icon name="mdi:briefcase-plus-outline" class="w-4 h-4 mr-2" />
+              Browse Jobs
+            </NuxtLink>
+          </div>
+        </div>
       </div>
+    </header>
 
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <!-- Stats Overview -->
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-        <div
-          class="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-gray-100 dark:border-slate-700 p-4 hover:shadow-md transition-all duration-300"
-        >
-          <div class="flex items-center gap-3">
-            <div
-              class="w-10 h-10 bg-gradient-to-br from-emerald-100 to-emerald-200 dark:from-emerald-900/30 dark:to-emerald-800/30 rounded-lg flex items-center justify-center"
-            >
-              <Icon
-                name="mdi:file-document-multiple"
-                class="w-5 h-5 text-emerald-600 dark:text-emerald-400"
-              />
-            </div>
-            <div>
-              <div class="text-2xl font-bold text-gray-900 dark:text-white">
-                {{ applications.length }}
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+          <div class="flex items-center">
+            <div class="flex-shrink-0">
+              <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center">
+                <Icon name="mdi:file-document-multiple-outline" class="w-5 h-5 text-white" />
               </div>
-              <div class="text-xs text-gray-600 dark:text-gray-400">Total</div>
+            </div>
+            <div class="ml-4">
+              <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Total</dt>
+              <dd class="text-2xl font-semibold text-gray-900 dark:text-white">{{ totalApplications }}</dd>
             </div>
           </div>
         </div>
-
-        <div
-          class="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-gray-100 dark:border-slate-700 p-4 hover:shadow-md transition-all duration-300"
-        >
-          <div class="flex items-center gap-3">
-            <div
-              class="w-10 h-10 bg-gradient-to-br from-blue-100 to-blue-200 dark:from-blue-900/30 dark:to-blue-800/30 rounded-lg flex items-center justify-center"
-            >
-              <Icon
-                name="mdi:clock-outline"
-                class="w-5 h-5 text-blue-600 dark:text-blue-400"
-              />
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+          <div class="flex items-center">
+            <div class="flex-shrink-0">
+              <div class="w-8 h-8 bg-yellow-500 rounded-full flex items-center justify-center">
+                <Icon name="mdi:clock-outline" class="w-5 h-5 text-white" />
+              </div>
             </div>
-            <div>
-              <div class="text-2xl font-bold text-gray-900 dark:text-white">
-                {{ statusCount("under-review") }}
-              </div>
-              <div class="text-xs text-gray-600 dark:text-gray-400">
-                In Review
-              </div>
+            <div class="ml-4">
+              <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">In Review</dt>
+              <dd class="text-2xl font-semibold text-gray-900 dark:text-white">{{ statusCount("under-review") }}</dd>
             </div>
           </div>
         </div>
-
-        <div
-          class="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-gray-100 dark:border-slate-700 p-4 hover:shadow-md transition-all duration-300"
-        >
-          <div class="flex items-center gap-3">
-            <div
-              class="w-10 h-10 bg-gradient-to-br from-amber-100 to-amber-200 dark:from-amber-900/30 dark:to-amber-800/30 rounded-lg flex items-center justify-center"
-            >
-              <Icon
-                name="mdi:calendar-check"
-                class="w-5 h-5 text-amber-600 dark:text-amber-400"
-              />
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+          <div class="flex items-center">
+            <div class="flex-shrink-0">
+              <div class="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center">
+                <Icon name="mdi:calendar" class="w-5 h-5 text-white" />
+              </div>
             </div>
-            <div>
-              <div class="text-2xl font-bold text-gray-900 dark:text-white">
-                {{ statusCount("interview") }}
-              </div>
-              <div class="text-xs text-gray-600 dark:text-gray-400">
-                Interviews
-              </div>
+            <div class="ml-4">
+              <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Interviews</dt>
+              <dd class="text-2xl font-semibold text-gray-900 dark:text-white">{{ statusCount("interview") }}</dd>
             </div>
           </div>
         </div>
-
-        <div
-          class="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-gray-100 dark:border-slate-700 p-4 hover:shadow-md transition-all duration-300"
-        >
-          <div class="flex items-center gap-3">
-            <div
-              class="w-10 h-10 bg-gradient-to-br from-purple-100 to-purple-200 dark:from-purple-900/30 dark:to-purple-800/30 rounded-lg flex items-center justify-center"
-            >
-              <Icon
-                name="mdi:star-circle"
-                class="w-5 h-5 text-purple-600 dark:text-purple-400"
-              />
-            </div>
-            <div>
-              <div class="text-2xl font-bold text-gray-900 dark:text-white">
-                {{ statusCount("offer") }}
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+          <div class="flex items-center">
+            <div class="flex-shrink-0">
+              <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                <Icon name="mdi:trophy" class="w-5 h-5 text-white" />
               </div>
-              <div class="text-xs text-gray-600 dark:text-gray-400">Offers</div>
+            </div>
+            <div class="ml-4">
+              <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Offers</dt>
+              <dd class="text-2xl font-semibold text-gray-900 dark:text-white">{{ statusCount("offer") }}</dd>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Filters & Search -->
-      <div
-        class="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-gray-100 dark:border-slate-700 p-4 mb-6 transition-colors duration-300"
-      >
-        <div class="flex flex-col lg:flex-row gap-4">
+      <!-- Filters and Search -->
+      <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6 mb-8">
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-4">
           <!-- Search -->
-          <div class="relative flex-1">
-            <Icon
-              name="mdi:magnify"
-              class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400"
-            />
+          <div class="relative col-span-1 lg:col-span-2">
+            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <Icon name="mdi:magnify" class="w-5 h-5 text-gray-400" />
+            </div>
             <input
-              v-model="search"
+              v-model="searchQuery"
               type="text"
-              placeholder="Search by job title or company name..."
-              class="w-full pl-10 pr-4 py-2.5 border border-gray-200 dark:border-slate-600 rounded-xl bg-gray-50 dark:bg-slate-700 text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:focus:ring-emerald-400 focus:bg-white dark:focus:bg-slate-600 transition-all"
+              placeholder="Search by job title or company..."
+              class="block w-full pl-10 pr-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md leading-5 bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
             />
           </div>
 
-          <!-- Filter Buttons -->
-          <div class="flex items-center gap-2 overflow-x-auto pb-2 lg:pb-0">
-            <button
-              @click="statusFilter = 'all'"
-              :class="[
-                'px-4 py-2.5 rounded-xl font-semibold text-sm whitespace-nowrap transition-all duration-300',
-                statusFilter === 'all'
-                  ? 'bg-emerald-600 text-white shadow-md'
-                  : 'bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-slate-600',
-              ]"
+          <!-- Status Filter -->
+          <div class="col-span-1">
+            <select
+              v-model="statusFilter"
+              class="block w-full py-2 px-3 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
             >
-              All ({{ applications.length }})
-            </button>
-            <button
-              @click="statusFilter = 'under-review'"
-              :class="[
-                'px-4 py-2.5 rounded-xl font-semibold text-sm whitespace-nowrap transition-all duration-300',
-                statusFilter === 'under-review'
-                  ? 'bg-blue-600 text-white shadow-md'
-                  : 'bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-slate-600',
-              ]"
-            >
-              In Review ({{ statusCount("under-review") }})
-            </button>
-            <button
-              @click="statusFilter = 'interview'"
-              :class="[
-                'px-4 py-2.5 rounded-xl font-semibold text-sm whitespace-nowrap transition-all duration-300',
-                statusFilter === 'interview'
-                  ? 'bg-amber-600 text-white shadow-md'
-                  : 'bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-slate-600',
-              ]"
-            >
-              Interview ({{ statusCount("interview") }})
-            </button>
-            <button
-              @click="statusFilter = 'offer'"
-              :class="[
-                'px-4 py-2.5 rounded-xl font-semibold text-sm whitespace-nowrap transition-all duration-300',
-                statusFilter === 'offer'
-                  ? 'bg-emerald-600 text-white shadow-md'
-                  : 'bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-slate-600',
-              ]"
-            >
-              Offers ({{ statusCount("offer") }})
-            </button>
-            <button
-              @click="statusFilter = 'rejected'"
-              :class="[
-                'px-4 py-2.5 rounded-xl font-semibold text-sm whitespace-nowrap transition-all duration-300',
-                statusFilter === 'rejected'
-                  ? 'bg-red-600 text-white shadow-md'
-                  : 'bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-slate-600',
-              ]"
-            >
-              Rejected ({{ statusCount("rejected") }})
-            </button>
+              <option value="">All Status</option>
+              <option value="under-review">Under Review</option>
+              <option value="interview">Interview</option>
+              <option value="offer">Offer</option>
+              <option value="rejected">Rejected</option>
+            </select>
           </div>
 
           <!-- Sort -->
-          <select
-            v-model="sortBy"
-            class="px-4 py-2.5 border border-gray-200 dark:border-slate-600 rounded-xl bg-gray-50 dark:bg-slate-700 text-sm font-medium text-gray-700 dark:text-gray-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:focus:ring-emerald-400 focus:bg-white dark:focus:bg-slate-600 transition-all cursor-pointer"
-          >
-            <option value="recent">Most Recent</option>
-            <option value="oldest">Oldest First</option>
-          </select>
+          <div class="col-span-1">
+            <select
+              v-model="sortBy"
+              class="block w-full py-2 px-3 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+            >
+              <option value="newest">Newest First</option>
+              <option value="oldest">Oldest First</option>
+            </select>
+          </div>
         </div>
       </div>
 
-      <!-- Applications List -->
-      <div
-        v-if="filteredApplications.length === 0"
-        class="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-gray-100 dark:border-slate-700 p-16 text-center transition-colors duration-300"
-      >
-        <div
-          class="w-24 h-24 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-slate-700 dark:to-slate-600 rounded-full flex items-center justify-center mx-auto mb-6"
-        >
-          <Icon
-            name="mdi:briefcase-search-outline"
-            class="w-12 h-12 text-gray-400"
-          />
+      <!-- Applications Grid -->
+      <div v-if="filteredApplications.length === 0" class="text-center py-12">
+        <div class="mx-auto w-24 h-24 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center mb-4">
+          <Icon name="mdi:briefcase-search" class="w-12 h-12 text-gray-400" />
         </div>
-        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">
-          No applications found
-        </h3>
-        <p class="text-gray-600 dark:text-gray-400 mb-6 max-w-md mx-auto">
-          {{
-            search
-              ? "Try adjusting your search or filters"
-              : "Start applying to jobs to see them here"
-          }}
+        <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-2">No applications found</h3>
+        <p class="text-gray-500 dark:text-gray-400 mb-6">
+          {{ searchQuery ? 'Try adjusting your search criteria.' : 'Start applying to jobs to see them here.' }}
         </p>
         <NuxtLink
           to="/jobs"
-          class="inline-flex items-center gap-2 px-6 py-3 bg-emerald-600 text-white rounded-xl font-semibold hover:bg-emerald-700 shadow-md hover:shadow-lg transition-all duration-300"
+          class="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-md transition-colors"
         >
-          <Icon name="mdi:briefcase-search" class="w-5 h-5" />
-          Browse Jobs
+          <Icon name="mdi:briefcase-plus-outline" class="w-4 h-4 mr-2" />
+          Browse Available Jobs
         </NuxtLink>
       </div>
 
-      <div v-else class="space-y-4">
+      <div v-else class="grid gap-6 md:grid-cols-2 lg:grid-cols-1">
         <div
           v-for="app in filteredApplications"
           :key="app.id"
-          class="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-gray-100 dark:border-slate-700 hover:shadow-md transition-all duration-300 overflow-hidden group"
+          class="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6 hover:shadow-md transition-shadow"
         >
-          <div class="p-6">
-            <div
-              class="flex flex-col lg:flex-row lg:items-center justify-between gap-6"
-            >
-              <!-- Left: Company & Job Info -->
-              <div class="flex items-start gap-4 flex-1">
-                <!-- Company Logo -->
-                <div
-                  class="w-16 h-16 rounded-xl bg-gradient-to-br from-gray-100 to-gray-200 dark:from-slate-700 dark:to-slate-600 flex items-center justify-center flex-shrink-0 border border-gray-200 dark:border-slate-600 overflow-hidden group-hover:scale-105 transition-transform duration-300"
-                >
+          <div class="flex items-start justify-between">
+            <!-- Main Content -->
+            <div class="flex items-start space-x-4 flex-1">
+              <!-- Company Logo -->
+              <div class="flex-shrink-0">
+                <div class="w-12 h-12 rounded-lg bg-gray-100 dark:bg-gray-700 flex items-center justify-center border-2 border-gray-200 dark:border-gray-600">
                   <img
                     v-if="app.logo"
                     :src="app.logo"
-                    :alt="app.company + ' logo'"
-                    class="object-contain w-full h-full"
+                    :alt="`${app.company} logo`"
+                    class="w-full h-full rounded-lg object-cover"
                   />
-                  <div
-                    v-else
-                    class="text-emerald-700 dark:text-emerald-400 font-bold text-lg"
-                  >
+                  <span v-else class="text-sm font-medium text-gray-600 dark:text-gray-400">
                     {{ initials(app.company) }}
-                  </div>
-                </div>
-
-                <!-- Job Details -->
-                <div class="flex-1 min-w-0">
-                  <h3
-                    class="text-xl font-bold text-gray-900 dark:text-white mb-1 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors"
-                  >
-                    {{ app.title }}
-                  </h3>
-                  <p
-                    class="text-gray-600 dark:text-gray-400 mb-3 flex items-center gap-2"
-                  >
-                    <Icon name="mdi:office-building" class="w-4 h-4" />
-                    {{ app.company }}
-                  </p>
-
-                  <div class="flex flex-wrap items-center gap-3 text-sm">
-                    <span
-                      class="flex items-center gap-1.5 text-gray-600 dark:text-gray-400"
-                    >
-                      <Icon
-                        name="mdi:map-marker"
-                        class="w-4 h-4 text-gray-400"
-                      />
-                      {{ app.location }}
-                    </span>
-                    <span
-                      class="flex items-center gap-1.5 text-gray-600 dark:text-gray-400"
-                    >
-                      <Icon
-                        name="mdi:clock-outline"
-                        class="w-4 h-4 text-gray-400"
-                      />
-                      Applied {{ timeAgo(app.appliedAt) }}
-                    </span>
-                    <span
-                      v-if="app.salary"
-                      class="flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400 font-semibold"
-                    >
-                      <Icon name="mdi:currency-usd" class="w-4 h-4" />
-                      {{ app.salary }}
-                    </span>
-                  </div>
-
-                  <!-- Progress Timeline (if interview) -->
-                  <div
-                    v-if="app.status === 'interview' || app.status === 'offer'"
-                    class="mt-4 pt-4 border-t border-gray-100"
-                  >
-                    <div class="flex items-center gap-2">
-                      <div class="flex items-center gap-1">
-                        <div
-                          class="w-6 h-6 rounded-full bg-emerald-600 flex items-center justify-center"
-                        >
-                          <Icon name="mdi:check" class="w-4 h-4 text-white" />
-                        </div>
-                        <div class="text-xs font-medium text-gray-700">
-                          Applied
-                        </div>
-                      </div>
-                      <div class="h-0.5 w-8 bg-emerald-600"></div>
-                      <div class="flex items-center gap-1">
-                        <div
-                          class="w-6 h-6 rounded-full bg-emerald-600 flex items-center justify-center"
-                        >
-                          <Icon name="mdi:check" class="w-4 h-4 text-white" />
-                        </div>
-                        <div class="text-xs font-medium text-gray-700">
-                          Review
-                        </div>
-                      </div>
-                      <div
-                        :class="[
-                          'h-0.5 w-8',
-                          app.status === 'offer'
-                            ? 'bg-emerald-600'
-                            : 'bg-gray-200',
-                        ]"
-                      ></div>
-                      <div class="flex items-center gap-1">
-                        <div
-                          :class="[
-                            'w-6 h-6 rounded-full flex items-center justify-center',
-                            app.status === 'offer'
-                              ? 'bg-emerald-600'
-                              : 'bg-amber-600',
-                          ]"
-                        >
-                          <Icon
-                            :name="
-                              app.status === 'offer'
-                                ? 'mdi:check'
-                                : 'mdi:calendar'
-                            "
-                            class="w-4 h-4 text-white"
-                          />
-                        </div>
-                        <div class="text-xs font-medium text-gray-700">
-                          Interview
-                        </div>
-                      </div>
-                      <div
-                        :class="[
-                          'h-0.5 w-8',
-                          app.status === 'offer'
-                            ? 'bg-emerald-600'
-                            : 'bg-gray-200',
-                        ]"
-                      ></div>
-                      <div class="flex items-center gap-1">
-                        <div
-                          :class="[
-                            'w-6 h-6 rounded-full flex items-center justify-center',
-                            app.status === 'offer'
-                              ? 'bg-emerald-600'
-                              : 'bg-gray-200',
-                          ]"
-                        >
-                          <Icon name="mdi:trophy" class="w-4 h-4 text-white" />
-                        </div>
-                        <div class="text-xs font-medium text-gray-700">
-                          Offer
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  </span>
                 </div>
               </div>
 
-              <!-- Right: Status & Actions -->
-              <div class="flex flex-col items-end gap-4 lg:min-w-[200px]">
-                <!-- Status Badge -->
-                <span
-                  :class="[
-                    'px-4 py-2 rounded-xl text-sm font-bold shadow-sm',
-                    statusClass(app.status),
-                  ]"
-                >
-                  {{ statusLabel(app.status) }}
-                </span>
-
-                <!-- Action Buttons -->
-                <div class="flex items-center gap-2 w-full">
-                  <NuxtLink
-                    :to="`/jobs/${app.jobId}`"
-                    class="flex-1 px-4 py-2 border-2 border-emerald-600 text-emerald-600 rounded-xl text-sm font-semibold hover:bg-emerald-50 transition-all duration-300 text-center"
+              <!-- Job Info -->
+              <div class="flex-1 min-w-0">
+                <div class="flex items-start justify-between">
+                  <div class="flex-1">
+                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 cursor-pointer">
+                      {{ app.title }}
+                    </h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400 flex items-center mt-1">
+                      <Icon name="mdi:office-building" class="w-4 h-4 mr-1" />
+                      {{ app.company }}
+                    </p>
+                  </div>
+                  <span
+                    :class="statusBadgeClass(app.status)"
+                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ml-4"
                   >
-                    View Job
-                  </NuxtLink>
-                  <button
-                    @click="showWithdrawDialog(app.id)"
-                    class="p-2 text-red-600 hover:bg-red-50 rounded-xl transition-all duration-300"
-                    title="Withdraw application"
-                  >
-                    <Icon name="mdi:close-circle" class="w-5 h-5" />
-                  </button>
+                    {{ statusLabel(app.status) }}
+                  </span>
                 </div>
 
-                <!-- Additional Actions -->
-                <button
-                  v-if="app.status === 'interview'"
-                  class="w-full px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-xl text-sm font-semibold hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2"
-                >
-                  <Icon name="mdi:calendar-plus" class="w-4 h-4" />
-                  Schedule Interview
-                </button>
-                <button
-                  v-if="app.status === 'offer'"
-                  class="w-full px-4 py-2 bg-gradient-to-r from-emerald-600 to-emerald-700 text-white rounded-xl text-sm font-semibold hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2"
-                >
-                  <Icon name="mdi:file-document-check" class="w-4 h-4" />
-                  View Offer
-                </button>
+                <!-- Meta Info -->
+                <div class="mt-3 flex items-center space-x-4 text-sm text-gray-500 dark:text-gray-400">
+                  <div class="flex items-center">
+                    <Icon name="mdi:map-marker" class="w-4 h-4 mr-1" />
+                    {{ app.location }}
+                  </div>
+                  <div v-if="app.salary" class="flex items-center text-green-600 dark:text-green-400">
+                    <Icon name="mdi:currency-usd" class="w-4 h-4 mr-1" />
+                    {{ app.salary }}
+                  </div>
+                  <div class="flex items-center">
+                    <Icon name="mdi:clock-outline" class="w-4 h-4 mr-1" />
+                    Applied {{ timeAgo(app.appliedAt) }}
+                  </div>
+                </div>
               </div>
             </div>
+          </div>
+
+          <!-- Progress Indicator -->
+          <div v-if="app.status === 'interview' || app.status === 'offer'" class="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+            <div class="flex items-center justify-between text-sm">
+              <span class="text-gray-600 dark:text-gray-400">Application Progress</span>
+              <span class="text-gray-500 dark:text-gray-500">{{ progressText(app.status) }}</span>
+            </div>
+            <div class="mt-2">
+              <div class="flex space-x-4">
+                <div class="flex-1">
+                  <div class="flex items-center">
+                    <div class="w-6 h-6 rounded-full bg-green-500 flex items-center justify-center">
+                      <Icon name="mdi:check" class="w-3 h-3 text-white" />
+                    </div>
+                    <span class="ml-2 text-xs text-gray-500 dark:text-gray-400">Applied</span>
+                  </div>
+                </div>
+                <div class="flex-1">
+                  <div class="flex items-center">
+                    <div class="w-6 h-6 rounded-full bg-green-500 flex items-center justify-center">
+                      <Icon name="mdi:check" class="w-3 h-3 text-white" />
+                    </div>
+                    <span class="ml-2 text-xs text-gray-500 dark:text-gray-400">Review</span>
+                  </div>
+                </div>
+                <div class="flex-1">
+                  <div class="flex items-center">
+                    <div :class="[
+                      'w-6 h-6 rounded-full flex items-center justify-center',
+                      app.status === 'offer' ? 'bg-green-500' : 'bg-yellow-500'
+                    ]">
+                      <Icon :name="app.status === 'offer' ? 'mdi:check' : 'mdi:calendar'" class="w-3 h-3 text-white" />
+                    </div>
+                    <span class="ml-2 text-xs text-gray-500 dark:text-gray-400">Interview</span>
+                  </div>
+                </div>
+                <div class="flex-1">
+                  <div class="flex items-center">
+                    <div :class="[
+                      'w-6 h-6 rounded-full flex items-center justify-center',
+                      app.status === 'offer' ? 'bg-green-500' : 'bg-gray-300 dark:bg-gray-600'
+                    ]">
+                      <Icon name="mdi:trophy" class="w-3 h-3" :class="app.status === 'offer' ? 'text-white' : 'text-gray-500'" />
+                    </div>
+                    <span class="ml-2 text-xs text-gray-500 dark:text-gray-400">Offer</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Actions -->
+          <div class="mt-4 flex items-center justify-end space-x-3">
+            <NuxtLink
+              :to="`/jobs/${app.jobId}`"
+              class="text-sm text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium"
+            >
+              View Details
+            </NuxtLink>
+            <button
+              v-if="app.status === 'interview'"
+              class="text-sm bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded-md font-medium transition-colors"
+            >
+              Schedule Interview
+            </button>
+            <button
+              v-if="app.status === 'offer'"
+              class="text-sm bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded-md font-medium transition-colors"
+            >
+              View Offer
+            </button>
+            <button
+              @click="withdrawApplication(app.id)"
+              class="text-sm text-red-600 dark:text-red-400 hover:text-red-800 dark:hover:text-red-300 font-medium transition-colors"
+            >
+              Withdraw
+            </button>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Withdraw Confirmation Dialog -->
+    <!-- Withdraw Modal -->
     <Transition name="modal">
       <div
-        v-if="withdrawDialogOpen"
-        class="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4"
-        @click.self="withdrawDialogOpen = false"
+        v-if="withdrawModal.open"
+        class="fixed inset-0 z-50 overflow-y-auto"
+        aria-labelledby="modal-title"
+        role="dialog"
+        aria-modal="true"
       >
-        <div
-          class="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 transform transition-all"
-        >
-          <div class="flex items-center gap-4 mb-4">
-            <div
-              class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center"
-            >
-              <Icon name="mdi:alert-circle" class="w-6 h-6 text-red-600" />
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+          <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+          <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+          <div class="inline-block align-bottom bg-white dark:bg-gray-800 rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+            <div class="bg-white dark:bg-gray-800 px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+              <div class="sm:flex sm:items-start">
+                <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
+                  <Icon name="mdi:alert-circle" class="h-6 w-6 text-red-600" />
+                </div>
+                <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                  <h3 class="text-lg leading-6 font-medium text-gray-900 dark:text-white" id="modal-title">
+                    Withdraw Application
+                  </h3>
+                  <div class="mt-2">
+                    <p class="text-sm text-gray-500 dark:text-gray-400">
+                      Are you sure you want to withdraw your application? This action cannot be undone.
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div>
-              <h3 class="text-xl font-bold text-gray-900">
-                Withdraw Application?
-              </h3>
-              <p class="text-sm text-gray-600">This action cannot be undone</p>
+            <div class="bg-gray-50 dark:bg-gray-700 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+              <button
+                @click="confirmWithdraw"
+                type="button"
+                class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm"
+              >
+                Withdraw
+              </button>
+              <button
+                @click="withdrawModal.open = false"
+                type="button"
+                class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 dark:border-gray-600 shadow-sm px-4 py-2 bg-white dark:bg-gray-800 text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+              >
+                Cancel
+              </button>
             </div>
-          </div>
-
-          <p class="text-gray-600 mb-6">
-            Are you sure you want to withdraw your application? You won't be
-            able to recover it.
-          </p>
-
-          <div class="flex gap-3">
-            <button
-              @click="withdrawDialogOpen = false"
-              class="flex-1 px-4 py-3 bg-gray-100 text-gray-700 rounded-xl font-semibold hover:bg-gray-200 transition-all duration-300"
-            >
-              Cancel
-            </button>
-            <button
-              @click="confirmWithdraw"
-              class="flex-1 px-4 py-3 bg-red-600 text-white rounded-xl font-semibold hover:bg-red-700 shadow-md hover:shadow-lg transition-all duration-300"
-            >
-              Withdraw
-            </button>
           </div>
         </div>
       </div>
@@ -485,13 +341,15 @@
 </template>
 
 <script setup lang="ts">
-const search = ref("");
-const statusFilter = ref<
-  "all" | "under-review" | "interview" | "rejected" | "offer"
->("all");
-const sortBy = ref<"recent" | "oldest">("recent");
-const withdrawDialogOpen = ref(false);
-const applicationToWithdraw = ref<string | null>(null);
+import { useHead } from "nuxt/app";
+import { ref, computed } from "vue";
+
+const searchQuery = ref("");
+const statusFilter = ref("");
+const sortBy = ref("newest");
+const withdrawModal = ref({ open: false, applicationId: "" });
+
+const totalApplications = computed(() => applications.value.length);
 
 const applications = ref([
   {
@@ -563,110 +421,119 @@ const applications = ref([
 ]);
 
 const filteredApplications = computed(() => {
-  let list = applications.value.slice();
+  let filtered = applications.value;
 
-  if (statusFilter.value !== "all") {
-    list = list.filter((a) => a.status === statusFilter.value);
-  }
-
-  if (search.value && search.value.trim()) {
-    const q = search.value.toLowerCase();
-    list = list.filter((a) =>
-      (a.title + " " + a.company).toLowerCase().includes(q),
+  // Search filter
+  if (searchQuery.value) {
+    const query = searchQuery.value.toLowerCase();
+    filtered = filtered.filter(
+      (app) =>
+        app.title.toLowerCase().includes(query) ||
+        app.company.toLowerCase().includes(query)
     );
   }
 
-  list.sort((a, b) => {
-    const da = new Date(a.appliedAt).getTime();
-    const db = new Date(b.appliedAt).getTime();
-    return sortBy.value === "recent" ? db - da : da - db;
+  // Status filter
+  if (statusFilter.value) {
+    filtered = filtered.filter((app) => app.status === statusFilter.value);
+  }
+
+  // Sort
+  filtered.sort((a, b) => {
+    const dateA = new Date(a.appliedAt).getTime();
+    const dateB = new Date(b.appliedAt).getTime();
+
+    if (sortBy.value === "newest") {
+      return dateB - dateA;
+    } else {
+      return dateA - dateB;
+    }
   });
 
-  return list;
+  return filtered;
 });
 
 const statusCount = (status: string) => {
-  return applications.value.filter((a) => a.status === status).length;
+  return applications.value.filter((app) => app.status === status).length;
+};
+
+const statusLabel = (status: string) => {
+  const labels = {
+    "under-review": "Under Review",
+    interview: "Interview",
+    rejected: "Not Selected",
+    offer: "Offer Received",
+  };
+  return labels[status as keyof typeof labels] || "Unknown";
+};
+
+const statusBadgeClass = (status: string) => {
+  const classes = {
+    "under-review": "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200",
+    interview: "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200",
+    rejected: "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200",
+    offer: "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200",
+  };
+  return classes[status as keyof typeof classes] || "bg-gray-100 text-gray-800";
 };
 
 const initials = (name: string) => {
   return name
-    ? name
-        .split(" ")
-        .map((s) => s[0])
-        .slice(0, 2)
-        .join("")
-        .toUpperCase()
-    : "";
+    .split(" ")
+    .map((word) => word[0])
+    .slice(0, 2)
+    .join("")
+    .toUpperCase();
 };
 
 const timeAgo = (dateStr: string) => {
-  const d = new Date(dateStr);
-  const diff = Math.floor((Date.now() - d.getTime()) / (1000 * 60 * 60 * 24));
-  if (diff <= 0) return "today";
-  if (diff === 1) return "1 day ago";
-  if (diff < 7) return `${diff} days ago`;
-  if (diff < 30) return `${Math.floor(diff / 7)} weeks ago`;
-  return `${Math.floor(diff / 30)} months ago`;
+  const now = new Date();
+  const date = new Date(dateStr);
+  const diffInDays = Math.floor((now.getTime() - date.getTime()) / (1000 * 3600 * 24));
+
+  if (diffInDays === 0) return "today";
+  if (diffInDays === 1) return "yesterday";
+  if (diffInDays < 7) return `${diffInDays} days ago`;
+  if (diffInDays < 30) return `${Math.floor(diffInDays / 7)} weeks ago`;
+  return `${Math.floor(diffInDays / 30)} months ago`;
 };
 
-const statusLabel = (status: string) => {
-  return (
-    {
-      "under-review": "Under Review",
-      interview: "Interview Scheduled",
-      rejected: "Not Selected",
-      offer: "Offer Received",
-    }[status] || "Unknown"
-  );
+const progressText = (status: string) => {
+  const progress = {
+    interview: "Interview Stage",
+    offer: "Offer Received",
+  };
+  return progress[status as keyof typeof progress] || "";
 };
 
-const statusClass = (status: string) => {
-  switch (status) {
-    case "under-review":
-      return "bg-blue-100 text-blue-700 border border-blue-200";
-    case "interview":
-      return "bg-amber-100 text-amber-700 border border-amber-200";
-    case "rejected":
-      return "bg-red-100 text-red-700 border border-red-200";
-    case "offer":
-      return "bg-emerald-100 text-emerald-700 border border-emerald-200";
-    default:
-      return "bg-gray-100 text-gray-700 border border-gray-200";
-  }
-};
-
-const showWithdrawDialog = (id: string) => {
-  applicationToWithdraw.value = id;
-  withdrawDialogOpen.value = true;
+const withdrawApplication = (id: string) => {
+  withdrawModal.value.open = true;
+  withdrawModal.value.applicationId = id;
 };
 
 const confirmWithdraw = () => {
-  if (applicationToWithdraw.value) {
-    const idx = applications.value.findIndex(
-      (a) => a.id === applicationToWithdraw.value,
-    );
-    if (idx > -1) {
-      applications.value.splice(idx, 1);
-    }
+  const index = applications.value.findIndex(
+    (app) => app.id === withdrawModal.value.applicationId
+  );
+  if (index > -1) {
+    applications.value.splice(index, 1);
   }
-  withdrawDialogOpen.value = false;
-  applicationToWithdraw.value = null;
+  withdrawModal.value.open = false;
+  withdrawModal.value.applicationId = "";
 };
 
 useHead({
-  title: "My Applications - FindPoint",
+  title: "Job Applications - FindPoint",
   meta: [
     {
       name: "description",
-      content: "Track and manage all your job applications",
+      content: "Track and manage your job applications",
     },
   ],
 });
 </script>
 
 <style scoped>
-/* Modal transition */
 .modal-enter-active,
 .modal-leave-active {
   transition: opacity 0.3s ease;
@@ -677,13 +544,13 @@ useHead({
   opacity: 0;
 }
 
-.modal-enter-active .bg-white,
-.modal-leave-active .bg-white {
+.modal-enter-active > div,
+.modal-leave-active > div {
   transition: transform 0.3s ease;
 }
 
-.modal-enter-from .bg-white,
-.modal-leave-to .bg-white {
-  transform: scale(0.9);
+.modal-enter-from > div,
+.modal-leave-to > div {
+  transform: scale(0.95);
 }
 </style>

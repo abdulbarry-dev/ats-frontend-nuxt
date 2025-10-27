@@ -122,11 +122,6 @@ export default defineNuxtConfig({
     },
   },
 
-  // Development server configuration for Replit
-  devServer: {
-    port: 5000,
-    host: '0.0.0.0',
-  },
 
   vite: {
     server: {

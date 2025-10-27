@@ -13,7 +13,7 @@
             <p class="text-gray-600">Track and manage all your job postings</p>
           </div>
           <NuxtLink
-            to="/jobs/post"
+            to="/recruiters/jobs/post"
             class="inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-emerald-600 to-emerald-700 text-white rounded-lg font-semibold hover:from-emerald-700 hover:to-emerald-800 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
           >
             <Icon name="mdi:plus-circle" class="w-5 h-5 mr-2" />
@@ -310,7 +310,7 @@
           Start by creating your first job posting
         </p>
         <NuxtLink
-          to="/jobs/post"
+          to="/recruiters/jobs/post"
           class="inline-flex items-center px-6 py-3 bg-emerald-600 text-white rounded-lg font-semibold hover:bg-emerald-700 transition-colors"
         >
           <Icon name="mdi:plus-circle" class="w-5 h-5 mr-2" />

@@ -288,6 +288,7 @@
 
 <script setup lang="ts">
 import { ref, computed } from "vue";
+import { useSeoMeta } from "nuxt/app";
 
 useSeoMeta({
   title: "Notifications - FindPoint",
@@ -638,23 +639,41 @@ const getCategoryColor = (category: string) => {
   opacity: 0;
 }
 
-/* Custom scrollbar for tabs */
+/* Custom scrollbar for tabs - dark mode aware */
 .overflow-x-auto::-webkit-scrollbar {
   height: 4px;
 }
 
-.overflow-x-auto::-webkit-scrollbar-track {
-  background: #f1f1f1;
-  border-radius: 10px;
+@media (prefers-color-scheme: light) {
+  .overflow-x-auto::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+  }
+
+  .overflow-x-auto::-webkit-scrollbar-thumb {
+    background: #059669;
+    border-radius: 10px;
+  }
+
+  .overflow-x-auto::-webkit-scrollbar-thumb:hover {
+    background: #047857;
+  }
 }
 
-.overflow-x-auto::-webkit-scrollbar-thumb {
-  background: #059669;
-  border-radius: 10px;
-}
+@media (prefers-color-scheme: dark) {
+  .overflow-x-auto::-webkit-scrollbar-track {
+    background: #374151;
+    border-radius: 10px;
+  }
 
-.overflow-x-auto::-webkit-scrollbar-thumb:hover {
-  background: #047857;
+  .overflow-x-auto::-webkit-scrollbar-thumb {
+    background: #34d399;
+    border-radius: 10px;
+  }
+
+  .overflow-x-auto::-webkit-scrollbar-thumb:hover {
+    background: #10b981;
+  }
 }
 
 /* Loading animation */

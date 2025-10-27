@@ -526,6 +526,11 @@
 </template>
 
 <script setup lang="ts">
+
+import { ref } from "vue";
+import { useHead } from "nuxt/app";
+
+
 const userName = ref("Sarah");
 
 const stats = ref({
