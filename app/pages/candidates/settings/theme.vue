@@ -82,13 +82,6 @@ const themeOptions = [
 
 function setTheme(theme: string) {
   colorMode.preference = theme;
-  colorMode.value = theme;
-  // Force update to localStorage for persistence
-  if (process.client) {
-    try {
-      localStorage.setItem("nuxt-color-mode", theme);
-    } catch (e) {}
-  }
 }
 </script>
 

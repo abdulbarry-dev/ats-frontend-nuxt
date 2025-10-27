@@ -104,6 +104,9 @@
 </template>
 
 <script setup lang="ts">
+
+import { useSeoMeta } from "nuxt/app";
+
 // SEO Meta Tags
 useSeoMeta({
   title: "FindPoint - Modern Applicant Tracking System",
@@ -117,18 +120,18 @@ useSeoMeta({
 });
 
 import { defineAsyncComponent } from "vue";
-import LazySection from "~/components/base/LazySection.vue";
+import LazySection from "./../components/base/LazySection.vue";
 const FeaturesCandidates = defineAsyncComponent(
-  () => import("~/components/features/FeaturesCandidates.vue"),
+  () => import("./../components/features/FeaturesCandidates.vue"),
 );
 const FeaturesRecruiters = defineAsyncComponent(
-  () => import("~/components/features/FeaturesRecruiters.vue"),
+  () => import("./../components/features/FeaturesRecruiters.vue"),
 );
 const HowItWorks = defineAsyncComponent(
-  () => import("~/components/features/HowItWorks.vue"),
+  () => import("./../components/features/HowItWorks.vue"),
 );
 const CtaSection = defineAsyncComponent(
-  () => import("~/components/cta/CtaSection.vue"),
+  () => import("./../components/cta/CtaSection.vue"),
 );
 // <\/script>
 </script>

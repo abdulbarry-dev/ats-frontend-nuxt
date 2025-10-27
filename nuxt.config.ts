@@ -1,3 +1,5 @@
+import { defineNuxtConfig } from "nuxt/config";
+
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   devtools: { enabled: true },
@@ -23,13 +25,17 @@ export default defineNuxtConfig({
   ],
 
   colorMode: {
-    classSuffix: "",
-    preference: "system", // default theme
-    fallback: "light",
-    storageKey: "nuxt-color-mode", // localStorage key
-    dataValue: "theme",
-  },
-
+      preference: 'system', // default value of $colorMode.preference
+      fallback: 'light', // fallback value if not system preference found
+      hid: 'nuxt-color-mode-script',
+      globalName: '__NUXT_COLOR_MODE__',
+      componentName: 'ColorScheme',
+      classPrefix: '',
+      classSuffix: '',
+      storage: 'localStorage', // or 'sessionStorage' or 'cookie'
+      storageKey: 'nuxt-color-mode'
+    },
+    
   // Nuxt Image module config for automatic optimization
   image: {
     screens: {
@@ -57,11 +63,10 @@ export default defineNuxtConfig({
   tailwindcss: {
     cssPath: "~/assets/css/tailwind.css",
     configPath: "~/tailwind.config.ts",
-    exposeConfig: {
-      level: 2,
-    },
+    exposeConfig: false,
     config: {},
-    viewer: true,
+    injectPosition: 0,
+    viewer: false,
   },
 
  

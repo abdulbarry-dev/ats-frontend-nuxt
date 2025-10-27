@@ -495,6 +495,8 @@
 </template>
 
 <script setup lang="ts">
+import { useRoute } from "vue-router";
+import { watch } from "vue";
 import { ref, onMounted, onUnmounted } from "vue";
 const mobileMenuOpen = ref(false);
 const showSearch = ref(false);
@@ -518,7 +520,7 @@ const languages: Language[] = [
   { code: "zh", name: "Chinese", nativeName: "中文", flag: "🇨🇳" },
 ];
 
-const selectedLanguage = ref<Language>(languages[0]!);
+const selectedLanguage = ref<Language>(languages[0]!);  
 
 const selectLanguage = (lang: Language) => {
   selectedLanguage.value = lang;
