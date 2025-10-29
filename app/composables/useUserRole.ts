@@ -1,3 +1,5 @@
+
+
 /**
  * useUserRole - Role-aware composable
  *
@@ -6,6 +8,9 @@
  */
 
 import type { UserRole, User } from "./../../types";
+import { computed } from "vue";
+import { useState } from "nuxt/app";
+
 
 export const useUserRole = () => {
   // In production, this would come from authentication state

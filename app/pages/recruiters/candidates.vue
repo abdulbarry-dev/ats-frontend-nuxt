@@ -1,28 +1,28 @@
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-8">
-    <div class="container mx-auto px-4 max-w-7xl">
+  <div class="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-slate-900 dark:to-slate-800 py-8">
+  <div class="container mx-auto px-4 max-w-7xl">
       <!-- Header -->
-      <div class="mb-8 fade-in-up">
+  <div class="mb-8 fade-in-up">
         <div
           class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6"
         >
           <div>
-            <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-2">
+            <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-2">
               Candidates
             </h1>
-            <p class="text-gray-600">
+            <p class="text-gray-600 dark:text-gray-400">
               Manage and review all your job applicants
             </p>
           </div>
           <div class="flex items-center gap-3">
             <button
-              class="px-4 py-2.5 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors flex items-center gap-2"
+              class="px-4 py-2.5 border border-gray-300 dark:border-slate-700 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-slate-800 transition-colors flex items-center gap-2"
             >
               <Icon name="mdi:filter-variant" class="w-4 h-4" />
               Filters
             </button>
             <button
-              class="px-4 py-2.5 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors flex items-center gap-2"
+              class="px-4 py-2.5 border border-gray-300 dark:border-slate-700 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-slate-800 transition-colors flex items-center gap-2"
             >
               <Icon name="mdi:download" class="w-4 h-4" />
               Export
@@ -31,43 +31,43 @@
         </div>
 
         <!-- Stats Overview -->
-        <div class="grid grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4">
+  <div class="grid grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4">
           <div
-            class="bg-white rounded-lg p-4 border border-gray-200 hover:shadow-md transition-shadow"
+            class="bg-white dark:bg-slate-800 rounded-lg p-4 border border-gray-200 dark:border-slate-700 hover:shadow-md transition-shadow"
           >
-            <p class="text-xs text-gray-600 mb-1">Total</p>
-            <p class="text-2xl font-bold text-gray-900">124</p>
+            <p class="text-xs text-gray-600 dark:text-gray-400 mb-1">Total</p>
+            <p class="text-2xl font-bold text-gray-900 dark:text-white">124</p>
           </div>
           <div
-            class="bg-white rounded-lg p-4 border border-blue-200 hover:shadow-md transition-shadow"
+            class="bg-white dark:bg-slate-800 rounded-lg p-4 border border-blue-200 dark:border-blue-700 hover:shadow-md transition-shadow"
           >
-            <p class="text-xs text-blue-600 mb-1">New</p>
-            <p class="text-2xl font-bold text-blue-600">28</p>
+            <p class="text-xs text-blue-600 dark:text-blue-400 mb-1">New</p>
+            <p class="text-2xl font-bold text-blue-600 dark:text-blue-400">28</p>
           </div>
           <div
-            class="bg-white rounded-lg p-4 border border-purple-200 hover:shadow-md transition-shadow"
+            class="bg-white dark:bg-slate-800 rounded-lg p-4 border border-purple-200 dark:border-purple-700 hover:shadow-md transition-shadow"
           >
-            <p class="text-xs text-purple-600 mb-1">Reviewing</p>
-            <p class="text-2xl font-bold text-purple-600">45</p>
+            <p class="text-xs text-purple-600 dark:text-purple-400 mb-1">Reviewing</p>
+            <p class="text-2xl font-bold text-purple-600 dark:text-purple-400">45</p>
           </div>
           <div
-            class="bg-white rounded-lg p-4 border border-orange-200 hover:shadow-md transition-shadow"
+            class="bg-white dark:bg-slate-800 rounded-lg p-4 border border-orange-200 dark:border-orange-700 hover:shadow-md transition-shadow"
           >
-            <p class="text-xs text-orange-600 mb-1">Interview</p>
-            <p class="text-2xl font-bold text-orange-600">32</p>
+            <p class="text-xs text-orange-600 dark:text-orange-400 mb-1">Interview</p>
+            <p class="text-2xl font-bold text-orange-600 dark:text-orange-400">32</p>
           </div>
           <div
-            class="bg-white rounded-lg p-4 border border-emerald-200 hover:shadow-md transition-shadow"
+            class="bg-white dark:bg-slate-800 rounded-lg p-4 border border-emerald-200 dark:border-emerald-700 hover:shadow-md transition-shadow"
           >
-            <p class="text-xs text-emerald-600 mb-1">Shortlisted</p>
-            <p class="text-2xl font-bold text-emerald-600">19</p>
+            <p class="text-xs text-emerald-600 dark:text-emerald-400 mb-1">Shortlisted</p>
+            <p class="text-2xl font-bold text-emerald-600 dark:text-emerald-400">19</p>
           </div>
         </div>
       </div>
 
       <!-- Search and Filter Bar -->
       <div
-        class="bg-white rounded-xl shadow-sm border border-gray-200 p-4 mb-6 fade-in-up"
+        class="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-gray-200 dark:border-slate-700 p-4 mb-6 fade-in-up"
         style="animation-delay: 100ms"
       >
         <div class="flex flex-col md:flex-row gap-4">
@@ -81,13 +81,13 @@
             <input
               type="text"
               placeholder="Search by name, email, or skills..."
-              class="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500 transition-all outline-none"
+              class="w-full pl-10 pr-4 py-2.5 border border-gray-300 dark:border-slate-700 rounded-lg focus:border-emerald-500 dark:focus:border-emerald-400 focus:ring-2 focus:ring-emerald-500 dark:focus:ring-emerald-400 transition-all outline-none bg-white dark:bg-slate-900 text-gray-900 dark:text-gray-100"
             />
           </div>
 
           <!-- Job Filter -->
           <select
-            class="px-4 py-2.5 border border-gray-300 rounded-lg focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500 transition-all outline-none bg-white cursor-pointer min-w-[180px]"
+            class="px-4 py-2.5 border border-gray-300 dark:border-slate-700 rounded-lg focus:border-emerald-500 dark:focus:border-emerald-400 focus:ring-2 focus:ring-emerald-500 dark:focus:ring-emerald-400 transition-all outline-none bg-white dark:bg-slate-900 text-gray-900 dark:text-gray-100 cursor-pointer min-w-[180px]"
           >
             <option value="">All Positions</option>
             <option>Software Engineer</option>
@@ -98,7 +98,7 @@
 
           <!-- Status Filter -->
           <select
-            class="px-4 py-2.5 border border-gray-300 rounded-lg focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500 transition-all outline-none bg-white cursor-pointer min-w-[150px]"
+            class="px-4 py-2.5 border border-gray-300 dark:border-slate-700 rounded-lg focus:border-emerald-500 dark:focus:border-emerald-400 focus:ring-2 focus:ring-emerald-500 dark:focus:ring-emerald-400 transition-all outline-none bg-white dark:bg-slate-900 text-gray-900 dark:text-gray-100 cursor-pointer min-w-[150px]"
           >
             <option value="">All Status</option>
             <option>New</option>
@@ -109,12 +109,12 @@
           </select>
 
           <!-- View Toggle -->
-          <div class="flex gap-2 bg-gray-100 p-1 rounded-lg">
-            <button class="px-3 py-2 bg-white rounded-md shadow-sm">
-              <Icon name="mdi:view-grid" class="w-5 h-5 text-gray-700" />
+          <div class="flex gap-2 bg-gray-100 dark:bg-slate-800 p-1 rounded-lg">
+            <button class="px-3 py-2 bg-white dark:bg-slate-900 rounded-md shadow-sm">
+              <Icon name="mdi:view-grid" class="w-5 h-5 text-gray-700 dark:text-gray-200" />
             </button>
             <button
-              class="px-3 py-2 text-gray-600 hover:bg-gray-200 rounded-md transition-colors"
+              class="px-3 py-2 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-slate-700 rounded-md transition-colors"
             >
               <Icon name="mdi:view-list" class="w-5 h-5" />
             </button>
@@ -123,11 +123,11 @@
       </div>
 
       <!-- Candidates Grid -->
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+  <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
         <div
           v-for="(candidate, index) in candidates"
           :key="index"
-          class="bg-white rounded-xl shadow-sm border border-gray-200 hover:shadow-lg transition-all duration-300 overflow-hidden group fade-in-up"
+          class="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-gray-200 dark:border-slate-700 hover:shadow-lg transition-all duration-300 overflow-hidden group fade-in-up"
           :style="`animation-delay: ${150 + index * 50}ms;`"
         >
           <!-- Card Header with Background -->
@@ -137,7 +137,7 @@
           >
             <div class="absolute -bottom-12 left-6">
               <div
-                class="w-24 h-24 rounded-full border-4 border-white bg-gradient-to-br shadow-lg flex items-center justify-center text-white font-bold text-2xl overflow-hidden"
+                class="w-24 h-24 rounded-full border-4 border-white dark:border-slate-800 bg-gradient-to-br shadow-lg flex items-center justify-center text-white font-bold text-2xl overflow-hidden"
                 :class="candidate.avatarGradient"
               >
                 <img
@@ -150,10 +150,10 @@
             </div>
             <!-- Rating Badge -->
             <div
-              class="absolute top-4 right-4 bg-white px-3 py-1 rounded-full shadow-md flex items-center gap-1"
+              class="absolute top-4 right-4 bg-white dark:bg-slate-900 px-3 py-1 rounded-full shadow-md flex items-center gap-1"
             >
               <Icon name="mdi:star" class="w-4 h-4 text-yellow-500" />
-              <span class="text-sm font-bold text-gray-900">{{
+              <span class="text-sm font-bold text-gray-900 dark:text-white">{{
                 candidate.rating
               }}</span>
             </div>
@@ -164,12 +164,12 @@
             <!-- Name and Position -->
             <div class="mb-4">
               <h3
-                class="text-lg font-bold text-gray-900 mb-1 group-hover:text-emerald-600 transition-colors"
+                class="text-lg font-bold text-gray-900 dark:text-white mb-1 group-hover:text-emerald-600 transition-colors"
               >
                 {{ candidate.name }}
               </h3>
-              <p class="text-sm text-gray-600 mb-2">{{ candidate.position }}</p>
-              <div class="flex items-center gap-2 text-xs text-gray-500">
+              <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">{{ candidate.position }}</p>
+              <div class="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400">
                 <Icon name="mdi:map-marker" class="w-3.5 h-3.5" />
                 <span>{{ candidate.location }}</span>
               </div>
@@ -179,7 +179,7 @@
             <div class="mb-4">
               <span
                 class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold"
-                :class="getStatusClass(candidate.status)"
+                :class="getStatusClass(candidate.status) + ' dark:' + getStatusClass(candidate.status).replace('bg-', 'bg-').replace('text-', 'text-').replace('-100', '-900').replace('-700', '-400')"
               >
                 <span
                   class="w-1.5 h-1.5 rounded-full"
@@ -195,13 +195,13 @@
                 <span
                   v-for="(skill, idx) in candidate.skills.slice(0, 3)"
                   :key="idx"
-                  class="px-2.5 py-1 bg-gray-100 text-gray-700 rounded-md text-xs font-medium"
+                  class="px-2.5 py-1 bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-gray-200 rounded-md text-xs font-medium"
                 >
                   {{ skill }}
                 </span>
                 <span
                   v-if="candidate.skills.length > 3"
-                  class="px-2.5 py-1 bg-gray-100 text-gray-600 rounded-md text-xs font-medium"
+                  class="px-2.5 py-1 bg-gray-100 dark:bg-slate-700 text-gray-600 dark:text-gray-300 rounded-md text-xs font-medium"
                 >
                   +{{ candidate.skills.length - 3 }}
                 </span>
@@ -210,23 +210,23 @@
 
             <!-- Stats -->
             <div
-              class="grid grid-cols-3 gap-3 mb-4 pb-4 border-b border-gray-200"
+              class="grid grid-cols-3 gap-3 mb-4 pb-4 border-b border-gray-200 dark:border-slate-700"
             >
               <div class="text-center">
-                <p class="text-xs text-gray-500 mb-1">Experience</p>
-                <p class="text-sm font-bold text-gray-900">
+                <p class="text-xs text-gray-500 dark:text-gray-400 mb-1">Experience</p>
+                <p class="text-sm font-bold text-gray-900 dark:text-white">
                   {{ candidate.experience }}
                 </p>
               </div>
-              <div class="text-center border-x border-gray-200">
-                <p class="text-xs text-gray-500 mb-1">Match</p>
-                <p class="text-sm font-bold text-emerald-600">
+              <div class="text-center border-x border-gray-200 dark:border-slate-700">
+                <p class="text-xs text-gray-500 dark:text-gray-400 mb-1">Match</p>
+                <p class="text-sm font-bold text-emerald-600 dark:text-emerald-400">
                   {{ candidate.match }}%
                 </p>
               </div>
               <div class="text-center">
-                <p class="text-xs text-gray-500 mb-1">Applied</p>
-                <p class="text-sm font-bold text-gray-900">
+                <p class="text-xs text-gray-500 dark:text-gray-400 mb-1">Applied</p>
+                <p class="text-sm font-bold text-gray-900 dark:text-white">
                   {{ candidate.appliedDays }}d
                 </p>
               </div>
@@ -234,12 +234,12 @@
 
             <!-- Contact Info -->
             <div class="space-y-2 mb-4">
-              <div class="flex items-center gap-2 text-xs text-gray-600">
-                <Icon name="mdi:email-outline" class="w-4 h-4 text-gray-400" />
+              <div class="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-300">
+                <Icon name="mdi:email-outline" class="w-4 h-4 text-gray-400 dark:text-gray-500" />
                 <span class="truncate">{{ candidate.email }}</span>
               </div>
-              <div class="flex items-center gap-2 text-xs text-gray-600">
-                <Icon name="mdi:phone-outline" class="w-4 h-4 text-gray-400" />
+              <div class="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-300">
+                <Icon name="mdi:phone-outline" class="w-4 h-4 text-gray-400 dark:text-gray-500" />
                 <span>{{ candidate.phone }}</span>
               </div>
             </div>
@@ -247,13 +247,13 @@
             <!-- Actions -->
             <div class="grid grid-cols-2 gap-2">
               <button
-                class="px-4 py-2.5 bg-emerald-600 text-white rounded-lg font-medium hover:bg-emerald-700 transition-colors flex items-center justify-center gap-2"
+                class="px-4 py-2.5 bg-emerald-600 text-white rounded-lg font-medium hover:bg-emerald-700 dark:hover:bg-emerald-800 transition-colors flex items-center justify-center gap-2"
               >
                 <Icon name="mdi:eye" class="w-4 h-4" />
                 View
               </button>
               <button
-                class="px-4 py-2.5 border-2 border-gray-300 text-gray-700 rounded-lg font-medium hover:border-emerald-500 hover:text-emerald-600 transition-colors flex items-center justify-center gap-2"
+                class="px-4 py-2.5 border-2 border-gray-300 dark:border-slate-700 text-gray-700 dark:text-gray-200 rounded-lg font-medium hover:border-emerald-500 dark:hover:border-emerald-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors flex items-center justify-center gap-2"
               >
                 <Icon name="mdi:message-outline" class="w-4 h-4" />
                 Contact
@@ -266,17 +266,17 @@
       <!-- Empty State -->
       <div
         v-if="candidates.length === 0"
-        class="bg-white rounded-xl shadow-sm border border-gray-200 p-12 text-center fade-in-up"
+        class="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-gray-200 dark:border-slate-700 p-12 text-center fade-in-up"
       >
         <div
-          class="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4"
+          class="w-20 h-20 bg-gray-100 dark:bg-slate-700 rounded-full flex items-center justify-center mx-auto mb-4"
         >
-          <Icon name="mdi:account-search" class="w-10 h-10 text-gray-400" />
+          <Icon name="mdi:account-search" class="w-10 h-10 text-gray-400 dark:text-gray-500" />
         </div>
-        <h3 class="text-xl font-bold text-gray-900 mb-2">
+        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">
           No candidates found
         </h3>
-        <p class="text-gray-600 mb-6">
+        <p class="text-gray-600 dark:text-gray-400 mb-6">
           Try adjusting your filters or search criteria
         </p>
       </div>
@@ -287,27 +287,27 @@
         class="mt-8 flex items-center justify-center gap-2 fade-in-up"
       >
         <button
-          class="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          class="px-4 py-2 border border-gray-300 dark:border-slate-700 rounded-lg text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-slate-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         >
           <Icon name="mdi:chevron-left" class="w-5 h-5" />
         </button>
         <button
-          class="px-4 py-2 bg-emerald-600 text-white rounded-lg font-medium"
+          class="px-4 py-2 bg-emerald-600 text-white rounded-lg font-medium dark:bg-emerald-700"
         >
           1
         </button>
         <button
-          class="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors"
+          class="px-4 py-2 border border-gray-300 dark:border-slate-700 rounded-lg text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-slate-800 transition-colors"
         >
           2
         </button>
         <button
-          class="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors"
+          class="px-4 py-2 border border-gray-300 dark:border-slate-700 rounded-lg text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-slate-800 transition-colors"
         >
           3
         </button>
         <button
-          class="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors"
+          class="px-4 py-2 border border-gray-300 dark:border-slate-700 rounded-lg text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-slate-800 transition-colors"
         >
           <Icon name="mdi:chevron-right" class="w-5 h-5" />
         </button>

@@ -1,6 +1,6 @@
 <template>
-  <div class="min-h-screen py-8 transition-colors duration-300 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-slate-900 dark:to-slate-800">
-    <div class="container mx-auto px-4 max-w-7xl">
+  <div class="min-h-screen py-8 transition-colors duration-300 bg-gray-50 dark:bg-slate-900">
+  <div class="container mx-auto px-4 max-w-7xl bg-white dark:bg-slate-900 rounded-xl">
       <!-- Header -->
       <div class="mb-8 fade-in-up">
         <div
@@ -40,7 +40,7 @@
       >
         <!-- Total Views -->
         <div
-          class="rounded-xl shadow-sm border p-6 hover:shadow-md transition-all fade-in-up bg-white border-gray-200 dark:bg-slate-800 dark:border-slate-700"
+          class="rounded-xl shadow-sm border p-6 hover:shadow-md transition-all fade-in-up bg-white dark:bg-slate-800 border-gray-200 dark:border-slate-700"
           style="animation-delay: 100ms"
         >
           <div class="flex items-center justify-between mb-4">
@@ -62,7 +62,7 @@
         </div>
         <!-- Applications -->
         <div
-          class="rounded-xl shadow-sm border p-6 hover:shadow-md transition-all fade-in-up bg-white border-gray-200 dark:bg-slate-800 dark:border-slate-700"
+          class="rounded-xl shadow-sm border p-6 hover:shadow-md transition-all fade-in-up bg-white dark:bg-slate-800 border-gray-200 dark:border-slate-700"
           style="animation-delay: 150ms"
         >
           <div class="flex items-center justify-between mb-4">
@@ -84,7 +84,7 @@
         </div>
         <!-- Conversion Rate -->
         <div
-          class="rounded-xl shadow-sm border p-6 hover:shadow-md transition-all fade-in-up bg-white border-gray-200 dark:bg-slate-800 dark:border-slate-700"
+          class="rounded-xl shadow-sm border p-6 hover:shadow-md transition-all fade-in-up bg-white dark:bg-slate-800 border-gray-200 dark:border-slate-700"
           style="animation-delay: 200ms"
         >
           <div class="flex items-center justify-between mb-4">
@@ -106,7 +106,7 @@
         </div>
         <!-- Avg. Time to Hire -->
         <div
-          class="rounded-xl shadow-sm border p-6 hover:shadow-md transition-all fade-in-up bg-white border-gray-200 dark:bg-slate-800 dark:border-slate-700"
+          class="rounded-xl shadow-sm border p-6 hover:shadow-md transition-all fade-in-up bg-white dark:bg-slate-800 border-gray-200 dark:border-slate-700"
           style="animation-delay: 250ms"
         >
           <div class="flex items-center justify-between mb-4">
@@ -132,7 +132,7 @@
       <div class="grid lg:grid-cols-2 gap-6 mb-8">
         <!-- Application Trends Chart -->
         <div
-          class="rounded-xl shadow-sm border p-6 fade-in-up bg-white border-gray-200 dark:bg-slate-800 dark:border-slate-700"
+          class="rounded-xl shadow-sm border p-6 fade-in-up bg-white dark:bg-slate-800 border-gray-200 dark:border-slate-700"
           style="animation-delay: 300ms"
         >
           <div class="flex items-center justify-between mb-6">
@@ -184,7 +184,7 @@
 
         <!-- Top Performing Jobs -->
         <div
-          class="rounded-xl shadow-sm border p-6 fade-in-up bg-white border-gray-200 dark:bg-slate-800 dark:border-slate-700"
+          class="rounded-xl shadow-sm border p-6 fade-in-up bg-white dark:bg-slate-800 border-gray-200 dark:border-slate-700"
           style="animation-delay: 350ms"
         >
           <div class="flex items-center justify-between mb-6">
@@ -234,7 +234,7 @@
       <div class="grid lg:grid-cols-3 gap-6 mb-8">
         <!-- Source Analysis -->
         <div
-          class="rounded-xl shadow-sm border p-6 fade-in-up bg-white border-gray-200 dark:bg-slate-800 dark:border-slate-700"
+          class="rounded-xl shadow-sm border p-6 fade-in-up bg-white dark:bg-slate-800 border-gray-200 dark:border-slate-700"
           style="animation-delay: 400ms"
         >
           <div class="flex items-center gap-3 mb-6">
@@ -283,7 +283,7 @@
 
         <!-- Application Status -->
         <div
-          class="rounded-xl shadow-sm border p-6 fade-in-up bg-white border-gray-200 dark:bg-slate-800 dark:border-slate-700"
+          class="rounded-xl shadow-sm border p-6 fade-in-up bg-white dark:bg-slate-800 border-gray-200 dark:border-slate-700"
           style="animation-delay: 450ms"
         >
           <div class="flex items-center gap-3 mb-6">
@@ -481,7 +481,13 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
-import { useSeoMeta } from 'nuxt/app';  
+import { useSeoMeta } from 'nuxt/app';
+import { useColorMode } from '#imports';
+
+const colorMode = useColorMode();
+function setTheme(theme: string) {
+  colorMode.preference = theme;
+}
 useSeoMeta({
   title: "Analytics Dashboard - FindPoint",
   description:

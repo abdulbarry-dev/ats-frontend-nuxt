@@ -1,31 +1,31 @@
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-950 py-8">
+  <div class="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:bg-gradient-to-br dark:from-gray-900 dark:to-gray-950 py-8">
   <div class="container mx-auto px-4 max-w-7xl">
       <!-- Header -->
-  <div class="mb-8 fade-in-up">
+  <div class="mb-8 fade-in-up dark:bg-gray-900 dark:border-gray-800 rounded-xl">
         <div
           class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4"
         >
           <div>
-            <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-2">
+            <h1 class="text-3xl sm:text-4xl font-bold text-gray-800 dark:text-gray-200 mb-2">
               Recruiter Dashboard
             </h1>
-            <p class="text-gray-600 dark:text-gray-300">
+            <p class="text-gray-700 dark:text-gray-400">
               Welcome back! Here's your recruitment overview
             </p>
           </div>
           <div class="flex items-center gap-3">
             <button
-              class="px-4 py-2.5 border border-gray-300 dark:border-gray-700 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors flex items-center gap-2"
+              class="px-4 py-2.5 border border-gray-200 dark:border-gray-700 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors flex items-center gap-2 shadow-sm dark:shadow-none"
             >
-              <Icon name="mdi:calendar-today" class="w-4 h-4" />
+              <Icon name="mdi:calendar-today" class="w-4 h-4 text-emerald-600 dark:text-emerald-400 drop-shadow-sm" />
               <span class="hidden sm:inline">Today</span>
             </button>
             <NuxtLink
               to="/jobs/post"
-              class="px-4 py-2.5 bg-gradient-to-r from-emerald-600 to-emerald-700 text-white rounded-lg font-semibold hover:from-emerald-700 hover:to-emerald-800 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 flex items-center gap-2 dark:shadow-emerald-900"
+              class="px-4 py-2.5 bg-gradient-to-r from-emerald-500 to-emerald-700 text-white rounded-lg font-semibold hover:from-emerald-600 hover:to-emerald-800 transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5 flex items-center gap-2 dark:shadow-emerald-900"
             >
-              <Icon name="mdi:plus-circle" class="w-5 h-5" />
+              <Icon name="mdi:plus-circle" class="w-5 h-5 text-white dark:text-emerald-300 drop-shadow-sm" />
               <span class="hidden sm:inline">Post Job</span>
             </NuxtLink>
           </div>
@@ -33,10 +33,10 @@
       </div>
 
       <!-- Key Metrics -->
-  <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8">
+  <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8 dark:bg-gray-900 dark:border-gray-800 rounded-xl">
         <!-- Active Jobs -->
         <div
-          class="bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6 hover:shadow-md dark:hover:shadow-lg transition-all fade-in-up"
+          class="bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-gray-200 dark:border-gray-800 p-6 hover:shadow-md dark:hover:shadow-lg transition-all fade-in-up"
           style="animation-delay: 100ms"
         >
           <div class="flex items-center justify-between mb-4">
@@ -67,7 +67,7 @@
 
         <!-- Total Applicants -->
         <div
-          class="bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6 hover:shadow-md dark:hover:shadow-lg transition-all fade-in-up"
+          class="bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-gray-200 dark:border-gray-800 p-6 hover:shadow-md dark:hover:shadow-lg transition-all fade-in-up"
           style="animation-delay: 150ms"
         >
           <div class="flex items-center justify-between mb-4">
@@ -98,7 +98,7 @@
 
         <!-- Interviews -->
         <div
-          class="bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6 hover:shadow-md dark:hover:shadow-lg transition-all fade-in-up"
+          class="bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-gray-200 dark:border-gray-800 p-6 hover:shadow-md dark:hover:shadow-lg transition-all fade-in-up"
           style="animation-delay: 200ms"
         >
           <div class="flex items-center justify-between mb-4">
@@ -127,7 +127,7 @@
 
         <!-- Offers -->
         <div
-          class="bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6 hover:shadow-md dark:hover:shadow-lg transition-all fade-in-up"
+          class="bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-gray-200 dark:border-gray-800 p-6 hover:shadow-md dark:hover:shadow-lg transition-all fade-in-up"
           style="animation-delay: 250ms"
         >
           <div class="flex items-center justify-between mb-4">
@@ -156,10 +156,10 @@
         </div>
       </div>
 
-      <div class="grid lg:grid-cols-3 gap-6 mb-8">
+  <div class="grid lg:grid-cols-3 gap-6 mb-8 dark:bg-gray-900 dark:border-gray-800 rounded-xl">
         <!-- Recent Applications -->
         <div
-          class="lg:col-span-2 bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6 fade-in-up"
+          class="lg:col-span-2 bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-gray-200 dark:border-gray-800 p-6 fade-in-up"
           style="animation-delay: 300ms"
         >
           <div class="flex items-center justify-between mb-6">
@@ -223,22 +223,22 @@
         </div>
 
         <!-- Quick Stats -->
-  <div class="space-y-6">
+  <div class="space-y-6 dark:bg-gray-900 dark:border-gray-800 rounded-xl">
           <!-- Pipeline Overview -->
           <div
-            class="bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6 fade-in-up"
+            class="bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-gray-200 dark:border-gray-800 p-6 fade-in-up"
             style="animation-delay: 350ms"
           >
-            <h3 class="text-lg font-bold text-gray-900 dark:text-gray-100 mb-4">
+            <h3 class="text-lg font-bold text-gray-800 dark:text-gray-200 mb-4">
               Pipeline Overview
             </h3>
             <div class="space-y-3">
               <div class="flex items-center justify-between">
                 <div class="flex items-center gap-2">
                   <div class="w-3 h-3 bg-blue-500 rounded-full"></div>
-                  <span class="text-sm text-gray-600 dark:text-gray-300">New</span>
+                  <span class="text-sm text-gray-700 dark:text-gray-400">New</span>
                 </div>
-                <span class="text-sm font-bold text-gray-900 dark:text-gray-100">45</span>
+                <span class="text-sm font-bold text-gray-800 dark:text-gray-200">45</span>
               </div>
               <div class="w-full bg-gray-200 dark:bg-gray-800 rounded-full h-2">
                 <div
@@ -250,9 +250,9 @@
               <div class="flex items-center justify-between">
                 <div class="flex items-center gap-2">
                   <div class="w-3 h-3 bg-purple-500 rounded-full"></div>
-                  <span class="text-sm text-gray-600 dark:text-gray-300">Reviewing</span>
+                  <span class="text-sm text-gray-700 dark:text-gray-400">Reviewing</span>
                 </div>
-                <span class="text-sm font-bold text-gray-900 dark:text-gray-100">62</span>
+                <span class="text-sm font-bold text-gray-800 dark:text-gray-200">62</span>
               </div>
               <div class="w-full bg-gray-200 dark:bg-gray-800 rounded-full h-2">
                 <div
@@ -264,9 +264,9 @@
               <div class="flex items-center justify-between">
                 <div class="flex items-center gap-2">
                   <div class="w-3 h-3 bg-orange-500 rounded-full"></div>
-                  <span class="text-sm text-gray-600 dark:text-gray-300">Interview</span>
+                  <span class="text-sm text-gray-700 dark:text-gray-400">Interview</span>
                 </div>
-                <span class="text-sm font-bold text-gray-900 dark:text-gray-100">28</span>
+                <span class="text-sm font-bold text-gray-800 dark:text-gray-200">28</span>
               </div>
               <div class="w-full bg-gray-200 dark:bg-gray-800 rounded-full h-2">
                 <div
@@ -278,9 +278,9 @@
               <div class="flex items-center justify-between">
                 <div class="flex items-center gap-2">
                   <div class="w-3 h-3 bg-emerald-500 rounded-full"></div>
-                  <span class="text-sm text-gray-600 dark:text-gray-300">Offer</span>
+                  <span class="text-sm text-gray-700 dark:text-gray-400">Offer</span>
                 </div>
-                <span class="text-sm font-bold text-gray-900 dark:text-gray-100">21</span>
+                <span class="text-sm font-bold text-gray-800 dark:text-gray-200">21</span>
               </div>
               <div class="w-full bg-gray-200 dark:bg-gray-800 rounded-full h-2">
                 <div
@@ -293,13 +293,13 @@
 
           <!-- Quick Actions -->
           <div
-            class="bg-gradient-to-br from-emerald-50 to-emerald-100 dark:from-emerald-900 dark:to-emerald-950 rounded-xl border border-emerald-200 dark:border-emerald-800 p-6 fade-in-up"
+            class="bg-gradient-to-br from-emerald-50 to-emerald-100 dark:bg-gradient-to-br dark:from-emerald-900 dark:to-emerald-950 rounded-xl border border-emerald-200 dark:border-emerald-800 p-6 fade-in-up"
             style="animation-delay: 400ms"
           >
-            <h3 class="text-lg font-bold text-gray-900 dark:text-gray-100 mb-4">Quick Actions</h3>
+            <h3 class="text-lg font-bold text-gray-800 dark:text-gray-200 mb-4">Quick Actions</h3>
             <div class="space-y-2">
               <NuxtLink
-                to="/jobs/post"
+                to="recruiters/jobs/post"
                 class="flex items-center gap-3 p-3 bg-white dark:bg-gray-900 rounded-lg hover:shadow-md dark:hover:shadow-lg transition-all group"
               >
                 <div
@@ -310,7 +310,7 @@
                     class="w-5 h-5 text-emerald-600"
                   />
                 </div>
-                <span class="font-medium text-gray-900">Post New Job</span>
+                <span class="font-medium text-gray-800 dark:text-gray-200">Post New Job</span>
               </NuxtLink>
 
               <NuxtLink
@@ -325,7 +325,7 @@
                     class="w-5 h-5 text-blue-600"
                   />
                 </div>
-                <span class="font-medium text-gray-900">Browse Candidates</span>
+                <span class="font-medium text-gray-800 dark:text-gray-200">Browse Candidates</span>
               </NuxtLink>
 
               <NuxtLink
@@ -337,7 +337,7 @@
                 >
                   <Icon name="mdi:chart-line" class="w-5 h-5 text-purple-600" />
                 </div>
-                <span class="font-medium text-gray-900">View Analytics</span>
+                <span class="font-medium text-gray-800 dark:text-gray-200">View Analytics</span>
               </NuxtLink>
             </div>
           </div>
@@ -346,15 +346,15 @@
 
       <!-- Top Performing Jobs -->
       <div
-        class="bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6 mb-8 fade-in-up"
+        class="bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-gray-200 dark:border-gray-800 p-6 mb-8 fade-in-up"
         style="animation-delay: 450ms"
       >
         <div class="flex items-center justify-between mb-6">
           <div>
-            <h2 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-1">
+            <h2 class="text-xl font-bold text-gray-800 dark:text-gray-200 mb-1">
               Top Performing Jobs
             </h2>
-            <p class="text-sm text-gray-500 dark:text-gray-400">
+            <p class="text-sm text-gray-600 dark:text-gray-400">
               Based on application rate and quality
             </p>
           </div>
@@ -367,7 +367,7 @@
           </NuxtLink>
         </div>
 
-  <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+  <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 dark:bg-gray-900 dark:border-gray-800 rounded-xl">
           <div
             v-for="(job, index) in topJobs"
             :key="index"
@@ -385,11 +385,11 @@
               >
             </div>
             <h3
-              class="font-semibold text-gray-900 dark:text-gray-100 mb-2 group-hover:text-emerald-600 transition-colors"
+              class="font-semibold text-gray-800 dark:text-gray-200 mb-2 group-hover:text-emerald-500 dark:group-hover:text-emerald-300 transition-colors"
             >
               {{ job.title }}
             </h3>
-            <div class="flex items-center gap-4 text-xs text-gray-500 dark:text-gray-400 mb-3">
+            <div class="flex items-center gap-4 text-xs text-gray-600 dark:text-gray-400 mb-3">
               <span class="flex items-center gap-1">
                 <Icon name="mdi:map-marker" class="w-3 h-3" />
                 {{ job.location }}
@@ -401,19 +401,19 @@
             </div>
             <div class="grid grid-cols-3 gap-2 pt-3 border-t border-gray-200 dark:border-gray-700">
               <div class="text-center">
-                <div class="text-lg font-bold text-gray-900 dark:text-gray-100">
+                <div class="text-lg font-bold text-gray-800 dark:text-gray-200">
                   {{ job.views }}
                 </div>
                 <div class="text-xs text-gray-500">Views</div>
               </div>
               <div class="text-center border-x border-gray-200">
-                <div class="text-lg font-bold text-emerald-600 dark:text-emerald-400">
+                <div class="text-lg font-bold text-emerald-600 dark:text-emerald-300">
                   {{ job.applicants }}
                 </div>
                 <div class="text-xs text-gray-500">Applied</div>
               </div>
               <div class="text-center">
-                <div class="text-lg font-bold text-purple-600 dark:text-purple-400">
+                <div class="text-lg font-bold text-purple-600 dark:text-purple-300">
                   {{ job.shortlisted }}
                 </div>
                 <div class="text-xs text-gray-500">Shortlist</div>
@@ -425,7 +425,7 @@
 
       <!-- Activity Feed -->
       <div
-        class="bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6 fade-in-up"
+        class="bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-gray-200 dark:border-gray-800 p-6 fade-in-up"
         style="animation-delay: 500ms"
       >
         <div class="flex items-center justify-between mb-6">
@@ -456,8 +456,8 @@
               />
             </div>
             <div class="flex-1 min-w-0">
-              <p class="text-sm text-gray-900 dark:text-gray-100 mb-1" v-html="activity.text"></p>
-              <p class="text-xs text-gray-500 dark:text-gray-400">{{ activity.time }}</p>
+              <p class="text-sm text-gray-800 dark:text-gray-200 mb-1" v-html="activity.text"></p>
+              <p class="text-xs text-gray-600 dark:text-gray-400">{{ activity.time }}</p>
             </div>
           </div>
         </div>

@@ -497,7 +497,10 @@
 <script setup lang="ts">
 import { useRoute } from "vue-router";
 import { watch } from "vue";
-import { ref, onMounted, onUnmounted } from "vue";
+import { ref, onMounted, onUnmounted } from "vue";  
+import { onClickOutside } from "@vueuse/core";
+
+
 const mobileMenuOpen = ref(false);
 const showSearch = ref(false);
 const langDropdownOpen = ref(false);
@@ -530,7 +533,7 @@ const selectLanguage = (lang: Language) => {
 };
 
 // Close language dropdown when clicking outside
-onClickOutside(langDropdownRef, () => {
+onClickOutside(() => langDropdownRef.value, () => {
   langDropdownOpen.value = false;
 });
 

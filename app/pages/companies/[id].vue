@@ -523,6 +523,7 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
+import { useRoute, useSeoMeta } from "nuxt/app";  
 
 const route = useRoute();
 const companyId = route.params.id;

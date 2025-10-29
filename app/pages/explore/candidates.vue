@@ -481,6 +481,13 @@
 </template>
 
 <script setup lang="ts">
+
+import { ref, computed } from "vue";
+import { useSeoMeta } from "nuxt/app";
+import { useProfileStore } from "../../composables/useProfileStore";
+import { navigateTo } from "nuxt/app";
+
+
 useSeoMeta({
   title: "Explore Candidates - FindPoint",
   description: "Discover talented professionals and candidates on FindPoint",

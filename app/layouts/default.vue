@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen flex flex-col">
+  <div class="min-h-screen flex flex-col" data-color-scheme="{{colorMode.value}}">
     <!-- Navbar -->
     <LayoutNavbar />
 
@@ -14,5 +14,4 @@
 </template>
 
 <script setup lang="ts">
-// Layout for public-facing pages
 </script>

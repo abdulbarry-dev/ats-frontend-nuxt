@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { computed, resolveComponent } from "vue";
 /**
  * StatCard - Reusable metric card component
  *

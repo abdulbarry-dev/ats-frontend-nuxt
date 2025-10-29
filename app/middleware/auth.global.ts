@@ -1,3 +1,6 @@
+import { defineNuxtRouteMiddleware } from "nuxt/app";
+
+
 /**
  * Purpose: Redirects unauthenticated users
  * Logic: Global middleware that checks authentication status on all routes

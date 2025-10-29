@@ -1,3 +1,5 @@
+import { defineNuxtRouteMiddleware } from "nuxt/app";
+
 /**
  * Purpose: Restricts access to candidate-only pages
  * Logic: Verifies user has candidate role before allowing access

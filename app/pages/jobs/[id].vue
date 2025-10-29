@@ -1,5 +1,5 @@
 <template>
-  <div
+  <div v-if="job"
     class="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-slate-900 dark:to-slate-800 py-8 transition-colors duration-300"
   >
     <div class="container mx-auto px-4 max-w-6xl">
@@ -561,6 +561,8 @@
 
 <script setup lang="ts">
 import { computed, onMounted } from 'vue'
+import { useRoute, useSeoMeta, createError } from 'nuxt/app';
+import { useFetchJobs, useSelectedJob } from '../../composables/useFetchJobs';
 
 // Define props for the job to receive it as props-like
 const props = defineProps<{

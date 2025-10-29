@@ -357,6 +357,7 @@
 
 <script setup lang="ts">
 import { ref, computed } from "vue";
+import { useSeoMeta } from "nuxt/app";
 
 useSeoMeta({
   title: "FAQ - Frequently Asked Questions | FindPoint",

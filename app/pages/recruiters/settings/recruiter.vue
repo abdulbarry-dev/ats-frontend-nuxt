@@ -301,6 +301,10 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from "vue";
+import { useSeoMeta } from "nuxt/app";
+
+
 const companyData = ref({
   name: "TechCorp Inc.",
   industry: "Technology",

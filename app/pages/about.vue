@@ -246,6 +246,9 @@
 </template>
 
 <script setup lang="ts">
+
+import { useSeoMeta } from "nuxt/app";
+
 const stats = [
   { icon: "mdi:briefcase", value: "10K+", label: "Active Jobs" },
   { icon: "mdi:account-group", value: "50K+", label: "Candidates" },

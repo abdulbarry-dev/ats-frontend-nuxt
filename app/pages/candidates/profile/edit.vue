@@ -433,6 +433,10 @@
 </template>
 
 <script setup lang="ts">
+
+import { ref } from "vue";
+import { useHead, navigateTo } from "nuxt/app";
+
 // Form data
 const form = ref({
   name: "Sarah Johnson",

@@ -846,6 +846,10 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import { useProfileStore } from '../../composables/useProfileStore'
+import { useHead } from 'nuxt/app'
 // Get route and router
 const route = useRoute()
 const router = useRouter()

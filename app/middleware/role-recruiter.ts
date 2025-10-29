@@ -1,3 +1,6 @@
+import { defineNuxtRouteMiddleware } from "nuxt/app";
+
+
 /**
  * Purpose: Restricts recruiter-only routes
  * Logic: Verifies user has recruiter role before allowing access

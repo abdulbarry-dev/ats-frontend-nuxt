@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { computed } from "vue";
 /**
  * DashboardStats - Grid of stat cards for dashboard
  *
