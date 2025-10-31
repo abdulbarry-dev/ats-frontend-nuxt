@@ -301,7 +301,7 @@ const handleResetPassword = () => {
   margin-bottom: 0.5rem;
 }
 
-:deep(.dark) .input-label {
+.dark .input-label {
   color: #e5e7eb;
 }
 
@@ -320,7 +320,7 @@ const handleResetPassword = () => {
   outline: none;
 }
 
-:deep(.dark) .custom-input {
+.dark .custom-input {
   color: #e5e7eb;
   background-color: #1e293b;
   border-color: #475569;
@@ -338,7 +338,7 @@ const handleResetPassword = () => {
   border-color: #10b981;
 }
 
-:deep(.dark) .custom-input:hover {
+.dark .custom-input:hover {
   border-color: #34d399;
 }
 
@@ -347,7 +347,7 @@ const handleResetPassword = () => {
   box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
 }
 
-:deep(.dark) .custom-input:focus {
+.dark .custom-input:focus {
   border-color: #34d399;
   box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.15);
 }
@@ -356,7 +356,7 @@ const handleResetPassword = () => {
   color: #9ca3af;
 }
 
-:deep(.dark) .custom-input::placeholder {
+.dark .custom-input::placeholder {
   color: #64748b;
 }
 </style>

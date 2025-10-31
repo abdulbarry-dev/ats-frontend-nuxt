@@ -100,7 +100,7 @@
           <!-- Email Input -->
           <div class="input-group">
             <label class="input-label flex items-center gap-2">
-              <Icon name="mdi:email-outline" class="w-4 h-4 text-emerald-600" />
+              <Icon name="mdi:email-outline" class="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
               Email Address
             </label>
             <div class="relative">
@@ -113,7 +113,7 @@
               />
               <Icon
                 name="mdi:email-outline"
-                class="w-5 h-5 text-gray-400 absolute left-3.5 top-1/2 -translate-y-1/2"
+                class="w-5 h-5 text-gray-400 dark:text-gray-500 absolute left-3.5 top-1/2 -translate-y-1/2"
               />
             </div>
           </div>
@@ -121,7 +121,7 @@
           <!-- Password Input -->
           <div class="input-group">
             <label class="input-label flex items-center gap-2">
-              <Icon name="mdi:lock-outline" class="w-4 h-4 text-emerald-600" />
+              <Icon name="mdi:lock-outline" class="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
               Password
             </label>
             <div class="relative">
@@ -134,12 +134,12 @@
               />
               <Icon
                 name="mdi:lock-outline"
-                class="w-5 h-5 text-gray-400 absolute left-3.5 top-1/2 -translate-y-1/2"
+                class="w-5 h-5 text-gray-400 dark:text-gray-500 absolute left-3.5 top-1/2 -translate-y-1/2"
               />
               <button
                 type="button"
                 @click="showPassword = !showPassword"
-                class="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
+                class="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
               >
                 <Icon
                   :name="
@@ -286,6 +286,10 @@ const handleLogin = () => {
   margin-bottom: 0.5rem;
 }
 
+.dark .input-label {
+  color: #e5e7eb;
+}
+
 /* Input Styles */
 .custom-input {
   width: 100%;
@@ -301,7 +305,8 @@ const handleLogin = () => {
   outline: none;
 }
 
-:deep(.dark) .custom-input {
+/* Dark mode input styles */
+.dark .custom-input {
   color: #e5e7eb;
   background-color: #1e293b;
   border-color: #475569;
@@ -319,7 +324,7 @@ const handleLogin = () => {
   border-color: #10b981;
 }
 
-:deep(.dark) .custom-input:hover {
+.dark .custom-input:hover {
   border-color: #34d399;
 }
 
@@ -328,7 +333,7 @@ const handleLogin = () => {
   box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
 }
 
-:deep(.dark) .custom-input:focus {
+.dark .custom-input:focus {
   border-color: #34d399;
   box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.15);
 }
@@ -337,7 +342,7 @@ const handleLogin = () => {
   color: #9ca3af;
 }
 
-:deep(.dark) .custom-input::placeholder {
+.dark .custom-input::placeholder {
   color: #64748b;
 }
 </style>
