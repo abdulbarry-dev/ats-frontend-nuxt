@@ -1,9 +1,10 @@
 <template>
   <div :class="{ 'site-root': !isAuthPage }">
     <NuxtRouteAnnouncer />
-    <NuxtLayout>
+    <NuxtLayout v-if="!isAuthPage">
       <NuxtPage />
     </NuxtLayout>
+    <NuxtPage v-else />
   </div>
 </template>
 
@@ -11,7 +12,7 @@
 import { useRoute } from 'vue-router';
 
 const route = useRoute();
-const authPages = ['/auth/login', '/auth/signup', '/auth/reset-password', '/auth/forget-password'];
+const authPages = ['/auth/login', '/auth/register', '/auth/reset-password', '/auth/forgot-password'];
 const isAuthPage = authPages.includes(route.path);
 </script>
 
