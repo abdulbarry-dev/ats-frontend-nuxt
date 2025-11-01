@@ -1,7 +1,7 @@
 import { defineNuxtConfig } from "nuxt/config";
 
 export default defineNuxtConfig({
-  compatibilityDate: "2025-07-15",
+  compatibilityDate: "2024-11-01",
   devtools: { enabled: true },
   ssr: true,
   telemetry: false,
@@ -32,6 +32,7 @@ export default defineNuxtConfig({
   },
 
   app: {
+    baseURL: process.env.NODE_ENV === 'production' ? '/ats-frontend-nuxt/' : '/',
     head: {
       charset: "utf-8",
       viewport: "width=device-width, initial-scale=1",
@@ -52,15 +53,19 @@ export default defineNuxtConfig({
   nitro: {
     compressPublicAssets: true,
     prerender: {
-      crawlLinks: true,
-      ignore: ["/__nuxt_content/**"],
+      crawlLinks: false,
+      routes: ['/'],
+      failOnError: false,
     },
     routeRules: {
       "/**": {
         cache: { swr: true, maxAge: 60 * 60 * 24 * 7 },
       },
       "/sitemap": { redirect: "/sitemap.xml" },
+      "/__nuxt_content/**": { prerender: false },
+      "/api/**": { prerender: false },
     },
+    preset: process.env.NODE_ENV === 'production' ? 'github-pages' : 'node-server',
   },
 
   vite: {
