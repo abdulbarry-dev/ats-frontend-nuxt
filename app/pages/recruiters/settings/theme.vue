@@ -61,34 +61,18 @@
 </template>
 
 <script setup lang="ts">
-import { useColorMode } from "#imports";
+import { useColorMode } from '#imports';
 
 const colorMode = useColorMode();
 
 const themeOptions = [
-  {
-    value: "light",
-    label: "Light",
-    icon: "mdi:weather-sunny",
-    desc: "Bright and clear interface",
-  },
-  {
-    value: "dark",
-    label: "Dark",
-    icon: "mdi:weather-night",
-    desc: "Easy on the eyes",
-  },
+  { value: 'light', label: 'Light', icon: 'mdi:weather-sunny', desc: 'Bright and clear interface' },
+  { value: 'dark', label: 'Dark', icon: 'mdi:weather-night', desc: 'Easy on the eyes' },
 ];
 
-function setTheme(theme: string) {
+function setTheme(theme: 'light' | 'dark') {
   colorMode.preference = theme;
   colorMode.value = theme;
-  // Force update to localStorage for persistence
-  if (process.client) {
-    try {
-      localStorage.setItem("nuxt-color-mode", theme);
-    } catch (e) {}
-  }
 }
 </script>
 

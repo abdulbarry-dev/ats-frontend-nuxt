@@ -237,15 +237,13 @@
   </div>
 </template>
 
-<script>
-export default {
-  layout: 'auth'
-}
-</script>
-
 <script setup lang="ts">
 import { ref, computed } from "vue";
 import { useSeoMeta } from "nuxt/app";
+
+definePageMeta({
+  layout: 'auth'
+});
 
 useSeoMeta({
   title: "Reset Password - FindPoint",

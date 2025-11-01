@@ -495,9 +495,8 @@
 </template>
 
 <script setup lang="ts">
+import { ref, watch, nextTick, onMounted, onUnmounted } from "vue";
 import { useRoute } from "vue-router";
-import { watch } from "vue";
-import { ref, onMounted, onUnmounted } from "vue";  
 import { onClickOutside } from "@vueuse/core";
 
 
@@ -533,7 +532,7 @@ const selectLanguage = (lang: Language) => {
 };
 
 // Close language dropdown when clicking outside
-onClickOutside(() => langDropdownRef.value, () => {
+onClickOutside(langDropdownRef, () => {
   langDropdownOpen.value = false;
 });
 
@@ -541,6 +540,7 @@ onClickOutside(() => langDropdownRef.value, () => {
 // hidden under the fixed navbar. We set it on document.documentElement
 // so layouts and pages can read it (used by app.vue).
 const headerRef = ref<HTMLElement | null>(null);
+let resizeObserver: ResizeObserver | null = null;
 
 function updateHeaderHeight() {
   const el = headerRef.value;
@@ -555,10 +555,16 @@ function updateHeaderHeight() {
 onMounted(() => {
   // Setup header height tracking
   updateHeaderHeight();
+  if (typeof ResizeObserver !== "undefined" && headerRef.value) {
+    resizeObserver = new ResizeObserver(() => updateHeaderHeight());
+    resizeObserver.observe(headerRef.value);
+  }
   window.addEventListener("resize", updateHeaderHeight, { passive: true });
 });
 
 onUnmounted(() => {
+  resizeObserver?.disconnect();
+  resizeObserver = null;
   window.removeEventListener("resize", updateHeaderHeight);
 });
 
@@ -604,6 +610,11 @@ watch(
     showSearch.value = false;
   },
 );
+
+watch(showSearch, async () => {
+  await nextTick();
+  updateHeaderHeight();
+});
 
 // Prevent body scroll when mobile menu is open
 watch(mobileMenuOpen, (isOpen: boolean) => {

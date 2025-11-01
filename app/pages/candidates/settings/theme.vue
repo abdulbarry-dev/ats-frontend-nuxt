@@ -80,7 +80,7 @@ const themeOptions = [
   },
 ];
 
-function setTheme(theme: string) {
+function setTheme(theme: "light" | "dark") {
   colorMode.preference = theme;
 }
 </script>
