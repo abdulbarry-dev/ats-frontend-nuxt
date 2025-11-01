@@ -32,7 +32,7 @@ export default defineNuxtConfig({
   },
 
   app: {
-    baseURL: process.env.NODE_ENV === 'production' ? '/ats-frontend-nuxt/' : '/',
+    baseURL: process.env.NODE_ENV === 'production' ? '/findpoint-frontend/' : '/',
     head: {
       charset: "utf-8",
       viewport: "width=device-width, initial-scale=1",
