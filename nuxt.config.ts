@@ -32,7 +32,8 @@ export default defineNuxtConfig({
   },
 
   app: {
-    baseURL: process.env.NODE_ENV === 'production' ? '/findpoint-frontend/' : '/',
+    baseURL: '/findpoint-frontend/',
+    buildAssetsDir: '/_nuxt/',
     head: {
       charset: "utf-8",
       viewport: "width=device-width, initial-scale=1",
@@ -52,6 +53,7 @@ export default defineNuxtConfig({
 
   nitro: {
     compressPublicAssets: true,
+    baseURL: '/findpoint-frontend/',
     prerender: {
       crawlLinks: false,
       routes: ['/'],
@@ -65,7 +67,7 @@ export default defineNuxtConfig({
       "/__nuxt_content/**": { prerender: false },
       "/api/**": { prerender: false },
     },
-    preset: process.env.NODE_ENV === 'production' ? 'github-pages' : 'node-server',
+    preset: 'github-pages',
   },
 
   vite: {

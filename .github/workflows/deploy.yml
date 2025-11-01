@@ -34,6 +34,8 @@ jobs:
     - name: Build Nuxt application
       run: npm run generate
       env:
+        NODE_ENV: production
+        NUXT_APP_BASE_URL: /findpoint-frontend/
         NODE_OPTIONS: --no-deprecation
 
     - name: Upload artifact
