@@ -7,7 +7,6 @@ export default defineNuxtConfig({
   telemetry: false,
 
   modules: [
-    "@nuxt/content",
     "@nuxt/fonts",
     "@nuxt/icon",
     "@nuxt/image",
@@ -18,8 +17,9 @@ export default defineNuxtConfig({
     "@nuxtjs/device",
     "@nuxtjs/seo",
     "@nuxtjs/color-mode",
+    "@nuxtjs/robots",
   ],
-
+  //  @ts-ignore: color-mode module options are provided by the @nuxtjs/color-mode module but not in Nuxt's base types
   colorMode: {
     preference: "system",
     fallback: "light",
@@ -32,8 +32,8 @@ export default defineNuxtConfig({
   },
 
   app: {
-    baseURL: '/findpoint-frontend/',
-    buildAssetsDir: '/_nuxt/',
+    baseURL: "/findpoint-frontend/",
+    buildAssetsDir: "/_nuxt/",
     head: {
       charset: "utf-8",
       viewport: "width=device-width, initial-scale=1",
@@ -44,7 +44,9 @@ export default defineNuxtConfig({
         },
       ],
       style: [
-        { innerHTML: `body { font-family: 'Inter', 'Segoe UI', Arial, sans-serif; font-display: swap; }` },
+        {
+          innerHTML: `body { font-family: 'Inter', 'Segoe UI', Arial, sans-serif; font-display: swap; }`,
+        },
       ],
     },
   },
@@ -53,10 +55,10 @@ export default defineNuxtConfig({
 
   nitro: {
     compressPublicAssets: true,
-    baseURL: '/findpoint-frontend/',
+    baseURL: "/findpoint-frontend/",
     prerender: {
       crawlLinks: false,
-      routes: ['/'],
+      routes: ["/"],
       failOnError: false,
     },
     routeRules: {
@@ -67,7 +69,7 @@ export default defineNuxtConfig({
       "/__nuxt_content/**": { prerender: false },
       "/api/**": { prerender: false },
     },
-    preset: 'github-pages',
+    preset: "github-pages",
   },
 
   vite: {
@@ -77,5 +79,10 @@ export default defineNuxtConfig({
   typescript: {
     strict: true,
     typeCheck: false,
+  },
+  // @ts-ignore: robots module options are provided by the @nuxt/robots module but not in Nuxt's base types
+  robots: {
+    robotsTxt: false,
+    sitemap: "/sitemap.xml",
   },
 });
